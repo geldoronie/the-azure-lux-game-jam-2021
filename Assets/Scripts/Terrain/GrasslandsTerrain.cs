@@ -4,10 +4,19 @@ public class GrasslandsTerrain : Terrain
 
     public override Terrain CheckRules(VonNeumannNeighbors neighbors)
     {
-        if (neighbors._northNeighbor is DesertTerrain && neighbors._southNeighbor is ForestTerrain ||
-            neighbors._southNeighbor is DesertTerrain && neighbors._northNeighbor is ForestTerrain ||
-            neighbors._eastNeighbor is DesertTerrain && neighbors._westNeighbor is ForestTerrain ||
-            neighbors._westNeighbor is DesertTerrain && neighbors._eastNeighbor is ForestTerrain)
+        if (neighbors._northNeighbor is DesertTerrain && neighbors._southNeighbor is ForestTerrain)
+        {
+            return new MontainTerrain(X, Y);
+        }
+        if (neighbors._southNeighbor is DesertTerrain && neighbors._northNeighbor is ForestTerrain)
+        {
+            return new MontainTerrain(X, Y);
+        }
+        if (neighbors._eastNeighbor is DesertTerrain && neighbors._westNeighbor is ForestTerrain)
+        {
+            return new MontainTerrain(X, Y);
+        }
+        if (neighbors._westNeighbor is DesertTerrain && neighbors._eastNeighbor is ForestTerrain)
         {
             return new MontainTerrain(X, Y);
         }
