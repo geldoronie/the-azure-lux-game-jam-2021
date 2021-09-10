@@ -332,12 +332,12 @@ MonoBehaviour:
   _height: 20
   gambisX: 10
   gambisY: 5
-  desertIncidence: 8
-  forestIncidence: 62
-  grasslandsIncidence: 88
-  montainIncidence: 9
-  riverIncidence: 53
-  swampIncidence: 13
+  desertIncidence: 2
+  forestIncidence: 20
+  grasslandsIncidence: 50
+  montainIncidence: 7
+  riverIncidence: 18
+  swampIncidence: 3
 --- !u!4 &1141436410
 Transform:
   m_ObjectHideFlags: 0

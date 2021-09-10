@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class Map : MonoBehaviour
 {
     [SerializeField] private int _width;
     [SerializeField] private int _height;
@@ -13,9 +13,9 @@ public class Grid : MonoBehaviour
     [Range(1, 100)]
     [SerializeField] private int forestIncidence = 1;
     [Range(1, 100)]
-    [SerializeField] private int grasslandsIncidence = 1;
+    [SerializeField] private int grasslandIncidence = 1;
     [Range(1, 100)]
-    [SerializeField] private int montainIncidence = 1;
+    [SerializeField] private int mountainIncidence = 1;
     [Range(1, 100)]
     [SerializeField] private int riverIncidence = 1;
     [Range(1, 100)]
@@ -143,7 +143,7 @@ public class Grid : MonoBehaviour
 
     private Terrain GetRandomTerrain(int x, int y)
     {
-        int totalIncidence = desertIncidence + forestIncidence + grasslandsIncidence + montainIncidence + riverIncidence + swampIncidence;
+        int totalIncidence = desertIncidence + forestIncidence + grasslandIncidence + mountainIncidence + riverIncidence + swampIncidence;
 
         int randomIncidence = Random.Range(0, totalIncidence);
         int currentIncidence = desertIncidence;
@@ -156,12 +156,12 @@ public class Grid : MonoBehaviour
         {
             return new ForestTerrain(x, y);
         }
-        currentIncidence += grasslandsIncidence;
+        currentIncidence += grasslandIncidence;
         if (randomIncidence < currentIncidence)
         {
             return new GrasslandsTerrain(x, y);
         }
-        currentIncidence += montainIncidence;
+        currentIncidence += mountainIncidence;
         if (randomIncidence < currentIncidence)
         {
             return new MontainTerrain(x, y);
