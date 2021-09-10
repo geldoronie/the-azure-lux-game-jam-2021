@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _width: 20
-  _height: 10
+  _height: 20
   gambisX: 10
   gambisY: 5
   desertIncidence: 8
