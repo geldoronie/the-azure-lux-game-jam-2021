@@ -1,0 +1,22 @@
+[
+    {
+        "name" : "15x15",
+        "height" : 15,
+        "width" : 15
+    },
+    {
+        "name" : "20x20",
+        "height" : 20,
+        "width" : 20
+    },
+    {
+        "name" : "30x30",
+        "height" : 30,
+        "width" : 30
+    },
+    {
+        "name" : "40x40",
+        "height" : 40,
+        "width" : 40
+    }
+]
