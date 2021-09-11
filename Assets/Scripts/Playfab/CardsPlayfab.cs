@@ -14,6 +14,7 @@ public class CardsPlayfab : MonoBehaviour
 
     void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
         this.BuildingCards = new List<BuildingCardModelPlayfab>();
         this.EffectCards = new List<EffectCardModelPlayfab>();
         this.Authentication = GameObject.Find("AuthenticationPlayfab").GetComponent<AuthenticationPlayfab>();

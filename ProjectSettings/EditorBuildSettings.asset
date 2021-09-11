@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Library.unity
     guid: 7468694662630156e8efa3f30fc42430
+  - enabled: 1
+    path: Assets/Scenes/WorldVsYou.unity
+    guid: 12a142f9a87d8bdae8e2fedffd0c1d13
   m_configObjects: {}

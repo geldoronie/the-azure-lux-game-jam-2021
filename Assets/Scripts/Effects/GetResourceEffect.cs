@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Get Resource", menuName = "GameJam/Cards/Effect Cards/Get Resource")]
-public class GetResourceEffectCard : EffectCard
+public class GetResourceEffect : EffectBase
 {
-    [SerializeField] private ResourceAmount[] resourceToGain;
+    [SerializeField] public ResourceAmount[] resourcesToGain;
 }

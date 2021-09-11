@@ -3,6 +3,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class CardOrganizerGUI : MonoBehaviour
 {
+    [SerializeField] private Library _library;
     [SerializeField] private CardDisplayer _cardPrefab;
     [SerializeField] private int _cardWidth = 100;
     [SerializeField] private int _cardHeight = 100;
@@ -112,5 +113,25 @@ public class CardOrganizerGUI : MonoBehaviour
             childRectTransform.rotation = Quaternion.Euler(0, 0, angleOddOrEven - angle * shiftedI);
         }
 
+    }
+
+    private void _addHandCard(Card card){
+        CardDisplayer newCard = Instantiate<CardDisplayer>(_cardPrefab,transform);
+        newCard.Initialize(card);
+    }
+
+    private void _clearHandCards(){
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void RequestNewHand(){
+        this._library.NewHand();
+        this._clearHandCards();
+        this._library.PlayerHand.ForEach(card => {
+            this._addHandCard(card);
+        });
     }
 }

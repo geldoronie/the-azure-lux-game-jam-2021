@@ -6,31 +6,31 @@
             "imageId" : "",
             "cost" : [
                 {
-                    "type": "FOOD",
+                    "type": "Food",
                     "amount" : 20
                 },
                 {
-                    "type": "STONE",
+                    "type": "Stone",
                     "amount" : 20
                 },
                 {
-                    "type": "WOOD",
+                    "type": "Wood",
                     "amount" : 20
                 }
             ],
             "resourcePerTurn" : [
                 {
-                    "type": "PEOPLE",
+                    "type": "People",
                     "amount" : 10
                 },
                 {
-                    "type": "GOLD",
+                    "type": "Gold",
                     "amount" : -5
                 }
             ],
             "terrainCost" : [
                 {
-                    "type" : "GRASSLAND"
+                    "type" : "Grassland"
                 }
             ]
         }
