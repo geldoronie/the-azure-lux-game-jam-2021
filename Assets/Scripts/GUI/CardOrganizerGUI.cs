@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class CardOrganizerGUI : MonoBehaviour
 {
-    [SerializeField] private Library _library;
+    [SerializeField] private CardsLibrary _library;
     [SerializeField] private CardDisplayer _cardPrefab;
     [SerializeField] private int _cardWidth = 100;
     [SerializeField] private float _cardHeighGap = 9.3f;
@@ -20,6 +21,12 @@ public class CardOrganizerGUI : MonoBehaviour
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvas = transform.parent.GetComponent<Canvas>();
+        _library.OnHandCardsUpdate += OnHandCardsUpdate;
+    }
+
+    private void OnDestroy()
+    {
+        _library.OnHandCardsUpdate -= OnHandCardsUpdate;
     }
 
     private void Update()
@@ -114,7 +121,6 @@ public class CardOrganizerGUI : MonoBehaviour
             float angleOddOrEven = (-angle / 2f) * oddOrEven;
             childRectTransform.rotation = Quaternion.Euler(0, 0, angleOddOrEven - angle * shiftedI);
         }
-
     }
 
     private void _addHandCard(Card card)
@@ -131,11 +137,10 @@ public class CardOrganizerGUI : MonoBehaviour
         }
     }
 
-    public void RequestNewHand()
+    public void OnHandCardsUpdate(List<Card> cards)
     {
-        this._library.NewHand();
         this._clearHandCards();
-        this._library.PlayerHand.ForEach(card =>
+        cards.ForEach(card =>
         {
             this._addHandCard(card);
         });

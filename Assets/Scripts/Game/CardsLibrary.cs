@@ -1,55 +1,45 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Library : MonoBehaviour
+public class CardsLibrary : MonoBehaviour
 {
-    [SerializeField]
-    private CardsPlayfab _cardsDatabase;
-
-    // Start is called before the first frame update
-
-    [SerializeField]
-    private int _playerStartHandCardsCount = 5;
-    [SerializeField]
+    [SerializeField] private CardsPlayfab _cardsDatabase;
+    [SerializeField] private int _playerStartHandCardsCount = 5;
     [Range(1, 100)]
-    private int _buildingCardsChance = 75;
-
-    [SerializeField]
+    [SerializeField] private int _buildingCardsChance = 75;
     [Range(1, 100)]
-    private int _effectsCardsChance = 25;
-
-    [SerializeField]
-    public List<Card> PlayerHand;
-    
-    void Start(){
-        
-    }
+    [SerializeField] private int _effectsCardsChance = 25;
+    [SerializeField] private List<Card> _playerHand;
+    public UnityAction<List<Card>> OnHandCardsUpdate;
 
     void Awake()
     {
-        this.PlayerHand = new List<Card>();
+        this._playerHand = new List<Card>();
+        _cardsDatabase.onGetCards += NewHand;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        _cardsDatabase.onGetCards -= NewHand;
     }
 
-    public void NewHand(){
-        this.PlayerHand.Clear();
+    public void NewHand(BuildingCardModelPlayfab[] buildingCards, EffectCardModelPlayfab[] effectCards)
+    {
+        this._playerHand.Clear();
         for (int i = 0; i < this._playerStartHandCardsCount; i++)
         {
-            float shuffle = Random.Range(0,100);
-            if(shuffle <= this._buildingCardsChance || shuffle >= this._effectsCardsChance){
-
-                BuildingCardModelPlayfab card = this._cardsDatabase.BuildingCards[Random.Range(0,this._cardsDatabase.BuildingCards.Count)];
+            float shuffle = Random.Range(0, 100);
+            if (shuffle <= this._buildingCardsChance || shuffle >= this._effectsCardsChance)
+            {
+                BuildingCardModelPlayfab card = buildingCards[Random.Range(0, buildingCards.Length)];
 
                 // Use Cost
                 List<ResourceAmount> costs = new List<ResourceAmount>();
-                card.cost.ForEach( cost => {
-                    costs.Add(new ResourceAmount(){
+                card.cost.ForEach(cost =>
+                {
+                    costs.Add(new ResourceAmount()
+                    {
                         amount = cost.amount,
                         resource = ResourceTypeToResource(cost.type)
                     });
@@ -57,8 +47,10 @@ public class Library : MonoBehaviour
 
                 // Resource Per Turn
                 List<ResourceAmount> resourcePerTurn = new List<ResourceAmount>();
-                card.resourcePerTurn.ForEach( cost => {
-                    resourcePerTurn.Add(new ResourceAmount(){
+                card.resourcePerTurn.ForEach(cost =>
+                {
+                    resourcePerTurn.Add(new ResourceAmount()
+                    {
                         amount = cost.amount,
                         resource = ResourceTypeToResource(cost.type)
                     });
@@ -66,11 +58,12 @@ public class Library : MonoBehaviour
 
                 // Terrain Cost
                 List<CardTerrainCost> terrainCosts = new List<CardTerrainCost>();
-                card.terrainCost.ForEach( cost => {
+                card.terrainCost.ForEach(cost =>
+                {
                     terrainCosts.Add(TerrrainTypeToTerrainCost(cost.type));
                 });
 
-                this.PlayerHand.Add(
+                this._playerHand.Add(
                     new BuildingCard(
                         card.name,
                         card.description,
@@ -79,13 +72,17 @@ public class Library : MonoBehaviour
                         terrainCosts
                     )
                 );
-            } else {
-                EffectCardModelPlayfab card = this._cardsDatabase.EffectCards[Random.Range(0,this._cardsDatabase.EffectCards.Count)];
+            }
+            else
+            {
+                EffectCardModelPlayfab card = effectCards[Random.Range(0, effectCards.Length)];
 
                 // Use Cost
                 List<ResourceAmount> costs = new List<ResourceAmount>();
-                card.cost.ForEach( cost => {
-                    costs.Add(new ResourceAmount(){
+                card.cost.ForEach(cost =>
+                {
+                    costs.Add(new ResourceAmount()
+                    {
                         amount = cost.amount,
                         resource = ResourceTypeToResource(cost.type)
                     });
@@ -94,16 +91,20 @@ public class Library : MonoBehaviour
                 // Effects
                 EffectBase effect = new EffectBase();
                 List<EffectArgument> arguments = new List<EffectArgument>();
-                card.effect.arguments.ForEach( arg => {
-                    arguments.Add( new EffectArgument(){
+                card.effect.arguments.ForEach(arg =>
+                {
+                    arguments.Add(new EffectArgument()
+                    {
                         type = ArgumentTypeToEffectArgumentType(arg.type),
                         value = arg.value
                     });
                 });
 
                 //Change Terrain Effects
-                if (card.effect.type == "CHANGETERRAIN"){
-                    effect = new ChangeTerrainEffect(){
+                if (card.effect.type == "CHANGETERRAIN")
+                {
+                    effect = new ChangeTerrainEffect()
+                    {
                         type = card.effect.type,
                         arguments = arguments,
                         terrainToApply = TerrrainTypeToTerrainCost(card.effect.arguments.Find(a => a.type == "terrain").value),
@@ -111,23 +112,27 @@ public class Library : MonoBehaviour
                 }
 
                 // Get Resource Effects
-                if (card.effect.type == "GETRESOURCE"){
+                if (card.effect.type == "GETRESOURCE")
+                {
                     List<ResourceAmount> resources = new List<ResourceAmount>();
-                    card.effect.arguments.ForEach( arg => {
-                        resources.Add(new ResourceAmount(){
+                    card.effect.arguments.ForEach(arg =>
+                    {
+                        resources.Add(new ResourceAmount()
+                        {
                             resource = ResourceTypeToResource(arg.type),
                             amount = int.Parse(arg.value)
                         });
                     });
 
-                    effect = new GetResourceEffect(){
+                    effect = new GetResourceEffect()
+                    {
                         type = card.effect.type,
                         arguments = arguments,
                         resourcesToGain = resources.ToArray()
                     };
                 }
 
-                this.PlayerHand.Add(new EffectCard(
+                this._playerHand.Add(new EffectCard(
                         card.name,
                         card.description,
                         costs,
@@ -136,10 +141,13 @@ public class Library : MonoBehaviour
                 );
             }
         }
+        OnHandCardsUpdate?.Invoke(this._playerHand);
     }
 
-    Resource ResourceTypeToResource(string type){
-        switch (type) {
+    private Resource ResourceTypeToResource(string type)
+    {
+        switch (type)
+        {
             case "Wood":
                 return Resource.Wood;
             case "Stone":
@@ -157,8 +165,10 @@ public class Library : MonoBehaviour
         }
     }
 
-    CardTerrainCost TerrrainTypeToTerrainCost(string type){
-        switch (type) {
+    private CardTerrainCost TerrrainTypeToTerrainCost(string type)
+    {
+        switch (type)
+        {
             case "Desert":
                 return CardTerrainCost.Desert;
             case "Forest":
@@ -176,8 +186,10 @@ public class Library : MonoBehaviour
         }
     }
 
-    EffectArgumentType ArgumentTypeToEffectArgumentType(string type){
-        switch (type) {
+    private EffectArgumentType ArgumentTypeToEffectArgumentType(string type)
+    {
+        switch (type)
+        {
             case "terrain":
                 return EffectArgumentType.Terrain;
             case "resource":

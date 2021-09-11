@@ -40,11 +40,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1796152817172689376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bcd350456f32079dabd70749f9e538b, type: 3}
+  m_Script: {fileID: 11500000, guid: a078ab3e286e56a4b9aff1b43e1c3248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _cardsDatabase: {fileID: 0}
   _playerStartHandCardsCount: 5
-  _buildingCardsChance: 10
-  _effectsCardsChance: 90
+  _buildingCardsChance: 75
+  _effectsCardsChance: 25
   PlayerHand: []
