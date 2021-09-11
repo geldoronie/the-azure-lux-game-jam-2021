@@ -26,6 +26,9 @@ public class Map : MonoBehaviour
     [SerializeField] private int swampIncidence = 1;
 
     [Header("Prefabs")]
+    [SerializeField] private Transform castleTransform;
+    [SerializeField] private GameObject cornerTowerPrefab;
+    [SerializeField] private GameObject middleWallPrefab;
     [SerializeField] private Terrain blankPrefab;
     [SerializeField] private Terrain desertPrefab;
     [SerializeField] private Terrain forestPrefab;
@@ -57,6 +60,47 @@ public class Map : MonoBehaviour
                 Terrain newTerrain = Instantiate<Terrain>(blankPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
                 newTerrain.Initialize(null, x, y);
                 _grid[x, y] = newTerrain;
+
+                if (x == 0)
+                {
+                    Instantiate(middleWallPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 180, 0), castleTransform);
+
+                    if (y == 0)
+                    {
+                        Instantiate(cornerTowerPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 0, 0), castleTransform);
+                    }
+
+                    if (y == _height - 1)
+                    {
+                        Instantiate(cornerTowerPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 90, 0), castleTransform);
+                    }
+                }
+
+                if (y == 0)
+                {
+                    Instantiate(middleWallPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 90, 0), castleTransform);
+                }
+
+                if (x == _width - 1)
+                {
+                    Instantiate(middleWallPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 0, 0), castleTransform);
+
+                    if (y == 0)
+                    {
+                        Instantiate(cornerTowerPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 270, 0), castleTransform);
+                    }
+
+                    if (y == _height - 1)
+                    {
+                        Instantiate(cornerTowerPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 180, 0), castleTransform);
+                    }
+                }
+
+                if (y == _height - 1)
+                {
+                    Instantiate(middleWallPrefab, GetWorldCoordinates(x, y), Quaternion.Euler(0, 270, 0), castleTransform);
+                }
+
             }
         }
 
@@ -82,6 +126,8 @@ public class Map : MonoBehaviour
 
         maxIterations = 0;
         iterations = 0;
+
+        StopAllCoroutines();
     }
 
     public IEnumerator SetTerrainApplyCellularAutomata(TerrainRule newRule, int x, int y)
@@ -145,12 +191,15 @@ public class Map : MonoBehaviour
 
     private IEnumerator SwapTerrain(Terrain terrain)
     {
-        int x = terrain.X;
-        int y = terrain.Y;
-        Terrain[] neighbors = GetVonNeumannNeighbors(terrain.X, terrain.Y);
-        TerrainRule newRule = terrain.TerrainRule.CheckRules(neighbors);
+        if (terrain.TerrainRule != null)
+        {
+            int x = terrain.X;
+            int y = terrain.Y;
+            Terrain[] neighbors = GetVonNeumannNeighbors(terrain.X, terrain.Y);
+            TerrainRule newRule = terrain.TerrainRule.CheckRules(neighbors);
 
-        yield return StartCoroutine(SwapTerrain(newRule, x, y));
+            yield return StartCoroutine(SwapTerrain(newRule, x, y));
+        }
     }
 
     private IEnumerator SwapTerrain(TerrainRule newRule, int x, int y)
