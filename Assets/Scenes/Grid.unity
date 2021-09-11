@@ -6770,7 +6770,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1141436410}
   - component: {fileID: 1141436409}
-  - component: {fileID: 1141436411}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -6790,13 +6789,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 10
-  _height: 10
-  _cellularAutomataIterations: 3
-  _cellularAutomataWaitingTime: 0.7
+  _width: 50
+  _height: 50
   _rotationSpeed: 360
   desertIncidence: 100
-  forestIncidence: 1
+  forestIncidence: 100
   grasslandIncidence: 1
   mountainIncidence: 100
   riverIncidence: 100
@@ -6826,19 +6823,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1141436411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141436408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa675de8e67244b468232bc3d45c3908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
 --- !u!1 &1225236463
 GameObject:
   m_ObjectHideFlags: 0
@@ -7797,7 +7781,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardPrefab: {fileID: 5872271596352663801, guid: 331cbb3f726a88746b6cae0e1e8333e9, type: 3}
   _cardWidth: 100
-  _cardHeight: 0
   _cardHeighGap: 9.3
   _cardSelectedGap: 20
   _sizePerCard: 82.36
