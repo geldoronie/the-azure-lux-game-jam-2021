@@ -6,11 +6,11 @@
             "imageId" : "",
             "cost" : [
                 {
-                    "type": "STONE",
+                    "type": "Stone",
                     "amount" : 25
                 },
                 {
-                    "type": "WOOD",
+                    "type": "Wood",
                     "amount" : 25
                 }
             ],
@@ -19,7 +19,7 @@
                 "arguments" : [
                     {
                         "type": "terrain",
-                        "value" : "SWAMP"
+                        "value" : "Swamp"
                     }
                 ]
             }

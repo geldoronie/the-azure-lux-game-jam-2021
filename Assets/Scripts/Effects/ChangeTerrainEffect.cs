@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Change Terrain", menuName = "GameJam/Cards/Effect Cards/Change Terrain")]
-public class ChangeTerrainEffectCard : EffectCard
+public class ChangeTerrainEffect : EffectBase
 {
     public CardTerrainCost terrainToApply;
 }

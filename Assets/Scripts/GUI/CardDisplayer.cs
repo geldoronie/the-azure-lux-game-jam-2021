@@ -24,6 +24,7 @@ public class CardDisplayer : MonoBehaviour
         foodCostText.SetText(card.FoodCost.ToString("00"));
         peopleCostText.SetText(card.PeopleCost.ToString("00"));
         militaryCostText.SetText(card.MilitaryCost.ToString("00"));
+        this.card = card;
     }
     public Card Card { get => card; }
 }
