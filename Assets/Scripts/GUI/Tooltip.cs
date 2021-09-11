@@ -5,8 +5,8 @@ using TMPro;
 public class Tooltip : MonoBehaviour
 {
     [SerializeField] private float scaleFactor = 0.421f;
-    [SerializeField] private TextMeshProUGUI headerText;
-    [SerializeField] private TextMeshProUGUI contentText;
+    [SerializeField] private TMP_Text headerText;
+    [SerializeField] private TMP_Text contentText;
     [SerializeField] private LayoutElement layoutElement;
     [SerializeField] private int characterWrapLimit = 100;
 

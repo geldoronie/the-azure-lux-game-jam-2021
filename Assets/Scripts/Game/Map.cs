@@ -5,8 +5,10 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     [Header("Map Size")]
-    [SerializeField] private int _width;
-    [SerializeField] private int _height;
+    [SerializeField] private int _width = 15;
+    [SerializeField] private int _height = 15;
+    [SerializeField] private int _cellularAutomataIterations = 5;
+    [SerializeField] private float _cellularAutomataWaitingTime = 300;
 
     [Header("Incidences")]
     [Range(1, 100)]
@@ -38,14 +40,6 @@ public class Map : MonoBehaviour
         StartCoroutine(CreateMap());
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(ApplyCellularAutomata());
-        }
-    }
-
     public IEnumerator CreateMap()
     {
         _grid = new Terrain[_width, _height];
@@ -66,6 +60,12 @@ public class Map : MonoBehaviour
                 _grid[x, y] = GetRandomTerrain(x, y);
                 yield return new WaitForEndOfFrame();
             }
+        }
+
+        for (int i = 0; i < _cellularAutomataIterations; i++)
+        {
+            StartCoroutine(ApplyCellularAutomata());
+            yield return new WaitForSeconds((_width * _height) * Time.deltaTime * _cellularAutomataWaitingTime);
         }
     }
 
