@@ -29,19 +29,22 @@ public class CardOrganizerGUI : MonoBehaviour
 
         if (_hoverCardId != -1 && Input.GetMouseButtonDown(0))
         {
+            UnselectCard();
+
             Destroy(transform.GetChild(_hoverCardId).gameObject);
 
             Vector3 panelPosition = _rectTransform.anchoredPosition;
             Vector3 panelSize = panelPosition + (Vector3)_rectTransform.sizeDelta;
 
-            UnselectCard();
-
             _selectedId = _hoverCardId;
             Vector2 cardPos = new Vector2(panelPosition.x, panelSize.y + _cardHeighGap * _cardHeighGap);
             CardDisplayer oldCard = transform.GetChild(_hoverCardId).GetComponent<CardDisplayer>();
+
             _selectedCard = Instantiate<CardDisplayer>(_cardPrefab, cardPos, Quaternion.identity, _canvas.transform);
             _selectedCard.Initialize(oldCard.Card);
+
             RectTransform newCardRectTransform = _selectedCard.GetComponent<RectTransform>();
+
             newCardRectTransform.anchorMin = Vector2.zero;
             newCardRectTransform.anchorMax = Vector2.zero;
             newCardRectTransform.pivot = Vector2.zero;
@@ -114,22 +117,26 @@ public class CardOrganizerGUI : MonoBehaviour
 
     }
 
-    private void _addHandCard(Card card){
-        CardDisplayer newCard = Instantiate<CardDisplayer>(_cardPrefab,transform);
+    private void _addHandCard(Card card)
+    {
+        CardDisplayer newCard = Instantiate<CardDisplayer>(_cardPrefab, transform);
         newCard.Initialize(card);
     }
 
-    private void _clearHandCards(){
+    private void _clearHandCards()
+    {
         for (int i = 0; i < transform.childCount; i++)
         {
             Destroy(transform.GetChild(i).gameObject);
         }
     }
 
-    public void RequestNewHand(){
+    public void RequestNewHand()
+    {
         this._library.NewHand();
         this._clearHandCards();
-        this._library.PlayerHand.ForEach(card => {
+        this._library.PlayerHand.ForEach(card =>
+        {
             this._addHandCard(card);
         });
     }

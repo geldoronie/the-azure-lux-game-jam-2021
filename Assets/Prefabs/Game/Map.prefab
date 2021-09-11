@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4823987672190764653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4823987672190764652}
+  m_Layer: 0
+  m_Name: CastleTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4823987672190764652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823987672190764653}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4823987673252061347}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4823987673252061345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4823987673252061347}
+  - component: {fileID: 4823987673252061344}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4823987673252061347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823987673252061345}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4823987672190764652}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4823987673252061344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823987673252061345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _width: 50
+  _height: 50
+  _rotationSpeed: 360
+  desertIncidence: 100
+  forestIncidence: 100
+  grasslandIncidence: 1
+  mountainIncidence: 100
+  riverIncidence: 100
+  swampIncidence: 1
+  castleTransform: {fileID: 4823987672190764652}
+  cornerTowerPrefab: {fileID: 9155771314074790148, guid: b035be45de2d7ac4f92ed586f4d918a4, type: 3}
+  middleWallPrefab: {fileID: 8397626231604706140, guid: 7b3c310bcd87a7e439f5264f6d89950a, type: 3}
+  blankPrefab: {fileID: 9223005878861202567, guid: 2b22beeb912c9d345a313be38661636e, type: 3}
+  desertPrefab: {fileID: 5134903538334545485, guid: abd92437986456645b32e239c7755960, type: 3}
+  forestPrefab: {fileID: 8916194066450447447, guid: 9e79ec7c3b688df43af7ab19eca7554a, type: 3}
+  grasslandPrefab: {fileID: 2218386204594161827, guid: b68c7641601312044923d4cf28c6ca53, type: 3}
+  mountainPrefab: {fileID: 6297600943062329141, guid: f1dc5d1b6cd51d14180660bcdd3d0bf3, type: 3}
+  riverPrefab: {fileID: -5237929591264653902, guid: b1063e37b25692841a1ec34ff8d87b6e, type: 3}
+  swampPrefab: {fileID: -2212848036500961547, guid: e6386a1c848dfc0488afbc63f8dcf2da, type: 3}
