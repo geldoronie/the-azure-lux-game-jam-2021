@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AuthenticationGUI : MonoBehaviour
 {
 
     [SerializeField]
-    private Authentication Authentication;
+    private AuthenticationPlayfab Authentication;
     // Start is called before the first frame update
 
+    [Header("Forms")]
     [SerializeField]
     private Image LoginPanel;
 
@@ -77,6 +79,7 @@ public class AuthenticationGUI : MonoBehaviour
             this._waitForAuthenticationResponse = false;
             if(Authentication.Registered || Authentication.Logged){
                 this.ClearInputs();
+                SceneManager.LoadScene("Library", LoadSceneMode.Single);
             }
         }
     }

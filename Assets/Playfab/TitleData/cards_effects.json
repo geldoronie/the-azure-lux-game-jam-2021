@@ -1,30 +1,28 @@
-[
-    {
-        "name" : "Change Terrain to Swamp",
-        "description" : "Some times the ground turns to swet...",
-        "imageId" : "",
-        "cost" : [
-            {
-                "type": "STONE",
-                "amount" : 25
-            },
-            {
-                "type": "WOOD",
-                "amount" : 25
-            }
-        ],
-        "terrainCost" : [
-            {
-                "type" : "GRASSLAND"
-            }
-        ],
-        "effect" : {
-            "type" : "CHANGETERRAIN",
-            "param" : [
+{
+    "cards": [
+        {
+            "name" : "Change Terrain to Swamp",
+            "description" : "Some times the ground turns too swet...",
+            "imageId" : "",
+            "cost" : [
                 {
-                    "terrain" : "SWAMP"
+                    "type": "STONE",
+                    "amount" : 25
+                },
+                {
+                    "type": "WOOD",
+                    "amount" : 25
                 }
-            ]
+            ],
+            "effect" : {
+                "type" : "CHANGETERRAIN",
+                "arguments" : [
+                    {
+                        "type": "terrain",
+                        "value" : "SWAMP"
+                    }
+                ]
+            }
         }
-    }
-]
+    ]
+}

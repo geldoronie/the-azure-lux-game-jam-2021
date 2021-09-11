@@ -4,7 +4,7 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 
-public class Authentication : MonoBehaviour
+public class AuthenticationPlayfab : MonoBehaviour
 {
 
     [SerializeField]
@@ -13,6 +13,8 @@ public class Authentication : MonoBehaviour
     public string Email { get { return this._email; } }
     [SerializeField]
     public string PlayFabId { get { return this._playFabId; } }
+    [SerializeField]
+    public PlayFabAuthenticationContext AuthenticationContext { get { return this._authenticationContext; } }
     [SerializeField]
     public bool Logged { get { return this._logged; } }
     [SerializeField]
@@ -42,16 +44,17 @@ public class Authentication : MonoBehaviour
 
     private bool _loading = false;
 
+    private PlayFabAuthenticationContext _authenticationContext;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayFab.PlayFabSettings.TitleId = TITLE_ID;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void Login(string username, string password){
@@ -87,6 +90,7 @@ public class Authentication : MonoBehaviour
         this._email = "";
         this._playFabId = result.PlayFabId;
         this._ticket = result.SessionTicket;
+        this._authenticationContext = result.AuthenticationContext;
         this._logged = true;
         this._loading = false;
         Debug.Log("Logged with successful!");

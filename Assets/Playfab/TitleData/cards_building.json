@@ -1,36 +1,38 @@
-[
-    {
-        "name" : "Church",
-        "description" : "A church to keep god close, of course! if you can pay for it...",
-        "imageId" : "",
-        "cost" : [
-            {
-                "type": "FOOD",
-                "amount" : 20
-            },
-            {
-                "type": "STONE",
-                "amount" : 20
-            },
-            {
-                "type": "WOOD",
-                "amount" : 20
-            }
-        ],
-        "resourcePerTurn" : [
-            {
-                "type": "PEOPLE",
-                "amount" : 10
-            },
-            {
-                "type": "GOLD",
-                "amount" : -5
-            }
-        ],
-        "terrainCost" : [
-            {
-                "type" : "GRASSLAND"
-            }
-        ]
-    }
-]
+{
+    "cards": [
+        {
+            "name" : "Church",
+            "description" : "A church to keep god close, of course! if you can pay for it...",
+            "imageId" : "",
+            "cost" : [
+                {
+                    "type": "FOOD",
+                    "amount" : 20
+                },
+                {
+                    "type": "STONE",
+                    "amount" : 20
+                },
+                {
+                    "type": "WOOD",
+                    "amount" : 20
+                }
+            ],
+            "resourcePerTurn" : [
+                {
+                    "type": "PEOPLE",
+                    "amount" : 10
+                },
+                {
+                    "type": "GOLD",
+                    "amount" : -5
+                }
+            ],
+            "terrainCost" : [
+                {
+                    "type" : "GRASSLAND"
+                }
+            ]
+        }
+    ]
+}
