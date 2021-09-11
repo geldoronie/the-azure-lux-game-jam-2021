@@ -55,7 +55,7 @@ public class Map : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 _grid[x, y] = null;
-                Instantiate(blankPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+                Instantiate(blankPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
             }
         }
 
@@ -131,7 +131,7 @@ public class Map : MonoBehaviour
         TerrainRule newRule = terrain.TerrainRule.CheckRules(neighbors);
 
         Destroy(_grid[x, y].gameObject);
-        Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.identity);
+        Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.identity, transform);
         terrainObject.Initialize(newRule, x, y);
         _grid[x, y] = terrainObject;
     }
@@ -178,35 +178,35 @@ public class Map : MonoBehaviour
         int currentIncidence = desertIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(desertPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            Terrain terrainObject = Instantiate<Terrain>(desertPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
             terrainObject.Initialize(new DesertTerrainRule(), x, y);
             return terrainObject;
         }
         currentIncidence += forestIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(forestPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            Terrain terrainObject = Instantiate<Terrain>(forestPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
             terrainObject.Initialize(new ForestTerrainRule(), x, y);
             return terrainObject;
         }
         currentIncidence += grasslandIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(grasslandPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            Terrain terrainObject = Instantiate<Terrain>(grasslandPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
             terrainObject.Initialize(new GrasslandTerrainRule(), x, y);
             return terrainObject;
         }
         currentIncidence += mountainIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(mountainPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            Terrain terrainObject = Instantiate<Terrain>(mountainPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
             terrainObject.Initialize(new MountainTerrainRule(), x, y);
             return terrainObject;
         }
         currentIncidence += riverIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(riverPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            Terrain terrainObject = Instantiate<Terrain>(riverPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
             terrainObject.Initialize(new RiverTerrainRule(), x, y);
             return terrainObject;
         }
@@ -214,7 +214,7 @@ public class Map : MonoBehaviour
         currentIncidence += swampIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(swampPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            Terrain terrainObject = Instantiate<Terrain>(swampPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
             terrainObject.Initialize(new SwampTerrainRule(), x, y);
             return terrainObject;
         }

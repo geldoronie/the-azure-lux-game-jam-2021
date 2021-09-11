@@ -14,4 +14,6 @@ public class RiverTerrainRule : TerrainRule
 
         return this;
     }
+
+    public override string GetTooltip() { return "River"; }
 }

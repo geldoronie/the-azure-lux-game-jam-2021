@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5290678483850340246}
   - component: {fileID: 8618914205427621899}
   - component: {fileID: 5134903538334545485}
+  - component: {fileID: -5059587252582912485}
   m_Layer: 0
   m_Name: DesertTerrainPrefab
   m_TagString: Untagged
@@ -108,3 +109,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4531a9f70b4fac2408eef7f52f365109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5059587252582912485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394998320822394641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: Desert
+  content: 

@@ -19,4 +19,6 @@ public class ForestTerrainRule : TerrainRule
 
         return this;
     }
+
+    public override string GetTooltip() { return "Forest"; }
 }

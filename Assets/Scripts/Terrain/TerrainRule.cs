@@ -13,4 +13,5 @@ public abstract class TerrainRule
     }
 
     public abstract TerrainRule CheckRules(Terrain[] neighbors);
+    public abstract string GetTooltip();
 }

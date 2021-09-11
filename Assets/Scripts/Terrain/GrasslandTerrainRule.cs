@@ -36,4 +36,6 @@ public class GrasslandTerrainRule : TerrainRule
 
         return this;
     }
+
+    public override string GetTooltip() { return "Grassland"; }
 }

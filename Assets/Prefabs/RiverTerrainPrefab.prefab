@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 208218273174822289}
   - component: {fileID: 8200643021076452659}
   - component: {fileID: -5237929591264653902}
+  - component: {fileID: 2610340219548393768}
   m_Layer: 0
   m_Name: RiverTerrainPrefab
   m_TagString: Untagged
@@ -108,3 +109,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4531a9f70b4fac2408eef7f52f365109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2610340219548393768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401706013364463481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: River
+  content: 

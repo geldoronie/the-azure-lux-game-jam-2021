@@ -19,4 +19,6 @@ public class SwampTerrainRule : TerrainRule
 
         return this;
     }
+
+    public override string GetTooltip() { return "Swamp"; }
 }

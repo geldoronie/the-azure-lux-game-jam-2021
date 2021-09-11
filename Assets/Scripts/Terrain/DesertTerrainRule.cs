@@ -14,4 +14,6 @@ public class DesertTerrainRule : TerrainRule
 
         return this;
     }
+
+    public override string GetTooltip() { return "Desert"; }
 }

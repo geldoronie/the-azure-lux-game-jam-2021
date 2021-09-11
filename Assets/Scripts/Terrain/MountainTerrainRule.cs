@@ -9,4 +9,6 @@ public class MountainTerrainRule : TerrainRule
 
         return this;
     }
+
+    public override string GetTooltip() { return "Mountain"; }
 }
