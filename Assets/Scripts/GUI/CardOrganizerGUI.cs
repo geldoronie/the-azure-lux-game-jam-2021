@@ -5,7 +5,6 @@ public class CardOrganizerGUI : MonoBehaviour
 {
     [SerializeField] private CardDisplayer _cardPrefab;
     [SerializeField] private int _cardWidth = 100;
-    [SerializeField] private int _cardHeight = 100;
     [SerializeField] private float _cardHeighGap = 9.3f;
     [SerializeField] private float _cardSelectedGap = 20;
     [SerializeField] private float _sizePerCard = 82.36f;

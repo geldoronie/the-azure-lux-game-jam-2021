@@ -7,8 +7,6 @@ public class Map : MonoBehaviour
     [Header("Map Size")]
     [SerializeField] private int _width = 15;
     [SerializeField] private int _height = 15;
-    [SerializeField] private int _cellularAutomataIterations = 5;
-    [SerializeField] private float _cellularAutomataWaitingTime = 300;
     [SerializeField] private float _rotationSpeed = 60f;
 
     [Header("Incidences")]
@@ -126,17 +124,30 @@ public class Map : MonoBehaviour
 
         maxIterations = 0;
         iterations = 0;
-
-        StopAllCoroutines();
     }
 
-    public IEnumerator SetTerrainApplyCellularAutomata(TerrainRule newRule, int x, int y)
+    private Coroutine applyingCellularAutomataCoroutine;
+
+    public void SetTerrainApplyCellularAutomata(TerrainRule newRule, int x, int y)
+    {
+        if (applyingCellularAutomataCoroutine == null)
+        {
+            applyingCellularAutomataCoroutine = StartCoroutine(SetTerrainApplyCellularAutomataCoroutine(newRule, x, y));
+        }
+        else
+        {
+            Debug.LogError("Another SetTerrainApplyCellularAutomata is running");
+        }
+    }
+
+    private IEnumerator SetTerrainApplyCellularAutomataCoroutine(TerrainRule newRule, int x, int y)
     {
         if (GetTerrainOnGrid(x, y) != null)
         {
             _grid[x, y] = _grid[x, y];
             Terrain[] neighbors = GetVonNeumannNeighbors(x, y);
             List<Terrain> toVerify = new List<Terrain>();
+            yield return StartCoroutine(SwapTerrain(newRule, x, y));
             foreach (Terrain neighbor in neighbors)
             {
                 if (neighbor != null) toVerify.Add(neighbor);
@@ -149,7 +160,7 @@ public class Map : MonoBehaviour
             {
                 Terrain terrainToVerify = toVerify[0];
                 Terrain[] neighborsToVerify = GetVonNeumannNeighbors(terrainToVerify.X, terrainToVerify.Y);
-                StartCoroutine(SwapTerrain(terrainToVerify));
+                yield return StartCoroutine(SwapTerrain(terrainToVerify));
 
                 foreach (Terrain neighborTerrain in neighborsToVerify)
                 {
@@ -169,6 +180,8 @@ public class Map : MonoBehaviour
 
                 yield return new WaitForEndOfFrame();
             }
+
+            applyingCellularAutomataCoroutine = null;
         }
     }
 
