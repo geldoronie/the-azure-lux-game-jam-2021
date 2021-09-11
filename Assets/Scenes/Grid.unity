@@ -6787,10 +6787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 50
-  _height: 50
+  _width: 15
+  _height: 15
   _cellularAutomataIterations: 3
-  _cellularAutomataWaitingTime: 0.3
+  _cellularAutomataWaitingTime: 0.7
+  _rotationSpeed: 720
   desertIncidence: 10
   forestIncidence: 44
   grasslandIncidence: 76

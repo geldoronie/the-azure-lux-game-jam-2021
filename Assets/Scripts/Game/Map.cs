@@ -9,6 +9,7 @@ public class Map : MonoBehaviour
     [SerializeField] private int _height = 15;
     [SerializeField] private int _cellularAutomataIterations = 5;
     [SerializeField] private float _cellularAutomataWaitingTime = 300;
+    [SerializeField] private float _rotationSpeed = 60f;
 
     [Header("Incidences")]
     [Range(1, 100)]
@@ -48,8 +49,9 @@ public class Map : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                _grid[x, y] = null;
-                Instantiate(blankPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
+                Terrain newTerrain = Instantiate<Terrain>(blankPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
+                newTerrain.Initialize(null, x, y);
+                _grid[x, y] = newTerrain;
             }
         }
 
@@ -57,7 +59,7 @@ public class Map : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                _grid[x, y] = GetRandomTerrain(x, y);
+                StartCoroutine(SwapTerrain(GetRandomTerrainRule(), x, y));
                 yield return new WaitForEndOfFrame();
             }
         }
@@ -88,7 +90,7 @@ public class Map : MonoBehaviour
             {
                 Terrain terrainToVerify = toVerify[0];
                 Terrain[] neighborsToVerify = GetVonNeumannNeighbors(terrainToVerify.X, terrainToVerify.Y);
-                SwapTerrainApplyingItsRules(terrainToVerify);
+                StartCoroutine(SwapTerrain(terrainToVerify));
 
                 foreach (Terrain neighborTerrain in neighborsToVerify)
                 {
@@ -117,22 +119,41 @@ public class Map : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                SwapTerrainApplyingItsRules(_grid[x, y]);
+                StartCoroutine(SwapTerrain(_grid[x, y]));
                 yield return new WaitForEndOfFrame();
             }
         }
     }
 
-    private void SwapTerrainApplyingItsRules(Terrain terrain)
+    private IEnumerator SwapTerrain(Terrain terrain)
     {
         int x = terrain.X;
         int y = terrain.Y;
         Terrain[] neighbors = GetVonNeumannNeighbors(terrain.X, terrain.Y);
         TerrainRule newRule = terrain.TerrainRule.CheckRules(neighbors);
 
-        Destroy(_grid[x, y].gameObject);
-        Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.identity, transform);
+        yield return StartCoroutine(SwapTerrain(newRule, x, y));
+    }
+
+    private IEnumerator SwapTerrain(TerrainRule newRule, int x, int y)
+    {
+        Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.Euler(180, 0, 0), transform);
         terrainObject.Initialize(newRule, x, y);
+
+        float timeElapsed = terrainObject.transform.eulerAngles.x;
+        while (terrainObject.transform.eulerAngles.x != 0)
+        {
+            timeElapsed -= Time.deltaTime * _rotationSpeed;
+            terrainObject.transform.eulerAngles = new Vector3(timeElapsed, 0, 0);
+            _grid[x, y].gameObject.transform.eulerAngles = new Vector3(timeElapsed + 180, 0, 0);
+            if (timeElapsed < -180)
+            {
+                terrainObject.transform.eulerAngles = Vector3.zero;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        Destroy(_grid[x, y].gameObject);
         _grid[x, y] = terrainObject;
     }
 
@@ -170,7 +191,7 @@ public class Map : MonoBehaviour
         return new Vector3(x - _width / 2f, 0, y - _height / 2f);
     }
 
-    private Terrain GetRandomTerrain(int x, int y)
+    private TerrainRule GetRandomTerrainRule()
     {
         int totalIncidence = desertIncidence + forestIncidence + grasslandIncidence + mountainIncidence + riverIncidence + swampIncidence;
 
@@ -178,45 +199,33 @@ public class Map : MonoBehaviour
         int currentIncidence = desertIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(desertPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
-            terrainObject.Initialize(new DesertTerrainRule(), x, y);
-            return terrainObject;
+            return new DesertTerrainRule();
         }
         currentIncidence += forestIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(forestPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
-            terrainObject.Initialize(new ForestTerrainRule(), x, y);
-            return terrainObject;
+            return new ForestTerrainRule();
         }
         currentIncidence += grasslandIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(grasslandPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
-            terrainObject.Initialize(new GrasslandTerrainRule(), x, y);
-            return terrainObject;
+            return new GrasslandTerrainRule();
         }
         currentIncidence += mountainIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(mountainPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
-            terrainObject.Initialize(new MountainTerrainRule(), x, y);
-            return terrainObject;
+            return new MountainTerrainRule();
         }
         currentIncidence += riverIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(riverPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
-            terrainObject.Initialize(new RiverTerrainRule(), x, y);
-            return terrainObject;
+            return new RiverTerrainRule();
         }
 
         currentIncidence += swampIncidence;
         if (randomIncidence < currentIncidence)
         {
-            Terrain terrainObject = Instantiate<Terrain>(swampPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
-            terrainObject.Initialize(new SwampTerrainRule(), x, y);
-            return terrainObject;
+            return new SwampTerrainRule();
         }
         return null;
     }
