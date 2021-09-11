@@ -3434,10 +3434,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 656303377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9693b5012f356eb4b9bce41a0adcc7cc, type: 3}
+  m_Script: {fileID: 11500000, guid: cf10876420d3336489622de8a8a2a4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSize: {x: 40, y: 40}
   _mouseSensitivity: 120
+  _movementSpeed: 20
   _zoomSpeed: 5
   _yMinLimit: 0
   _yMaxLimit: 80
@@ -6787,8 +6789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 50
-  _height: 50
+  _width: 40
+  _height: 40
   _cellularAutomataIterations: 3
   _cellularAutomataWaitingTime: 0.7
   _rotationSpeed: 360
