@@ -3405,8 +3405,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656303377}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -26.4}
+  m_LocalRotation: {x: 0.22455172, y: -0.3390816, z: 0.08369735, w: 0.90972245}
+  m_LocalPosition: {x: 8.690272, y: 6.979799, z: -10.038006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3437,12 +3437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9693b5012f356eb4b9bce41a0adcc7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xSpeed: 20
-  _ySpeed: 240
+  _mouseSensitivity: 120
+  _zoomSpeed: 120
   _yMinLimit: 0
   _yMaxLimit: 80
   _distanceMin: 10
-  _distanceMax: 20
+  _distanceMax: 1000
 --- !u!1 &670198466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6787,8 +6787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 15
-  _height: 15
+  _width: 50
+  _height: 50
+  _cellularAutomataIterations: 3
+  _cellularAutomataWaitingTime: 0.3
   desertIncidence: 10
   forestIncidence: 44
   grasslandIncidence: 76
