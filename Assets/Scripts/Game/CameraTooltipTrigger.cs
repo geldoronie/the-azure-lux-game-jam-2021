@@ -19,9 +19,7 @@ public class CameraTooltipTrigger : MonoBehaviour
             {
                 if (currentTerrain != null && terrain != currentTerrain)
                 {
-                    currentTime = 0;
-                    currentTerrain = null;
-                    MainCanvas.Instance.HideTooltip();
+                    HideTooltip();
                 }
                 else
                 {
@@ -35,10 +33,20 @@ public class CameraTooltipTrigger : MonoBehaviour
             }
             else
             {
-                currentTime = 0;
-                currentTerrain = null;
-                MainCanvas.Instance.HideTooltip();
+                HideTooltip();
             }
         }
+        else
+        {
+            HideTooltip();
+        }
+
+    }
+
+    private void HideTooltip()
+    {
+        currentTime = 0;
+        currentTerrain = null;
+        MainCanvas.Instance.HideTooltip();
     }
 }

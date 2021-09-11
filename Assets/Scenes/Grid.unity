@@ -3364,8 +3364,8 @@ Camera:
   m_GameObject: {fileID: 656303377}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.8, g: 0.8, b: 0.8, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3434,14 +3434,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 656303377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9693b5012f356eb4b9bce41a0adcc7cc, type: 3}
+  m_Script: {fileID: 11500000, guid: cf10876420d3336489622de8a8a2a4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSize: {x: 20, y: 35}
   _mouseSensitivity: 120
-  _zoomSpeed: 120
-  _yMinLimit: 0
+  _movementSpeed: 20
+  _zoomSpeed: 5
+  _yMinLimit: 20
   _yMaxLimit: 80
-  _distanceMin: 10
+  _distanceMin: 2.6
   _distanceMax: 1000
 --- !u!1 &670198466
 GameObject:
@@ -6768,6 +6770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1141436410}
   - component: {fileID: 1141436409}
+  - component: {fileID: 1141436411}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -6787,16 +6790,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 50
-  _height: 50
+  _width: 10
+  _height: 10
   _cellularAutomataIterations: 3
-  _cellularAutomataWaitingTime: 0.3
-  desertIncidence: 10
-  forestIncidence: 44
-  grasslandIncidence: 76
-  mountainIncidence: 5
-  riverIncidence: 32
-  swampIncidence: 15
+  _cellularAutomataWaitingTime: 0.7
+  _rotationSpeed: 360
+  desertIncidence: 100
+  forestIncidence: 1
+  grasslandIncidence: 1
+  mountainIncidence: 100
+  riverIncidence: 100
+  swampIncidence: 1
+  castleTransform: {fileID: 1663278825}
+  cornerTowerPrefab: {fileID: 9155771314074790148, guid: b035be45de2d7ac4f92ed586f4d918a4, type: 3}
+  middleWallPrefab: {fileID: 8397626231604706140, guid: 7b3c310bcd87a7e439f5264f6d89950a, type: 3}
   blankPrefab: {fileID: 9223005878861202567, guid: 2b22beeb912c9d345a313be38661636e, type: 3}
   desertPrefab: {fileID: 5134903538334545485, guid: abd92437986456645b32e239c7755960, type: 3}
   forestPrefab: {fileID: 8916194066450447447, guid: 9e79ec7c3b688df43af7ab19eca7554a, type: 3}
@@ -6814,10 +6821,24 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1663278825}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1141436411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141436408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa675de8e67244b468232bc3d45c3908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1225236463
 GameObject:
   m_ObjectHideFlags: 0
@@ -8182,6 +8203,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641141024}
   m_CullTransparentMesh: 1
+--- !u!1 &1663278824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1663278825}
+  m_Layer: 0
+  m_Name: CastleTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1663278825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663278824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1141436410}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1674542620
 GameObject:
   m_ObjectHideFlags: 0
