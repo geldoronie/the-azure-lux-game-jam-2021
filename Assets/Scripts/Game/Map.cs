@@ -137,24 +137,28 @@ public class Map : MonoBehaviour
 
     private IEnumerator SwapTerrain(TerrainRule newRule, int x, int y)
     {
-        Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.Euler(180, 0, 0), transform);
-        terrainObject.Initialize(newRule, x, y);
-
-        float timeElapsed = terrainObject.transform.eulerAngles.x;
-        while (terrainObject.transform.eulerAngles.x != 0)
+        if (newRule.GetType().ToString() != _grid[x, y].TerrainRule?.GetType().ToString())
         {
-            timeElapsed -= Time.deltaTime * _rotationSpeed;
-            terrainObject.transform.eulerAngles = new Vector3(timeElapsed, 0, 0);
-            _grid[x, y].gameObject.transform.eulerAngles = new Vector3(timeElapsed + 180, 0, 0);
-            if (timeElapsed < -180)
+            Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.Euler(-180, 0, 0), transform);
+            terrainObject.Initialize(newRule, x, y);
+
+            float timeElapsed = -180;
+            while (terrainObject.transform.eulerAngles.x != 0)
             {
-                terrainObject.transform.eulerAngles = Vector3.zero;
+                timeElapsed -= Time.deltaTime * _rotationSpeed;
+                terrainObject.transform.eulerAngles = new Vector3(timeElapsed, 0, 0);
+                _grid[x, y].gameObject.transform.eulerAngles = new Vector3(timeElapsed + 180, 0, 0);
+                if (timeElapsed < -360)
+                {
+                    terrainObject.transform.eulerAngles = Vector3.zero;
+                }
+                yield return new WaitForEndOfFrame();
             }
-            yield return new WaitForEndOfFrame();
+
+            Destroy(_grid[x, y].gameObject);
+            _grid[x, y] = terrainObject;
         }
 
-        Destroy(_grid[x, y].gameObject);
-        _grid[x, y] = terrainObject;
     }
 
     private Terrain FindPrefab(TerrainRule newRule)

@@ -3438,7 +3438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseSensitivity: 120
-  _zoomSpeed: 120
+  _zoomSpeed: 5
   _yMinLimit: 0
   _yMaxLimit: 80
   _distanceMin: 10
@@ -6787,11 +6787,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 15
-  _height: 15
+  _width: 50
+  _height: 50
   _cellularAutomataIterations: 3
   _cellularAutomataWaitingTime: 0.7
-  _rotationSpeed: 720
+  _rotationSpeed: 360
   desertIncidence: 10
   forestIncidence: 44
   grasslandIncidence: 76
