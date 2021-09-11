@@ -2427,6 +2427,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Library
       objectReference: {fileID: 0}
+    - target: {fileID: 1796152817172689376, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1796152817172689382, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
       propertyPath: _cardsDatabase
       value: 
@@ -2495,6 +2499,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4823987673252061344, guid: b7edc8fceb479404ca0ef701d95c1657, type: 3}
+      propertyPath: _width
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823987673252061344, guid: b7edc8fceb479404ca0ef701d95c1657, type: 3}
+      propertyPath: _height
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4823987673252061344, guid: b7edc8fceb479404ca0ef701d95c1657, type: 3}
+      propertyPath: swampIncidence
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4823987673252061345, guid: b7edc8fceb479404ca0ef701d95c1657, type: 3}
       propertyPath: m_Name
       value: Map
@@ -2600,6 +2616,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6853765512669902869, guid: f141e6d2f5f41074b82431d2099c52c5, type: 3}
+      propertyPath: mapSize.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6853765512669902869, guid: f141e6d2f5f41074b82431d2099c52c5, type: 3}
+      propertyPath: mapSize.y
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f141e6d2f5f41074b82431d2099c52c5, type: 3}
 --- !u!1001 &9122315817756269259
@@ -2612,6 +2636,10 @@ PrefabInstance:
     - target: {fileID: 9122315817115624161, guid: 987773a5d4249984aa7995e780a5728e, type: 3}
       propertyPath: m_Name
       value: PlayfabCardsDatabase
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122315817115624161, guid: 987773a5d4249984aa7995e780a5728e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9122315817115624167, guid: 987773a5d4249984aa7995e780a5728e, type: 3}
       propertyPath: m_RootOrder
