@@ -3339,6 +3339,7 @@ GameObject:
   - component: {fileID: 656303379}
   - component: {fileID: 656303378}
   - component: {fileID: 656303381}
+  - component: {fileID: 656303382}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3404,8 +3405,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656303377}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -26.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3424,6 +3425,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTooltipTime: 1
+--- !u!114 &656303382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656303377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9693b5012f356eb4b9bce41a0adcc7cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _xSpeed: 20
+  _ySpeed: 240
+  _yMinLimit: 0
+  _yMaxLimit: 80
+  _distanceMin: 10
+  _distanceMax: 20
 --- !u!1 &670198466
 GameObject:
   m_ObjectHideFlags: 0
