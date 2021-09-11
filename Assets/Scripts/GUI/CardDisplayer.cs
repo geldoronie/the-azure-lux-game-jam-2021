@@ -12,6 +12,8 @@ public class CardDisplayer : MonoBehaviour
     [SerializeField] private TMP_Text peopleCostText;
     [SerializeField] private TMP_Text militaryCostText;
 
+    private Card card;
+
     public void Initialize(Card card)
     {
         cardNameText.SetText(card.Name);
@@ -23,4 +25,5 @@ public class CardDisplayer : MonoBehaviour
         peopleCostText.SetText(card.PeopleCost.ToString("00"));
         militaryCostText.SetText(card.MilitaryCost.ToString("00"));
     }
+    public Card Card { get => card; }
 }

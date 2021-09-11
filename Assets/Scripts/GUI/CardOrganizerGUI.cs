@@ -3,66 +3,106 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class CardOrganizerGUI : MonoBehaviour
 {
-    [SerializeField] private int cardWidth = 100;
-    [SerializeField] private float cardHeighGap = 9.3f;
-    [SerializeField] private float cardSelectedGap = 80;
-    [SerializeField] private float sizePerCard = 9.3f;
+    [SerializeField] private CardDisplayer _cardPrefab;
+    [SerializeField] private int _cardWidth = 100;
+    [SerializeField] private int _cardHeight = 100;
+    [SerializeField] private float _cardHeighGap = 9.3f;
+    [SerializeField] private float _cardSelectedGap = 20;
+    [SerializeField] private float _sizePerCard = 82.36f;
 
-    private RectTransform rectTransform;
-    private Canvas canvas;
-    private int selectedCardId;
+    private RectTransform _rectTransform;
+    private Canvas _canvas;
+    private int _selectedId = -1;
+    private CardDisplayer _selectedCard;
+    private int _hoverCardId = -1;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
-        canvas = transform.parent.GetComponent<Canvas>();
+        _rectTransform = GetComponent<RectTransform>();
+        _canvas = transform.parent.GetComponent<Canvas>();
     }
 
     private void Update()
     {
         UpdateGUI();
         CheckSelectionCard();
+
+        if (_hoverCardId != -1 && Input.GetMouseButtonDown(0))
+        {
+            Destroy(transform.GetChild(_hoverCardId).gameObject);
+
+            Vector3 panelPosition = _rectTransform.anchoredPosition;
+            Vector3 panelSize = panelPosition + (Vector3)_rectTransform.sizeDelta;
+
+            UnselectCard();
+
+            _selectedId = _hoverCardId;
+            Vector2 cardPos = new Vector2(panelPosition.x, panelSize.y + _cardHeighGap * _cardHeighGap);
+            CardDisplayer oldCard = transform.GetChild(_hoverCardId).GetComponent<CardDisplayer>();
+            _selectedCard = Instantiate<CardDisplayer>(_cardPrefab, cardPos, Quaternion.identity, _canvas.transform);
+            _selectedCard.Initialize(oldCard.Card);
+            RectTransform newCardRectTransform = _selectedCard.GetComponent<RectTransform>();
+            newCardRectTransform.anchorMin = Vector2.zero;
+            newCardRectTransform.anchorMax = Vector2.zero;
+            newCardRectTransform.pivot = Vector2.zero;
+            newCardRectTransform.anchoredPosition = cardPos;
+        }
+        if (Input.GetMouseButtonDown(1)) UnselectCard();
+    }
+
+    private void UnselectCard()
+    {
+        if (_selectedCard != null)
+        {
+            CardDisplayer oldCard = Instantiate<CardDisplayer>(_cardPrefab, transform);
+            oldCard.Initialize(_selectedCard.Card);
+            oldCard.transform.SetSiblingIndex(_selectedId);
+            Destroy(_selectedCard.gameObject);
+
+            _selectedCard = null;
+            _selectedId = -1;
+        }
     }
 
     private void CheckSelectionCard()
     {
         Vector3 mousePosition = Input.mousePosition;
-        Vector3 panelPosition = rectTransform.anchoredPosition * canvas.scaleFactor;
-        Vector3 panelSize = panelPosition + (Vector3)rectTransform.sizeDelta * canvas.scaleFactor;
+        Vector3 panelPosition = _rectTransform.anchoredPosition * _canvas.scaleFactor;
+        Vector3 panelSize = panelPosition + (Vector3)_rectTransform.sizeDelta * _canvas.scaleFactor;
 
         if (mousePosition.x >= panelPosition.x && mousePosition.x < panelSize.x &&
             mousePosition.y >= panelPosition.y && mousePosition.y < panelSize.y)
         {
-            selectedCardId = Mathf.RoundToInt((mousePosition.x / panelSize.x) * transform.childCount) - 1;
+            _hoverCardId = Mathf.RoundToInt((mousePosition.x / panelSize.x) * transform.childCount) - 1;
         }
         else
         {
-            selectedCardId = -1;
+            _hoverCardId = -1;
         }
     }
 
     private void UpdateGUI()
     {
-        rectTransform.sizeDelta = new Vector2(transform.childCount * sizePerCard, rectTransform.sizeDelta.y);
-        float gap = (rectTransform.sizeDelta.x - cardWidth * transform.childCount) / transform.childCount;
-        float angle = ((2 * Mathf.PI * rectTransform.sizeDelta.x) / 360) / transform.childCount;
+        _rectTransform.sizeDelta = new Vector2(transform.childCount * _sizePerCard, _rectTransform.sizeDelta.y);
+        float gap = (_rectTransform.sizeDelta.x - _cardWidth * transform.childCount) / transform.childCount;
+        float angle = ((2 * Mathf.PI * _rectTransform.sizeDelta.x) / 360) / transform.childCount;
         int oddOrEven = 1 - transform.childCount % 2;
         for (int i = 0; i < transform.childCount; i++)
         {
             RectTransform childRectTransform = transform.GetChild(i).GetComponent<RectTransform>();
             float shiftedI = (i - transform.childCount / 2);
-            float selectedI = i - selectedCardId;
+            float hoverI = i - _hoverCardId;
 
             // X position
-            float gapOddOrEven = (cardWidth / 2f + gap / 2f) * oddOrEven;
-            float gapSelected = selectedCardId != -1 ? selectedI * cardSelectedGap : 0;
-            float gapSelectedCompensation = selectedI != 0 ? Mathf.Sin(1 / Mathf.Abs(selectedI)) : 0;
-            float xPos = gapOddOrEven + gapSelected * gapSelectedCompensation + gap * shiftedI + cardWidth * shiftedI;
+            float gapOddOrEven = (_cardWidth / 2f + gap / 2f) * oddOrEven;
+            float gapHovered = _hoverCardId != -1 ? hoverI * _cardSelectedGap : 0;
+            float gapHoveredCompensation = hoverI != 0 ? Mathf.Sin(1 / Mathf.Abs(hoverI)) : 0;
+            float xPos = gapOddOrEven + gapHovered * gapHoveredCompensation + gap * shiftedI + _cardWidth * shiftedI;
 
             // Y position
-            float yOddOrEven = ((shiftedI < 0 ? 1 : 0) * cardHeighGap) * oddOrEven;
-            float ySelected = selectedCardId == i ? cardHeighGap * 3 : 0;
-            float yPos = yOddOrEven + ySelected - Mathf.Abs(shiftedI) * cardHeighGap;
+            float yOddOrEven = ((shiftedI < 0 ? 1 : 0) * _cardHeighGap) * oddOrEven;
+            float yHovered = _hoverCardId == i ? _cardHeighGap * 3 : 0;
+            float yPos = yOddOrEven + yHovered - Mathf.Abs(shiftedI) * _cardHeighGap;
 
             // Set position
             childRectTransform.anchoredPosition = new Vector2(xPos, yPos);
