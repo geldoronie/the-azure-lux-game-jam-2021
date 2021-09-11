@@ -35,6 +35,8 @@ public class Map : MonoBehaviour
     [SerializeField] private Terrain swampPrefab;
 
     private Terrain[,] _grid;
+    private int maxIterations;
+    private int iterations;
 
     private void Start()
     {
@@ -44,6 +46,9 @@ public class Map : MonoBehaviour
     public IEnumerator CreateMap()
     {
         _grid = new Terrain[_width, _height];
+        maxIterations = _width * _height + (int)(_width / 3) * _width * _height;
+        iterations = 0;
+        Debug.Log("Começou: " + iterations + "/" + maxIterations);
 
         for (int x = 0; x < _width; x++)
         {
@@ -55,20 +60,28 @@ public class Map : MonoBehaviour
             }
         }
 
+        Coroutine c = null;
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
                 StartCoroutine(SwapTerrain(GetRandomTerrainRule(), x, y));
+                iterations++;
                 yield return new WaitForEndOfFrame();
+            }
+
+            if (x > 2 && x % 3 == 0)
+            {
+                c = StartCoroutine(ApplyCellularAutomata(() => { iterations++; }));
             }
         }
 
-        for (int i = 0; i < _cellularAutomataIterations; i++)
-        {
-            StartCoroutine(ApplyCellularAutomata());
-            yield return new WaitForSeconds((_width * _height) * Time.deltaTime * _cellularAutomataWaitingTime);
-        }
+        yield return c;
+
+        Debug.Log("Acabou: " + iterations + "/" + maxIterations);
+
+        maxIterations = 0;
+        iterations = 0;
     }
 
     public IEnumerator SetTerrainApplyCellularAutomata(TerrainRule newRule, int x, int y)
@@ -113,16 +126,21 @@ public class Map : MonoBehaviour
         }
     }
 
-    public IEnumerator ApplyCellularAutomata()
+    public delegate void AddIteration();
+
+    public IEnumerator ApplyCellularAutomata(AddIteration AddIteration = null)
     {
+        Coroutine c = null;
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
-                StartCoroutine(SwapTerrain(_grid[x, y]));
+                c = StartCoroutine(SwapTerrain(_grid[x, y]));
+                AddIteration?.Invoke();
                 yield return new WaitForEndOfFrame();
             }
         }
+        yield return c;
     }
 
     private IEnumerator SwapTerrain(Terrain terrain)
