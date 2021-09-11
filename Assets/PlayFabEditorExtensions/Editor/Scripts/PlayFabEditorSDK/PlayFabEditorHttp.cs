@@ -191,7 +191,7 @@ namespace PlayFab.PfEditor
             {
                 yield return www.SendWebRequest();
 
-                if (!string.IsNullOrEmpty(www.error) || www.isHttpError)
+                if (!string.IsNullOrEmpty(www.error) || www.result == UnityWebRequest.Result.ProtocolError)
                     errorCallback(www.error);
                 else
                     callBack(www.downloadHandler.data);

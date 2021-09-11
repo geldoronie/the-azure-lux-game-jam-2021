@@ -1,0 +1,135 @@
+[
+    {
+        "name": "normal-mode",
+        "feed": {
+            "food": 5,
+            "wood": 5,
+            "stone": 5,
+            "gold": 3,
+            "people": 3,
+            "military": 1
+        },
+        "incidence": {
+            "desert": 8,
+            "forest": 62,
+            "grassland": 88,
+            "mountain": 9,
+            "river": 53,
+            "swamp": 13
+        }
+    },
+    {
+        "name": "desert-mode",
+        "feed": {
+            "food": 5,
+            "wood": 5,
+            "stone": 5,
+            "gold": 3,
+            "people": 3,
+            "military": 1
+        },
+        "incidence": {
+            "desert": 100,
+            "forest": 1,
+            "grassland": 1,
+            "mountain": 1,
+            "river": 1,
+            "swamp": 1
+        }
+    },
+    {
+        "name": "swamp-mode",
+        "feed": {
+            "food": 5,
+            "wood": 5,
+            "stone": 5,
+            "gold": 3,
+            "people": 3,
+            "military": 1
+        },
+        "incidence": {
+            "desert": 1,
+            "forest": 1,
+            "grassland": 1,
+            "mountain": 1,
+            "river": 1,
+            "swamp": 100
+        }
+    },
+    {
+        "name": "forest-mode",
+        "feed": {
+            "food": 5,
+            "wood": 5,
+            "stone": 5,
+            "gold": 3,
+            "people": 3,
+            "military": 1
+        },
+        "incidence": {
+            "desert": 1,
+            "forest": 100,
+            "grassland": 1,
+            "mountain": 1,
+            "river": 1,
+            "swamp": 1
+        }
+    },
+    {
+        "name": "grassland-mode",
+        "feed": {
+            "food": 5,
+            "wood": 5,
+            "stone": 5,
+            "gold": 3,
+            "people": 3,
+            "military": 1
+        },
+        "incidence": {
+            "desert": 1,
+            "forest": 1,
+            "grassland": 100,
+            "mountain": 1,
+            "river": 1,
+            "swamp": 1
+        }
+    },
+    {
+        "name": "mountain-mode",
+        "feed": {
+            "food": 5,
+            "wood": 5,
+            "stone": 5,
+            "gold": 3,
+            "people": 3,
+            "military": 1
+        },
+        "incidence": {
+            "desert": 1,
+            "forest": 1,
+            "grassland": 1,
+            "mountain": 100,
+            "river": 1,
+            "swamp": 1
+        }
+    },
+    {
+        "name": "river-mode",
+        "feed": {
+            "food": 5,
+            "wood": 5,
+            "stone": 5,
+            "gold": 3,
+            "people": 3,
+            "military": 1
+        },
+        "incidence": {
+            "desert": 1,
+            "forest": 1,
+            "grassland": 1,
+            "mountain": 1,
+            "river": 100,
+            "swamp": 1
+        }
+    }
+]
