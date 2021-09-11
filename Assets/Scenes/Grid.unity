@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 1141436410}
   - component: {fileID: 1141436409}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,19 +325,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1141436408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adaeb950c35677e48bc6e625472d8e41, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 20
-  _height: 20
-  gambisX: 10
-  gambisY: 5
-  desertIncidence: 2
-  forestIncidence: 20
-  grasslandsIncidence: 50
-  montainIncidence: 7
-  riverIncidence: 18
-  swampIncidence: 3
+  _width: 15
+  _height: 15
+  desertIncidence: 10
+  forestIncidence: 44
+  grasslandIncidence: 76
+  mountainIncidence: 5
+  riverIncidence: 32
+  swampIncidence: 15
+  blankPrefab: {fileID: 9223005878861202567, guid: 2b22beeb912c9d345a313be38661636e, type: 3}
+  desertPrefab: {fileID: 5134903538334545485, guid: abd92437986456645b32e239c7755960, type: 3}
+  forestPrefab: {fileID: 8916194066450447447, guid: 9e79ec7c3b688df43af7ab19eca7554a, type: 3}
+  grasslandPrefab: {fileID: 2218386204594161827, guid: b68c7641601312044923d4cf28c6ca53, type: 3}
+  mountainPrefab: {fileID: 6297600943062329141, guid: f1dc5d1b6cd51d14180660bcdd3d0bf3, type: 3}
+  riverPrefab: {fileID: -5237929591264653902, guid: b1063e37b25692841a1ec34ff8d87b6e, type: 3}
+  swampPrefab: {fileID: -2212848036500961547, guid: e6386a1c848dfc0488afbc63f8dcf2da, type: 3}
 --- !u!4 &1141436410
 Transform:
   m_ObjectHideFlags: 0

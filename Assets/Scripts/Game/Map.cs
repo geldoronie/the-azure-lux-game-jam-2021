@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    [Header("Map Size")]
     [SerializeField] private int _width;
     [SerializeField] private int _height;
-    [SerializeField] private int gambisX;
-    [SerializeField] private int gambisY;
+
+    [Header("Incidences")]
     [Range(1, 100)]
     [SerializeField] private int desertIncidence = 1;
     [Range(1, 100)]
@@ -20,6 +21,15 @@ public class Map : MonoBehaviour
     [SerializeField] private int riverIncidence = 1;
     [Range(1, 100)]
     [SerializeField] private int swampIncidence = 1;
+
+    [Header("Prefabs")]
+    [SerializeField] private Terrain blankPrefab;
+    [SerializeField] private Terrain desertPrefab;
+    [SerializeField] private Terrain forestPrefab;
+    [SerializeField] private Terrain grasslandPrefab;
+    [SerializeField] private Terrain mountainPrefab;
+    [SerializeField] private Terrain riverPrefab;
+    [SerializeField] private Terrain swampPrefab;
 
     private Terrain[,] _grid;
 
@@ -34,10 +44,6 @@ public class Map : MonoBehaviour
         {
             StartCoroutine(ApplyCellularAutomata());
         }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            StartCoroutine(SwampTerrain(new DesertTerrain(gambisX, gambisY)));
-        }
     }
 
     public IEnumerator CreateMap()
@@ -49,6 +55,7 @@ public class Map : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 _grid[x, y] = null;
+                Instantiate(blankPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
             }
         }
 
@@ -62,61 +69,37 @@ public class Map : MonoBehaviour
         }
     }
 
-    public IEnumerator SwampTerrain(Terrain terrain)
+    public IEnumerator SetTerrainApplyCellularAutomata(TerrainRule newRule, int x, int y)
     {
-        if (GetTerrainOnGrid(terrain.X, terrain.Y) != null)
+        if (GetTerrainOnGrid(x, y) != null)
         {
-            _grid[terrain.X, terrain.Y] = terrain;
-            VonNeumannNeighbors neighbors = GetVonNeumannNeighbors(terrain.X, terrain.Y);
+            _grid[x, y] = _grid[x, y];
+            Terrain[] neighbors = GetVonNeumannNeighbors(x, y);
             List<Terrain> toVerify = new List<Terrain>();
-            if (neighbors._northNeighbor != null) toVerify.Add(neighbors._northNeighbor);
-            if (neighbors._eastNeighbor != null) toVerify.Add(neighbors._eastNeighbor);
-            if (neighbors._southNeighbor != null) toVerify.Add(neighbors._southNeighbor);
-            if (neighbors._westNeighbor != null) toVerify.Add(neighbors._westNeighbor);
+            foreach (Terrain neighbor in neighbors)
+            {
+                if (neighbor != null) toVerify.Add(neighbor);
+            }
 
             List<TerrainCoordinates> verified = new List<TerrainCoordinates>();
-            verified.Add(new TerrainCoordinates(terrain.X, terrain.Y));
+            verified.Add(new TerrainCoordinates(x, y));
 
             while (toVerify.Count > 0)
             {
                 Terrain terrainToVerify = toVerify[0];
-                VonNeumannNeighbors neighborsToVerify = GetVonNeumannNeighbors(terrainToVerify.X, terrainToVerify.Y);
-                _grid[terrainToVerify.X, terrainToVerify.Y] = terrainToVerify.CheckRules(neighborsToVerify);
+                Terrain[] neighborsToVerify = GetVonNeumannNeighbors(terrainToVerify.X, terrainToVerify.Y);
+                SwapTerrainApplyingItsRules(terrainToVerify);
 
-                if (neighborsToVerify._northNeighbor != null)
+                foreach (Terrain neighborTerrain in neighborsToVerify)
                 {
-                    TerrainCoordinates northCoord = new TerrainCoordinates(neighborsToVerify._northNeighbor.X, neighborsToVerify._northNeighbor.Y);
-                    if (!verified.Contains(northCoord))
+                    if (neighborTerrain != null)
                     {
-                        verified.Add(northCoord);
-                        toVerify.Add(neighborsToVerify._northNeighbor);
-                    }
-                }
-                if (neighborsToVerify._eastNeighbor != null)
-                {
-                    TerrainCoordinates eastCoord = new TerrainCoordinates(neighborsToVerify._eastNeighbor.X, neighborsToVerify._eastNeighbor.Y);
-                    if (!verified.Contains(eastCoord))
-                    {
-                        verified.Add(eastCoord);
-                        toVerify.Add(neighborsToVerify._eastNeighbor);
-                    }
-                }
-                if (neighborsToVerify._southNeighbor != null)
-                {
-                    TerrainCoordinates southCoord = new TerrainCoordinates(neighborsToVerify._southNeighbor.X, neighborsToVerify._southNeighbor.Y);
-                    if (!verified.Contains(southCoord))
-                    {
-                        verified.Add(southCoord);
-                        toVerify.Add(neighborsToVerify._southNeighbor);
-                    }
-                }
-                if (neighborsToVerify._westNeighbor != null)
-                {
-                    TerrainCoordinates westCoord = new TerrainCoordinates(neighborsToVerify._westNeighbor.X, neighborsToVerify._westNeighbor.Y);
-                    if (!verified.Contains(westCoord))
-                    {
-                        verified.Add(westCoord);
-                        toVerify.Add(neighborsToVerify._westNeighbor);
+                        TerrainCoordinates northCoord = new TerrainCoordinates(neighborTerrain.X, neighborTerrain.Y);
+                        if (!verified.Contains(northCoord))
+                        {
+                            verified.Add(northCoord);
+                            toVerify.Add(neighborTerrain);
+                        }
                     }
                 }
 
@@ -134,11 +117,57 @@ public class Map : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                VonNeumannNeighbors neighbors = GetVonNeumannNeighbors(x, y);
-                _grid[x, y] = _grid[x, y].CheckRules(neighbors);
+                SwapTerrainApplyingItsRules(_grid[x, y]);
                 yield return new WaitForEndOfFrame();
             }
         }
+    }
+
+    private void SwapTerrainApplyingItsRules(Terrain terrain)
+    {
+        int x = terrain.X;
+        int y = terrain.Y;
+        Terrain[] neighbors = GetVonNeumannNeighbors(terrain.X, terrain.Y);
+        TerrainRule newRule = terrain.TerrainRule.CheckRules(neighbors);
+
+        Destroy(_grid[x, y].gameObject);
+        Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.identity);
+        terrainObject.Initialize(newRule, x, y);
+        _grid[x, y] = terrainObject;
+    }
+
+    private Terrain FindPrefab(TerrainRule newRule)
+    {
+        if (newRule is DesertTerrainRule)
+        {
+            return desertPrefab;
+        }
+        else if (newRule is ForestTerrainRule)
+        {
+            return forestPrefab;
+        }
+        else if (newRule is GrasslandTerrainRule)
+        {
+            return grasslandPrefab;
+        }
+        else if (newRule is MountainTerrainRule)
+        {
+            return mountainPrefab;
+        }
+        else if (newRule is RiverTerrainRule)
+        {
+            return riverPrefab;
+        }
+        else if (newRule is SwampTerrainRule)
+        {
+            return swampPrefab;
+        }
+        return blankPrefab;
+    }
+
+    private Vector3 GetWorldCoordinates(int x, int y)
+    {
+        return new Vector3(x - _width / 2f, 0, y - _height / 2f);
     }
 
     private Terrain GetRandomTerrain(int x, int y)
@@ -149,44 +178,57 @@ public class Map : MonoBehaviour
         int currentIncidence = desertIncidence;
         if (randomIncidence < currentIncidence)
         {
-            return new DesertTerrain(x, y);
+            Terrain terrainObject = Instantiate<Terrain>(desertPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            terrainObject.Initialize(new DesertTerrainRule(), x, y);
+            return terrainObject;
         }
         currentIncidence += forestIncidence;
         if (randomIncidence < currentIncidence)
         {
-            return new ForestTerrain(x, y);
+            Terrain terrainObject = Instantiate<Terrain>(forestPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            terrainObject.Initialize(new ForestTerrainRule(), x, y);
+            return terrainObject;
         }
         currentIncidence += grasslandIncidence;
         if (randomIncidence < currentIncidence)
         {
-            return new GrasslandsTerrain(x, y);
+            Terrain terrainObject = Instantiate<Terrain>(grasslandPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            terrainObject.Initialize(new GrasslandTerrainRule(), x, y);
+            return terrainObject;
         }
         currentIncidence += mountainIncidence;
         if (randomIncidence < currentIncidence)
         {
-            return new MontainTerrain(x, y);
+            Terrain terrainObject = Instantiate<Terrain>(mountainPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            terrainObject.Initialize(new MountainTerrainRule(), x, y);
+            return terrainObject;
         }
         currentIncidence += riverIncidence;
         if (randomIncidence < currentIncidence)
         {
-            return new RiverTerrain(x, y);
+            Terrain terrainObject = Instantiate<Terrain>(riverPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            terrainObject.Initialize(new RiverTerrainRule(), x, y);
+            return terrainObject;
         }
+
         currentIncidence += swampIncidence;
         if (randomIncidence < currentIncidence)
         {
-            return new SwampTerrain(x, y);
+            Terrain terrainObject = Instantiate<Terrain>(swampPrefab, GetWorldCoordinates(x, y), Quaternion.identity);
+            terrainObject.Initialize(new SwampTerrainRule(), x, y);
+            return terrainObject;
         }
         return null;
     }
 
-    private VonNeumannNeighbors GetVonNeumannNeighbors(int x, int y)
+    private Terrain[] GetVonNeumannNeighbors(int x, int y)
     {
-        return new VonNeumannNeighbors(
-            GetTerrainOnGrid(x, y + 1),
-            GetTerrainOnGrid(x, y - 1),
-            GetTerrainOnGrid(x - 1, y),
-            GetTerrainOnGrid(x + 1, y)
-        );
+        Terrain[] neighbors = new Terrain[4];
+        neighbors[0] = GetTerrainOnGrid(x, y + 1);
+        neighbors[1] = GetTerrainOnGrid(x, y - 1);
+        neighbors[2] = GetTerrainOnGrid(x - 1, y);
+        neighbors[3] = GetTerrainOnGrid(x + 1, y);
+        return neighbors;
     }
 
     private Terrain GetTerrainOnGrid(int x, int y)
@@ -198,52 +240,6 @@ public class Map : MonoBehaviour
         else
         {
             return null;
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (_grid != null)
-        {
-            for (int x = 0; x < _width; x++)
-            {
-                for (int y = 0; y < _height; y++)
-                {
-                    if (_grid[x, y] != null)
-                    {
-                        if (_grid[x, y] is DesertTerrain)
-                        {
-                            Gizmos.color = Color.yellow;
-                        }
-                        else if (_grid[x, y] is ForestTerrain)
-                        {
-                            Gizmos.color = new Color(23f / 255f, 97f / 255f, 33f / 255f);
-                        }
-                        else if (_grid[x, y] is GrasslandsTerrain)
-                        {
-                            Gizmos.color = Color.green;
-                        }
-                        else if (_grid[x, y] is MontainTerrain)
-                        {
-                            Gizmos.color = Color.white;
-                        }
-                        else if (_grid[x, y] is RiverTerrain)
-                        {
-                            Gizmos.color = Color.blue;
-                        }
-                        else if (_grid[x, y] is SwampTerrain)
-                        {
-                            Gizmos.color = new Color(134f / 255f, 51f / 255f, 212f / 255f);
-                        }
-
-                    }
-                    else
-                    {
-                        Gizmos.color = Color.black;
-                    }
-                    Gizmos.DrawCube(new Vector3(x, 0, y), Vector3.one);
-                }
-            }
         }
     }
 }
