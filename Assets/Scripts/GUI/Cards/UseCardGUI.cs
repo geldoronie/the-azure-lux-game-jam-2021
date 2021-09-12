@@ -44,6 +44,11 @@ public class UseCardGUI : MonoBehaviour
                     if (card.CanBuild(GameModeBase.Instance.Player, terrain))
                     {
                         _objectToCreate.GetComponent<MeshRenderer>().material = _enableMaterial;
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            terrain.ConstructBuilding(card);
+                            GameModeBase.Instance.Player.RemoveCard(card);
+                        }
                     }
                     else
                     {
