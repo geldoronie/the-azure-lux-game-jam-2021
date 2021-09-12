@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,11 +32,17 @@ public class Player : MonoBehaviour
         this._woodAmount += resource.Wood;
     }
 
-    public int WoodAmount { get => _woodAmount; }
-    public int StoneAmount { get => _stoneAmount; }
-    public int GoldAmount { get => _goldAmount; }
-    public int FoodAmount { get => _foodAmount; }
-    public int PeopleAmount { get => _peopleAmount; }
-    public int MilitaryAmount { get => _militaryAmount; }
+    public void RemoveCard(BuildingCard card)
+    {
+        _hand.Remove(card);
+        OnHandCardsUpdate?.Invoke();
+    }
+
+    public int WoodAmount { get => _woodAmount; set => _woodAmount = value; }
+    public int StoneAmount { get => _stoneAmount; set => _stoneAmount = value; }
+    public int GoldAmount { get => _goldAmount; set => _goldAmount = value; }
+    public int FoodAmount { get => _foodAmount; set => _foodAmount = value; }
+    public int PeopleAmount { get => _peopleAmount; set => _peopleAmount = value; }
+    public int MilitaryAmount { get => _militaryAmount; set => _militaryAmount = value; }
     public Card[] Hand { get => _hand.ToArray(); }
 }

@@ -71,7 +71,7 @@ public class Map : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 Terrain newTerrain = Instantiate<Terrain>(blankPrefab, GetWorldCoordinates(x, y), Quaternion.identity, transform);
-                newTerrain.Initialize(null, x, y);
+                newTerrain.Initialize(null, x, y, null);
                 _grid[x, y] = newTerrain;
 
                 if (x == 0)
@@ -236,7 +236,7 @@ public class Map : MonoBehaviour
         if (newRule.GetType().ToString() != _grid[x, y].TerrainRule?.GetType().ToString())
         {
             Terrain terrainObject = Instantiate<Terrain>(FindPrefab(newRule), GetWorldCoordinates(x, y), Quaternion.Euler(-180, 0, 0), transform);
-            terrainObject.Initialize(newRule, x, y);
+            terrainObject.Initialize(newRule, x, y, _grid[x, y].Building);
 
             float timeElapsed = -180;
             while (terrainObject.transform.eulerAngles.x != 0)
@@ -350,6 +350,22 @@ public class Map : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public List<BuildingCard> GetBuildings()
+    {
+        List<BuildingCard> listOfBuildings = new List<BuildingCard>();
+        for (int x = 0; x < _width; x++)
+        {
+            for (int y = 0; y < _height; y++)
+            {
+                if (_grid[x, y].Building != null)
+                {
+                    listOfBuildings.Add(_grid[x, y].Building.Card);
+                }
+            }
+        }
+        return listOfBuildings;
     }
 
     public int Width { get => _width; set => _width = value; }

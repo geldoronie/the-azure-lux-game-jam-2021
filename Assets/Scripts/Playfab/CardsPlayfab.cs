@@ -53,11 +53,30 @@ public class CardsPlayfab : MonoBehaviour
         }
 
         this.BuildingCards = JsonUtility.FromJson<BuildingCardList>(result.Data["cards_buildings"]).cards;
+
+        foreach (BuildingCard card in this.BuildingCards)
+        {
+            if (!string.IsNullOrEmpty(card.PrefabId))
+            {
+                GameObject buildingPrefab = Resources.Load(card.PrefabId) as GameObject;
+                card.Prefab = buildingPrefab.GetComponent<Building>();
+            }
+            if (card.Prefab == null)
+            {
+                GameObject buildingPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                buildingPrefab.GetComponent<Collider>().enabled = false;
+                buildingPrefab.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 0.5f);
+                buildingPrefab.transform.localScale = Vector3.one * 0.65f;
+                buildingPrefab.AddComponent<Building>();
+                card.Prefab = buildingPrefab.GetComponent<Building>();
+            }
+        }
+
         this.EffectCards = JsonUtility.FromJson<EffectCardList>(result.Data["cards_effects"]).cards;
     }
 
     private void _onGetCardsFailure(PlayFabError error)
     {
-        Debug.Log(error);
+        Debug.LogError(error);
     }
 }
