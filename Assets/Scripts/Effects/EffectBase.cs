@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +14,8 @@ public class EffectArgument
     [SerializeField] public string value;
 }
 
-public enum EffectArgumentType {
+public enum EffectArgumentType
+{
     Terrain,
     Resource
 }

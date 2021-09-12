@@ -19,12 +19,12 @@ public class CardDisplayer : MonoBehaviour
         this.card = card;
         _cardNameText.SetText(card.Name);
         _cardDescriptionText.SetText(card.Description);
-        _woodCostText.SetText(card.WoodCost.ToString("00"));
-        _stoneCostText.SetText(card.StoneCost.ToString("00"));
-        _goldCostText.SetText(card.GoldCost.ToString("00"));
-        _foodCostText.SetText(card.FoodCost.ToString("00"));
-        _peopleCostText.SetText(card.PeopleCost.ToString("00"));
-        _militaryCostText.SetText(card.MilitaryCost.ToString("00"));
+        _woodCostText.SetText(card.UseCost.wood.ToString("00"));
+        _stoneCostText.SetText(card.UseCost.stone.ToString("00"));
+        _goldCostText.SetText(card.UseCost.gold.ToString("00"));
+        _foodCostText.SetText(card.UseCost.food.ToString("00"));
+        _peopleCostText.SetText(card.UseCost.people.ToString("00"));
+        _militaryCostText.SetText(card.UseCost.military.ToString("00"));
     }
     public Card Card { get => card; }
 }
