@@ -84,14 +84,24 @@ public class UseCardGUI : MonoBehaviour
         Debug.Log(meshRenderers.Length);
         foreach (MeshRenderer rend in meshRenderers)
         {
-            rend.material = material;
+            Material[] sharedMaterials = new Material[rend.sharedMaterials.Length];
+            for (int i = 0; i < rend.sharedMaterials.Length; i++)
+            {
+                foreach (Material mat in rend.sharedMaterials)
+                {
+                    sharedMaterials[i] = material;
+                }
+            }
+            rend.sharedMaterials = sharedMaterials;
+            Material[] materials = new Material[rend.materials.Length];
             for (int i = 0; i < rend.materials.Length; i++)
             {
                 foreach (Material mat in rend.materials)
                 {
-                    rend.materials[i] = material;
+                    materials[i] = material;
                 }
             }
+            rend.materials = materials;
         }
     }
 
