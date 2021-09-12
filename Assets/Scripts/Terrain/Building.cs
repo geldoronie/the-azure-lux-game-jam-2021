@@ -27,7 +27,6 @@ public class Building : MonoBehaviour
         return
             _card.TerrainCost.Desert && _terrain.TerrainRule is DesertTerrainRule ||
             _card.TerrainCost.Grassland && _terrain.TerrainRule is GrasslandTerrainRule ||
-            _card.TerrainCost.Desert && _terrain.TerrainRule is DesertTerrainRule ||
             _card.TerrainCost.Forest && _terrain.TerrainRule is ForestTerrainRule ||
             _card.TerrainCost.River && _terrain.TerrainRule is RiverTerrainRule ||
             _card.TerrainCost.Swamp && _terrain.TerrainRule is SwampTerrainRule ||

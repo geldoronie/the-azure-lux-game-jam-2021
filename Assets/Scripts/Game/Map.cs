@@ -352,16 +352,16 @@ public class Map : MonoBehaviour
         }
     }
 
-    public List<BuildingCard> GetBuildings()
+    public List<Building> GetBuildings()
     {
-        List<BuildingCard> listOfBuildings = new List<BuildingCard>();
+        List<Building> listOfBuildings = new List<Building>();
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
                 if (_grid[x, y].Building != null)
                 {
-                    listOfBuildings.Add(_grid[x, y].Building.Card);
+                    listOfBuildings.Add(_grid[x, y].Building);
                 }
             }
         }

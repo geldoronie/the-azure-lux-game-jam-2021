@@ -6,6 +6,7 @@ public class GameModeWorldVsYou : GameModeBase
     [Header("CPU State")]
     [SerializeField] private bool _terrainDisasterExecuted = false;
     [SerializeField] private bool _changeTerrainDisasterDone = false;
+    [SerializeField] private bool _invalidBuildsDestroyed = false;
 
     public override void Update()
     {
@@ -95,6 +96,7 @@ public class GameModeWorldVsYou : GameModeBase
         if (this._currentTurnPhase == TurnPhase.Main)
         {
             this._terrainDisasterExecuted = false;
+            this._invalidBuildsDestroyed = false;
 
             if (this._timer.Remaining <= 0)
             {
@@ -106,6 +108,11 @@ public class GameModeWorldVsYou : GameModeBase
         }
         else if (this._currentTurnPhase == TurnPhase.Destroy)
         {
+            if(!this._invalidBuildsDestroyed){
+                this._executeBuildingDestroy();
+                this._invalidBuildsDestroyed = true;
+            }
+
             if (this._timer.Remaining <= 0)
             {
                 this.ChangePhase(TurnPhase.Disaster);
@@ -188,6 +195,10 @@ public class GameModeWorldVsYou : GameModeBase
     public void _onChangeTerrainDisasterReady(){
         this._changeTerrainDisasterDone = true;
         this._map.OnMapFinishedCellularAutomata -= this._onChangeTerrainDisasterReady;
+    }
+
+    public void _executeBuildingDestroy(){
+        this.DestroyPlayerInvalidBuildings();
     }
 
     public override void StartGame()
