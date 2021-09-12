@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +10,16 @@ public class Player : MonoBehaviour
     [SerializeField] private int _foodAmount = 0;
     [SerializeField] private int _peopleAmount = 0;
     [SerializeField] private int _militaryAmount = 0;
+    [SerializeField] private CardsLibrary _library;
+    [SerializeField] public List<Card> Hand;
+
+    public UnityAction OnHandCardsUpdate;
+
+    public void DrawNewHand(int cardCount)
+    {
+        this.Hand = this._library.GetCards(cardCount);
+        OnHandCardsUpdate?.Invoke();
+    }
 
     public int WoodAmount { get => _woodAmount; }
     public int StoneAmount { get => _stoneAmount; }

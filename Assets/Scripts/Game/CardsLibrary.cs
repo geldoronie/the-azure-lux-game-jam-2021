@@ -1,33 +1,24 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class CardsLibrary : MonoBehaviour
 {
     [SerializeField] private CardsPlayfab _cardsDatabase;
-    [SerializeField] private int _playerStartHandCardsCount = 5;
     [Range(1, 100)]
     [SerializeField] private int _buildingCardsChance = 75;
     [Range(1, 100)]
     [SerializeField] private int _effectsCardsChance = 25;
-    [SerializeField] private List<Card> _playerHand;
-    public UnityAction<List<Card>> OnHandCardsUpdate;
 
-    void Awake()
+    public List<Card> GetCards(int count)
     {
-        this._playerHand = new List<Card>();
-        _cardsDatabase.onGetCards += NewHand;
+        return this._getCards(this._cardsDatabase.BuildingCards.ToArray(), this._cardsDatabase.EffectCards.ToArray(), count);
     }
 
-    private void OnDestroy()
+    private List<Card> _getCards(BuildingCardModelPlayfab[] buildingCards, EffectCardModelPlayfab[] effectCards, int cardCount)
     {
-        _cardsDatabase.onGetCards -= NewHand;
-    }
+        List<Card> newHand = new List<Card>();
 
-    public void NewHand(BuildingCardModelPlayfab[] buildingCards, EffectCardModelPlayfab[] effectCards)
-    {
-        this._playerHand.Clear();
-        for (int i = 0; i < this._playerStartHandCardsCount; i++)
+        for (int i = 0; i < cardCount; i++)
         {
             float shuffle = Random.Range(0, 100);
             if (shuffle <= this._buildingCardsChance || shuffle >= this._effectsCardsChance)
@@ -63,7 +54,7 @@ public class CardsLibrary : MonoBehaviour
                     terrainCosts.Add(TerrrainTypeToTerrainCost(cost.type));
                 });
 
-                this._playerHand.Add(
+                newHand.Add(
                     new BuildingCard(
                         card.name,
                         card.description,
@@ -132,7 +123,7 @@ public class CardsLibrary : MonoBehaviour
                     };
                 }
 
-                this._playerHand.Add(new EffectCard(
+                newHand.Add(new EffectCard(
                         card.name,
                         card.description,
                         costs,
@@ -141,7 +132,8 @@ public class CardsLibrary : MonoBehaviour
                 );
             }
         }
-        OnHandCardsUpdate?.Invoke(this._playerHand);
+
+        return newHand;
     }
 
     private Resource ResourceTypeToResource(string type)

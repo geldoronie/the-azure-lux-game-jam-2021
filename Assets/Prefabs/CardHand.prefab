@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _enableMaterial: {fileID: 0}
-  _disableMaterial: {fileID: 0}
+  _enableMaterial: {fileID: 2100000, guid: 0b5e717eaeafe8b4f8e025014d0e28c4, type: 2}
+  _disableMaterial: {fileID: 2100000, guid: 18ffbfe39856d764090842faf6eab14c, type: 2}
 --- !u!114 &6185525604673897002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,13 +59,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6185525604673897001}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb4700e4ae9d0fb4b8a96c3034ce9908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _library: {fileID: 0}
   _cardPrefab: {fileID: 5872271596352663801, guid: 331cbb3f726a88746b6cae0e1e8333e9, type: 3}
+  _player: {fileID: 0}
   _cardWidth: 100
   _cardHeighGap: 9.3
   _cardSelectedGap: 20

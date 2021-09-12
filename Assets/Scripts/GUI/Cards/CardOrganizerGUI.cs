@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class CardOrganizerGUI : MonoBehaviour
 {
-    [SerializeField] private CardsLibrary _library;
     [SerializeField] private CardDisplayer _cardPrefab;
+    [SerializeField] private Player _player;
     [SerializeField] private int _cardWidth = 100;
     [SerializeField] private float _cardHeighGap = 9.3f;
     [SerializeField] private float _cardSelectedGap = 20;
@@ -24,12 +23,12 @@ public class CardOrganizerGUI : MonoBehaviour
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvas = transform.parent.GetComponent<Canvas>();
-        _library.OnHandCardsUpdate += OnHandCardsUpdate;
+        _player.OnHandCardsUpdate += OnHandCardsUpdate;
     }
 
     private void OnDestroy()
     {
-        _library.OnHandCardsUpdate -= OnHandCardsUpdate;
+        _player.OnHandCardsUpdate -= OnHandCardsUpdate;
     }
 
     private void Update()
@@ -144,10 +143,10 @@ public class CardOrganizerGUI : MonoBehaviour
         }
     }
 
-    public void OnHandCardsUpdate(List<Card> cards)
+    public void OnHandCardsUpdate()
     {
         this._clearHandCards();
-        cards.ForEach(card =>
+        this._player.Hand.ForEach(card =>
         {
             this._addHandCard(card);
         });
