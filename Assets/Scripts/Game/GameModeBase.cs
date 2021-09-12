@@ -13,7 +13,13 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected float _turnsCount = 0;
     [SerializeField] protected TurnType _currentTurnType = TurnType.Player;
     [SerializeField] protected TurnPhase _currentTurnPhase = TurnPhase.Refill;
-    [SerializeField] protected bool _isRunning = false;
+
+    [SerializeField] protected GameState _gameState = GameState.Stopped;
+    
+    [Header("Player State")]
+    [SerializeField] protected bool _gotPlayerBaseResources = false;
+    [SerializeField] protected bool _hasPlayerDrawnCard = false;
+    [SerializeField] protected bool _gotPlayerBuildingsResources = false;
 
     [Header("Map")]
     [SerializeField] protected int _mapWidth = 10;
@@ -38,14 +44,8 @@ public class GameModeBase : MonoBehaviour
 
     public virtual void StartGame()
     {
-        this._player.DrawCard(this._startingCardsCount);
+        this._map.OnMapFinishedCreating += this._onStartGameMapReady;
         this._map.GenerateMap(this._mapWidth, this._mapHeight);
-        this._currentTurnType = TurnType.CPU;
-        this._currentTurnPhase = TurnPhase.Main;
-        this._timer.StartTime = 2;
-        this._timer.ResetTimer();
-        this._timer.StartTimer();
-        this._isRunning = true;
     }
 
     public void ChangeTurn()
@@ -73,14 +73,31 @@ public class GameModeBase : MonoBehaviour
         this._player.GetResource(resourcePerTurn);
     }
 
+    public void GetPlayerBuildingsResources(){
+        this._map.GetBuildings().ForEach(build => {
+            this._player.GetResource(build.ResourcesPerTurn);
+        });
+    }
+
+    private void _onStartGameMapReady(){
+        this._player.DrawCard(this._startingCardsCount);
+        this._currentTurnType = TurnType.CPU;
+        this._currentTurnPhase = TurnPhase.Main;
+        this._timer.StartTime = 2;
+        this._timer.ResetTimer();
+        this._timer.StartTimer();
+        this._gameState = GameState.Playing;
+        this._map.OnMapFinishedCreating -= this._onStartGameMapReady;
+    }
+
     public static GameModeBase Instance { get => instance; }
     public TurnType CurrentTurnType { get => _currentTurnType; }
     public TurnPhase CurrentTurnPhase { get => _currentTurnPhase; }
-    public bool IsRunning { get => _isRunning; }
     public Player Player { get => _player; }
     public int MapWidth { get => _mapWidth; }
     public int MapHeight { get => _mapHeight; }
     protected Timer Timer { get => _timer; }
+    public GameState GameState { get => _gameState; }
 }
 
 public enum TurnType
@@ -98,4 +115,12 @@ public enum TurnPhase
     Military,
     Destroy,
     Main
+}
+
+public enum GameState {
+    Playing,
+    Paused,
+
+    Stopped,
+    Replay
 }
