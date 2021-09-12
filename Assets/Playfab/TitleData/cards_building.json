@@ -1,38 +1,304 @@
 {
-    "cards": [
-        {
-            "name" : "Church",
-            "description" : "A church to keep god close, of course! if you can pay for it...",
-            "imageId" : "",
-            "cost" : [
-                {
-                    "type": "Food",
-                    "amount" : 20
-                },
-                {
-                    "type": "Stone",
-                    "amount" : 20
-                },
-                {
-                    "type": "Wood",
-                    "amount" : 20
-                }
-            ],
-            "resourcePerTurn" : [
-                {
-                    "type": "People",
-                    "amount" : 10
-                },
-                {
-                    "type": "Gold",
-                    "amount" : -5
-                }
-            ],
-            "terrainCost" : [
-                {
-                    "type" : "Grassland"
-                }
-            ]
-        }
-    ]
+  "cards": [
+    {
+      "name": "Church",
+      "description": "A church to keep god close, of course! if you can pay for it...",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": -5,
+        "food": 0,
+        "people": 10,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": false,
+        "forest": false,
+        "river": false,
+        "swamp": false,
+        "mountain": false
+      }
+    },
+    {
+      "name": "Bank",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 100,
+        "stone": 100,
+        "gold": 0,
+        "food": 100,
+        "people": 0,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 50,
+        "food": 0,
+        "people": 10,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": false,
+        "forest": false,
+        "river": false,
+        "swamp": false,
+        "mountain": false
+      }
+    },
+    {
+      "name": "Barrack",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 100,
+        "stone": 100,
+        "gold": 0,
+        "food": 100,
+        "people": 50,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 0,
+        "food": 0,
+        "people": -50,
+        "military": 50
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": false,
+        "forest": true,
+        "river": false,
+        "swamp": false,
+        "mountain": false
+      }
+    },
+    {
+      "name": "Lumber Mill",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 0,
+        "stone": 50,
+        "gold": 0,
+        "food": 0,
+        "people": 30,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 50,
+        "stone": 0,
+        "gold": 0,
+        "food": 0,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": false,
+        "desert": false,
+        "forest": true,
+        "river": false,
+        "swamp": false,
+        "mountain": false
+      }
+    },
+    {
+      "name": "Gold Mine",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 15,
+        "stone": 15,
+        "gold": 0,
+        "food": 15,
+        "people": 50,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 20,
+        "food": 0,
+        "people": -5,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": false,
+        "desert": false,
+        "forest": false,
+        "river": false,
+        "swamp": false,
+        "mountain": true
+      }
+    },
+    {
+      "name": "Village",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 100,
+        "stone": 100,
+        "gold": 25,
+        "food": 0,
+        "people": 0,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 0,
+        "food": -10,
+        "people": 50,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": false,
+        "forest": true,
+        "river": false,
+        "swamp": false,
+        "mountain": false
+      }
+    },
+    {
+      "name": "Tower",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 50,
+        "stone": 50,
+        "gold": 25,
+        "food": 50,
+        "people": 0,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 0,
+        "food": 0,
+        "people": -25,
+        "military": 25
+      },
+      "terrainCost": {
+        "grassland": false,
+        "desert": false,
+        "forest": false,
+        "river": false,
+        "swamp": false,
+        "mountain": true
+      }
+    },
+    {
+      "name": "Castle",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 2000,
+        "stone": 2000,
+        "gold": 3000,
+        "food": 1500,
+        "people": 100,
+        "military": 10
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 0,
+        "food": -25,
+        "people": -75,
+        "military": 100
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": false,
+        "forest": false,
+        "river": false,
+        "swamp": false,
+        "mountain": true
+      }
+    },
+    {
+      "name": "Farm",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 0,
+        "food": 50,
+        "people": 0,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 0,
+        "stone": 0,
+        "gold": 0,
+        "food": 10,
+        "people": 30,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": false,
+        "forest": false,
+        "river": false,
+        "swamp": false,
+        "mountain": false
+      }
+    },
+    {
+      "name": "Quarry",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 0,
+        "stone": 50,
+        "gold": 0,
+        "food": 0,
+        "people": 0,
+        "military": 0
+      },
+      "resourcesPerTurn": {
+        "wood": 15,
+        "stone": 0,
+        "gold": 0,
+        "food": 15,
+        "people": 30,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": false,
+        "desert": false,
+        "forest": false,
+        "river": false,
+        "swamp": false,
+        "mountain": true
+      }
+    }
+  ]
 }

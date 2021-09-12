@@ -27,7 +27,14 @@ public class Card
 
     public bool CostCheck(Player player)
     {
-        return true;
+        return
+            player.WoodAmount >= UseCost.wood &&
+            player.StoneAmount >= UseCost.stone &&
+            player.GoldAmount >= UseCost.gold &&
+            player.FoodAmount >= UseCost.food &&
+            player.PeopleAmount >= UseCost.people &&
+            player.MilitaryAmount >= UseCost.military;
+
     }
 }
 

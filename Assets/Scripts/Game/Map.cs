@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    [Header("Other")]
+    [SerializeField] private Material _boardQuadMaterial;
+
     [Header("Map Size")]
     [SerializeField] private int _width = 15;
     [SerializeField] private int _height = 15;
@@ -40,12 +43,8 @@ public class Map : MonoBehaviour
     private int iterations;
     private Coroutine applyingCellularAutomataCoroutine;
 
-    private void Start()
+    public void GenerateMap(int width, int height)
     {
-        
-    }
-
-    public void GenerateMap(int width, int height){
         this._width = width;
         this._height = height;
         StartCoroutine(this._createMap());
@@ -57,6 +56,11 @@ public class Map : MonoBehaviour
         maxIterations = _width * _height + (int)(_width / 3) * _width * _height;
         iterations = 0;
         Debug.Log("Começou: " + iterations + "/" + maxIterations);
+
+        GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        quad.transform.eulerAngles = new Vector3(90, 0, 0);
+        quad.transform.localScale = new Vector2(_width, _height);
+        quad.GetComponent<MeshRenderer>().material = _boardQuadMaterial;
 
         for (int x = 0; x < _width; x++)
         {
@@ -277,7 +281,7 @@ public class Map : MonoBehaviour
 
     private Vector3 GetWorldCoordinates(int x, int y)
     {
-        return new Vector3(x - _width / 2f, 0, y - _height / 2f);
+        return new Vector3(x - _width / 2f + 0.5f, 0, y - _height / 2f + 0.5f);
     }
 
     private TerrainRule GetRandomTerrainRule()
