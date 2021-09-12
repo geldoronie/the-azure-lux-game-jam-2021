@@ -38,19 +38,31 @@ public class Tooltip : MonoBehaviour
         layoutElement.enabled = headerLength > characterWrapLimit || contentLength > characterWrapLimit;
     }
 
-    public void SetTexts(string header, string content)
+    public void SetTexts(ToolTipInformation information)
     {
         UpdatePosition();
-        if (!string.IsNullOrEmpty(header))
+        if (!string.IsNullOrEmpty(information.header))
         {
             headerText.gameObject.SetActive(true);
-            headerText.SetText(header);
+            headerText.SetText(information.header);
         }
         else
         {
             headerText.gameObject.SetActive(false);
         }
-        contentText.SetText(content);
+        contentText.SetText(information.content);
         UpdateBoxSize();
+    }
+}
+
+public class ToolTipInformation
+{
+    public readonly string header;
+    public readonly string content;
+
+    public ToolTipInformation(string header, string content)
+    {
+        this.header = header;
+        this.content = content;
     }
 }

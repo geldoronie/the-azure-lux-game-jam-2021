@@ -1,5 +1,12 @@
 public abstract class TerrainRule
 {
+    private float _terrainHeight;
+
+    protected TerrainRule(float terrainHeight)
+    {
+        _terrainHeight = terrainHeight;
+    }
+
     protected int CountTerrainType<T>(Terrain[] neighbors) where T : TerrainRule
     {
         int count = 0;
@@ -14,4 +21,6 @@ public abstract class TerrainRule
 
     public abstract TerrainRule CheckRules(Terrain[] neighbors);
     public abstract string GetTooltip();
+
+    public float TerrainHeight { get => _terrainHeight; }
 }

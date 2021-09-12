@@ -32,6 +32,6 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private IEnumerator ShowTooltip()
     {
         yield return new WaitForSeconds(tooltipDelay);
-        MainCanvas.Instance.ShowTooltip(header, content);
+        MainCanvas.Instance.ShowTooltip(new ToolTipInformation(header, content));
     }
 }

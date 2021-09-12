@@ -1,5 +1,9 @@
 public class GrasslandTerrainRule : TerrainRule
 {
+    public GrasslandTerrainRule() : base(0.038f)
+    {
+    }
+
     public override TerrainRule CheckRules(Terrain[] neighbors)
     {
         if (neighbors[0] != null && neighbors[1] != null && neighbors[0].TerrainRule is DesertTerrainRule && neighbors[1].TerrainRule is ForestTerrainRule)

@@ -111,6 +111,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: church
       objectReference: {fileID: 0}
+    - target: {fileID: 6158808974396751993, guid: 663ae83f6d6b16344a120d7dd5cc86e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158808974396751993, guid: 663ae83f6d6b16344a120d7dd5cc86e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 6699480404761546222, guid: 663ae83f6d6b16344a120d7dd5cc86e7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

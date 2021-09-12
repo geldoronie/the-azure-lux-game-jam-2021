@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameModeBase : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected ResourcesAmounts resourcePerTurn;
 
     private static GameModeBase instance;
+    public UnityAction OnChangeTurn;
 
     private void Awake()
     {
@@ -63,6 +65,7 @@ public class GameModeBase : MonoBehaviour
             this.ChangePhase(TurnPhase.Main);
         }
         this._turnsCount++;
+        OnChangeTurn?.Invoke();
     }
 
     public void PauseTurn()

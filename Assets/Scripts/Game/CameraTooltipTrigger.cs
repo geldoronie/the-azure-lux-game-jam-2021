@@ -27,7 +27,7 @@ public class CameraTooltipTrigger : MonoBehaviour
                     currentTime += Time.deltaTime;
                     if (currentTime > delayTooltipTime)
                     {
-                        MainCanvas.Instance.ShowTooltip(currentTerrain.TerrainRule.GetTooltip(), "");
+                        MainCanvas.Instance.ShowTooltip(currentTerrain.GetTooltip());
                     }
                 }
             }
