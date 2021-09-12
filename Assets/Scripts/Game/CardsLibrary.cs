@@ -20,8 +20,9 @@ public class CardsLibrary : MonoBehaviour
 
         for (int i = 0; i < cardCount; i++)
         {
-            float shuffle = Random.Range(0, 100);
-            if (shuffle <= this._buildingCardsChance || shuffle >= this._effectsCardsChance)
+            float sortBuildings = Random.Range(0, this._buildingCardsChance);
+            float sortEffects = Random.Range(0, this._effectsCardsChance);
+            if (sortBuildings > sortEffects)
             {
                 BuildingCard card = buildingCards[Random.Range(0, buildingCards.Length)];
                 newHand.Add(card);
