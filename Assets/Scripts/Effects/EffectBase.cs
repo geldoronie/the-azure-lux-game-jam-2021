@@ -1,21 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EffectBase
+[CreateAssetMenu(fileName = "Nothing Effect", menuName = "Game Jam/Effects/Nothing Terrain", order = 0)]
+public class EffectBase : ScriptableObject
 {
-    [SerializeField] public string type;
-    [SerializeField] public List<EffectArgument> arguments;
-}
-
-public class EffectArgument
-{
-    [SerializeField] public EffectArgumentType type;
-    [SerializeField] public string value;
-}
-
-public enum EffectArgumentType
-{
-    Terrain,
-    Resource
+    public virtual void UseEffect(Player player, Terrain terrain)
+    {
+        Debug.Log("This effect does nothing");
+    }
 }

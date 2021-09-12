@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Authentication: {fileID: 0}
-  primitiveBuildingCardPrefab: {fileID: 3841451449894739624, guid: a78820c5241f056468d02e70238e94e0, type: 3}
+  primitiveBuildingCardPrefab: {fileID: 7109688362059319660, guid: a78820c5241f056468d02e70238e94e0, type: 3}
+  primitiveEffect: {fileID: 11400000, guid: 65500f7aeb59eee4e814f253a411ca01, type: 2}
   BuildingCards: []
   EffectCards: []

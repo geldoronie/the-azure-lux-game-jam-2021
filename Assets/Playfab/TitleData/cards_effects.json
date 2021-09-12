@@ -1,28 +1,27 @@
 {
-    "cards": [
-        {
-            "name" : "Change Terrain to Swamp",
-            "description" : "Some times the ground turns too swet...",
-            "imageId" : "",
-            "cost" : [
-                {
-                    "type": "Stone",
-                    "amount" : 25
-                },
-                {
-                    "type": "Wood",
-                    "amount" : 25
-                }
-            ],
-            "effect" : {
-                "type" : "CHANGETERRAIN",
-                "arguments" : [
-                    {
-                        "type": "terrain",
-                        "value" : "Swamp"
-                    }
-                ]
-            }
-        }
-    ]
+  "cards": [
+    {
+      "name": "Change any terrain to Swamp",
+      "description": "Some times the ground turns too wet...",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "Any2Swamp"
+    }
+  ]
 }

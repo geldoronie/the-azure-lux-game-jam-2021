@@ -4,7 +4,7 @@
       "name": "Church",
       "description": "A church to keep god close, of course! if you can pay for it...",
       "imageId": "",
-      "prefabId": "3f7651d6d358d154a96d6bc3edd26d3b",
+      "prefabId": "Church",
       "useCost": {
         "wood": 20,
         "stone": 20,

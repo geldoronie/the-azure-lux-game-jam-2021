@@ -40,14 +40,21 @@ public class UseCardGUI : MonoBehaviour
                 {
                     _objectToCreate.SetActive(true);
                     _objectToCreate.transform.position = terrain.transform.position;
-                    BuildingCard card = (BuildingCard)_cardOrganizerGUI.SelectedCard.Card;
-                    if (card.CanBuild(GameModeBase.Instance.Player, terrain))
+                    Card card = _cardOrganizerGUI.SelectedCard.Card;
+                    if (card.CanUse(GameModeBase.Instance.Player, terrain))
                     {
                         SetObjectToCreateMaterial(_enableMaterial);
                         if (Input.GetMouseButtonDown(0))
                         {
-                            terrain.ConstructBuilding(card);
-                            GameModeBase.Instance.Player.RemoveCard(card);
+                            if (card is BuildingCard)
+                            {
+                                terrain.ConstructBuilding((BuildingCard)card);
+                                GameModeBase.Instance.Player.RemoveCard((BuildingCard)card);
+                            }
+                            else if (card is EffectCard)
+                            {
+                                ((EffectCard)card).Effect.UseEffect(GameModeBase.Instance.Player, terrain);
+                            }
                         }
                     }
                     else
@@ -69,13 +76,9 @@ public class UseCardGUI : MonoBehaviour
 
     private void OnSelectCard(Card card)
     {
-        if (card is BuildingCard)
-        {
-            BuildingCard buildingCard = (BuildingCard)card;
-            _objectToCreate = Instantiate<Building>(buildingCard.Prefab).gameObject;
-            _objectToCreate.SetActive(false);
-            SetObjectToCreateMaterial(_disableMaterial);
-        }
+        _objectToCreate = Instantiate(card.Prefab);
+        _objectToCreate.SetActive(false);
+        SetObjectToCreateMaterial(_disableMaterial);
     }
 
     private void SetObjectToCreateMaterial(Material material)

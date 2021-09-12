@@ -15,7 +15,7 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected TurnPhase _currentTurnPhase = TurnPhase.Refill;
 
     [SerializeField] protected GameState _gameState = GameState.Stopped;
-    
+
     [Header("Player State")]
     [SerializeField] protected bool _gotPlayerBaseResources = false;
     [SerializeField] protected bool _hasPlayerDrawnCard = false;
@@ -73,13 +73,16 @@ public class GameModeBase : MonoBehaviour
         this._player.GetResource(resourcePerTurn);
     }
 
-    public void GetPlayerBuildingsResources(){
-        this._map.GetBuildings().ForEach(build => {
+    public void GetPlayerBuildingsResources()
+    {
+        this._map.GetBuildings().ForEach(build =>
+        {
             this._player.GetResource(build.ResourcesPerTurn);
         });
     }
 
-    private void _onStartGameMapReady(){
+    private void _onStartGameMapReady()
+    {
         this._player.DrawCard(this._startingCardsCount);
         this._currentTurnType = TurnType.CPU;
         this._currentTurnPhase = TurnPhase.Main;
@@ -96,8 +99,8 @@ public class GameModeBase : MonoBehaviour
     public Player Player { get => _player; }
     public int MapWidth { get => _mapWidth; }
     public int MapHeight { get => _mapHeight; }
-    protected Timer Timer { get => _timer; }
     public GameState GameState { get => _gameState; }
+    public Map Map { get => _map; }
 }
 
 public enum TurnType
@@ -117,7 +120,8 @@ public enum TurnPhase
     Main
 }
 
-public enum GameState {
+public enum GameState
+{
     Playing,
     Paused,
 
