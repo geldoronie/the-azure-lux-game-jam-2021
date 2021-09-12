@@ -607,27 +607,27 @@ PrefabInstance:
       objectReference: {fileID: 1262205553}
     - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
       propertyPath: _foodAmount
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
       propertyPath: _goldAmount
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
       propertyPath: _woodAmount
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
       propertyPath: _stoneAmount
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
       propertyPath: _peopleAmount
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
       propertyPath: _militaryAmount
-      value: 50
+      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
@@ -1598,11 +1598,11 @@ PrefabInstance:
       objectReference: {fileID: 826852449}
     - target: {fileID: 1796152817172689382, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
       propertyPath: _effectsCardsChance
-      value: 100
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1796152817172689382, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
       propertyPath: _buildingCardsChance
-      value: 1
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1796152817172689383, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
       propertyPath: m_RootOrder
