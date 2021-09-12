@@ -16,8 +16,8 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected float _turnsCount = 0;
     [SerializeField] protected TurnType _currentTurnType = TurnType.Player;
     [SerializeField] protected TurnPhase _currentTurnPhase = TurnPhase.Refill;
-
     [SerializeField] protected GameState _gameState = GameState.Stopped;
+    [SerializeField] protected int _invalidTerrainBuildingAliveToleranceTurns = 2;
 
     [Header("Player State")]
     [SerializeField] protected bool _gotPlayerBaseResources = false;
@@ -92,10 +92,21 @@ public class GameModeBase : MonoBehaviour
     {
         this._map.GetBuildings().ForEach(build =>
         {
-            this._player.GetResource(build.ResourcesPerTurn);
+            this._player.GetResource(build.Card.ResourcesPerTurn);
         });
     }
 
+    public void DestroyPlayerInvalidBuildings()
+    {
+        this._map.GetBuildings().ForEach(build =>
+        {
+            if(!build.CanSitOnTerrain()){
+                if(build.Terrain.TurnsAlive >= this._invalidTerrainBuildingAliveToleranceTurns){
+                    build.Terrain.DestroyBuild();
+                }
+            }
+        });
+    }
 
     public void EndTurn(){
         this.ChangeTurn();

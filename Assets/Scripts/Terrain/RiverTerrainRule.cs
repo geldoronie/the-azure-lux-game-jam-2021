@@ -1,6 +1,6 @@
 public class RiverTerrainRule : TerrainRule
 {
-    public RiverTerrainRule() : base(3.4f)
+    public RiverTerrainRule() : base(0)
     {
     }
 
