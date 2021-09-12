@@ -9,18 +9,30 @@ public class Card
     [SerializeField] private string imageId;
     [SerializeField] private string prefabId;
     [SerializeField] private ResourcesAmounts useCost;
+    [SerializeField] private TerrainCost terrainCost;
+    [SerializeField] private GameObject _prefab;
 
-    public Card(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost)
+    public Card(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost, TerrainCost terrainCost)
     {
         this.name = name;
         this.description = description;
         this.imageId = imageId;
         this.prefabId = prefabId;
         this.useCost = useCost;
+        this.terrainCost = terrainCost;
     }
 
-    public bool CostCheck(Player player)
+    public virtual bool CanUse(Player player, Terrain terrain)
     {
+        bool check =
+            terrainCost.Desert && terrain.TerrainRule is DesertTerrainRule ||
+            terrainCost.Forest && terrain.TerrainRule is ForestTerrainRule ||
+            terrainCost.Grassland && terrain.TerrainRule is GrasslandTerrainRule ||
+            terrainCost.Mountain && terrain.TerrainRule is MountainTerrainRule ||
+            terrainCost.River && terrain.TerrainRule is RiverTerrainRule ||
+            terrainCost.Swamp && terrain.TerrainRule is SwampTerrainRule;
+        if (!check) return false;
+
         return
             player.WoodAmount >= UseCost.Wood &&
             player.StoneAmount >= UseCost.Stone &&
@@ -35,6 +47,8 @@ public class Card
     public string ImageId { get => imageId; }
     public string PrefabId { get => prefabId; }
     public ResourcesAmounts UseCost { get => useCost; }
+    public TerrainCost TerrainCost { get => terrainCost; }
+    public GameObject Prefab { get => _prefab; set => _prefab = value; }
 }
 
 [System.Serializable]

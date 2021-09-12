@@ -24,7 +24,8 @@ public class Terrain : MonoBehaviour
         }
         else
         {
-            Building constructedBuilding = Instantiate<Building>(buildingCard.Prefab, transform.position, Quaternion.identity);
+            Building buildingPrefab = buildingCard.Prefab.GetComponent<Building>();
+            Building constructedBuilding = Instantiate<Building>(buildingPrefab, transform.position, Quaternion.identity);
             constructedBuilding.Initialize(buildingCard, this);
             _building = constructedBuilding;
             GameModeBase.Instance.Player.WoodAmount -= buildingCard.UseCost.Wood;

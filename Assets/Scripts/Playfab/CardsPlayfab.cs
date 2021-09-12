@@ -7,7 +7,9 @@ using UnityEngine.Events;
 public class CardsPlayfab : MonoBehaviour
 {
     [SerializeField] private AuthenticationPlayfab Authentication;
-    [SerializeField] private Building primitiveBuildingCardPrefab;
+    [SerializeField] private GameObject primitiveBuildingCardPrefab;
+    [SerializeField] private EffectBase primitiveEffect;
+
     public List<BuildingCard> BuildingCards;
     public List<EffectCard> EffectCards;
     public UnityAction<BuildingCard[], EffectCard[]> onGetCards;
@@ -57,21 +59,29 @@ public class CardsPlayfab : MonoBehaviour
 
         foreach (BuildingCard card in this.BuildingCards)
         {
-            Debug.Log("Trying to load: " + card.PrefabId + " for the card " + card.Name);
             if (!string.IsNullOrEmpty(card.PrefabId))
             {
-                GameObject buildingPrefab = Resources.Load(card.PrefabId) as GameObject;
-                Debug.Log("--Load successfully: " + buildingPrefab?.name);
-                card.Prefab = buildingPrefab?.GetComponent<Building>();
+                card.Prefab = Resources.Load("Buildings/" + card.PrefabId) as GameObject;
             }
             if (card.Prefab == null)
             {
-                Debug.Log("--String empty, loading primitive building prefab");
                 card.Prefab = primitiveBuildingCardPrefab;
             }
         }
 
         this.EffectCards = JsonUtility.FromJson<EffectCardList>(result.Data["cards_effects"]).cards;
+        foreach (EffectCard card in this.EffectCards)
+        {
+            card.Prefab = primitiveBuildingCardPrefab;
+            if (!string.IsNullOrEmpty(card.EffectId))
+            {
+                card.Effect = Resources.Load("Effects/" + card.EffectId) as EffectBase;
+            }
+            if (card.Effect == null)
+            {
+                card.Effect = primitiveEffect;
+            }
+        }
     }
 
     private void _onGetCardsFailure(PlayFabError error)
