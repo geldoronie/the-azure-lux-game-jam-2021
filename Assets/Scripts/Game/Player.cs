@@ -22,6 +22,12 @@ public class Player : MonoBehaviour
         OnHandCardsUpdate?.Invoke();
     }
 
+    public void DrawNewHand(int cardCount)
+    {
+        this._hand = this._library.GetCards(cardCount);
+        OnHandCardsUpdate?.Invoke();
+    }
+
     public void GetResource(ResourcesAmounts resource)
     {
         this._foodAmount += resource.Food;

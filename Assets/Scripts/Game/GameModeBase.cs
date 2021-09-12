@@ -96,6 +96,18 @@ public class GameModeBase : MonoBehaviour
         });
     }
 
+
+    public void EndTurn(){
+        this.ChangeTurn();
+        this._timer.StartTime = 4;
+        this._timer.ResetTimer();
+        this._timer.StartTimer();
+    }
+
+    public void PlayerDrawNewHand(){
+        this._player.DrawNewHand(this._startingCardsCount);
+    }
+
     private void _onStartGameMapReady()
     {
         this._player.DrawCard(this._startingCardsCount);
