@@ -17,7 +17,7 @@ public class PhaseAnnouncementGUI : MonoBehaviour
 
     private void Update()
     {
-        if (!GameModeBase.Instance.IsRunning)
+        if (GameModeBase.Instance.GameState != GameState.Playing)
             return;
 
         this._hideUpdateCheck();
@@ -28,7 +28,7 @@ public class PhaseAnnouncementGUI : MonoBehaviour
         if (GameModeBase.Instance.CurrentTurnType == TurnType.CPU)
             this._textLabel.text = "World: ";
         else if (GameModeBase.Instance.CurrentTurnType == TurnType.Player)
-            this._textLabel.text = "You: ";
+            this._textLabel.text = "Your: ";
         else
             this._textLabel.text = "";
 
@@ -60,6 +60,8 @@ public class PhaseAnnouncementGUI : MonoBehaviour
         {
             this._textLabel.text += "Refill Phase";
         }
+
+        this._lastTurnPhase = GameModeBase.Instance.CurrentTurnPhase;
 
         this._show();
     }
