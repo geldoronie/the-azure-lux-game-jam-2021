@@ -3,7 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(CardOrganizerGUI))]
 public class UseCardGUI : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] private Material _enableMaterial;
     [SerializeField] private Material _disableMaterial;
 
@@ -13,14 +12,18 @@ public class UseCardGUI : MonoBehaviour
     private void Awake()
     {
         _cardOrganizerGUI = GetComponent<CardOrganizerGUI>();
+    }
+
+    private void Start()
+    {
         _cardOrganizerGUI.OnSelectCard += OnSelectCard;
         _cardOrganizerGUI.OnDeselectCard += OnDeselectCard;
     }
 
     private void OnDestroy()
     {
-        _cardOrganizerGUI.OnSelectCard += OnSelectCard;
-        _cardOrganizerGUI.OnDeselectCard += OnDeselectCard;
+        _cardOrganizerGUI.OnSelectCard -= OnSelectCard;
+        _cardOrganizerGUI.OnDeselectCard -= OnDeselectCard;
     }
 
     private void Update()
@@ -38,7 +41,7 @@ public class UseCardGUI : MonoBehaviour
                     _objectToCreate.SetActive(true);
                     _objectToCreate.transform.position = terrain.transform.position;
                     BuildingCard card = (BuildingCard)_cardOrganizerGUI.SelectedCard.Card;
-                    if (card.CanBuild(_player, terrain))
+                    if (card.CanBuild(GameModeBase.Instance.Player, terrain))
                     {
                         _objectToCreate.GetComponent<MeshRenderer>().material = _enableMaterial;
                     }

@@ -1,67 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PhaseAnnouncementGUI : MonoBehaviour
 {
-    [SerializeField]
-    private GameModeBase _gameMode;
-
-    [SerializeField]
-    private Timer _timer;
-
-    [SerializeField]
-    private TMP_Text _textLabel;
-    // Start is called before the first frame update
+    [SerializeField] private Timer _timer;
+    [SerializeField] private TMP_Text _textLabel;
 
     private TurnPhase _lastTurnPhase = TurnPhase.Play;
-
     private bool _isVisible = false;
-    void Awake()
+
+    private void Awake()
     {
         this._hide();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(!this._gameMode.IsRunning)
+        if (!GameModeBase.Instance.IsRunning)
             return;
 
         this._hideUpdateCheck();
 
-        if(this._gameMode.CurrentTurnPhase == this._lastTurnPhase)
+        if (GameModeBase.Instance.CurrentTurnPhase == this._lastTurnPhase)
             return;
 
-        if(this._gameMode.CurrentTurnType == TurnType.CPU)
+        if (GameModeBase.Instance.CurrentTurnType == TurnType.CPU)
             this._textLabel.text = "World: ";
-        else if (this._gameMode.CurrentTurnType == TurnType.Player)
+        else if (GameModeBase.Instance.CurrentTurnType == TurnType.Player)
             this._textLabel.text = "You: ";
-        else 
+        else
             this._textLabel.text = "";
 
-        if(this._gameMode.CurrentTurnPhase == TurnPhase.Main){
+        if (GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Main)
+        {
             this._textLabel.text += "Main Phase";
-        } else if(this._gameMode.CurrentTurnPhase == TurnPhase.Destroy){
+        }
+        else if (GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Destroy)
+        {
             this._textLabel.text += "Destroy Phase";
-        } else if(this._gameMode.CurrentTurnPhase == TurnPhase.Disaster){
+        }
+        else if (GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Disaster)
+        {
             this._textLabel.text += "Disaster Phase";
-        } else if(this._gameMode.CurrentTurnPhase == TurnPhase.Draw){
+        }
+        else if (GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Draw)
+        {
             this._textLabel.text += "Draw Phase";
-        } else if(this._gameMode.CurrentTurnPhase == TurnPhase.Military){
+        }
+        else if (GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Military)
+        {
             this._textLabel.text += "Military Phase";
-        } else if(this._gameMode.CurrentTurnPhase == TurnPhase.Play){
+        }
+        else if (GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Play)
+        {
             this._textLabel.text += "Play Phase";
-        } else if(this._gameMode.CurrentTurnPhase == TurnPhase.Refill){
+        }
+        else if (GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Refill)
+        {
             this._textLabel.text += "Refill Phase";
         }
 
         this._show();
     }
 
-    private void _show(){
+    private void _show()
+    {
         this.gameObject.GetComponent<Image>().enabled = true;
         this._textLabel.transform.gameObject.SetActive(true);
         this._isVisible = true;
@@ -70,17 +74,19 @@ public class PhaseAnnouncementGUI : MonoBehaviour
         this._timer.StartTimer();
     }
 
-    private void _hide(){
+    private void _hide()
+    {
         this.gameObject.GetComponent<Image>().enabled = false;
         this._textLabel.transform.gameObject.SetActive(false);
         this._isVisible = false;
     }
 
-    private void _hideUpdateCheck(){
+    private void _hideUpdateCheck()
+    {
         if (!this._isVisible)
             return;
 
-        if(this._timer.Remaining <= 0)
+        if (this._timer.Remaining <= 0)
             this._hide();
     }
 }

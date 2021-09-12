@@ -1,36 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TurnTypeGUI : MonoBehaviour
 {
-    [SerializeField]
-    private GameModeBase _gameMode;
-    [SerializeField]
-    private Image _youSelection; 
-    [SerializeField]
-    private Image _worldSelection;
+    [SerializeField] private GameModeBase _gameMode;
+    [SerializeField] private Image _youSelection;
+    [SerializeField] private Image _worldSelection;
+    [SerializeField] private Color _isTurnColor;
+    [SerializeField] private Color _isNotTurnColor;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Update()
     {
-        this._youSelection.gameObject.SetActive(false);
-        this._worldSelection.gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(this._gameMode.CurrentTurnType == TurnType.CPU){
-            this._youSelection.gameObject.SetActive(false);
-            this._worldSelection.gameObject.SetActive(true);
-        } else if(this._gameMode.CurrentTurnType == TurnType.Player){
-            this._youSelection.gameObject.SetActive(true);
-            this._worldSelection.gameObject.SetActive(false);
-        } else {
-            this._youSelection.gameObject.SetActive(false);
-            this._worldSelection.gameObject.SetActive(false);
+        if (this._gameMode.CurrentTurnType == TurnType.CPU)
+        {
+            this._youSelection.color = _isNotTurnColor;
+            this._worldSelection.color = _isTurnColor;
+        }
+        else if (this._gameMode.CurrentTurnType == TurnType.Player)
+        {
+            this._youSelection.color = _isTurnColor;
+            this._worldSelection.color = _isNotTurnColor;
+        }
+        else
+        {
+            this._youSelection.color = _isNotTurnColor;
+            this._worldSelection.color = _isTurnColor;
         }
     }
 }

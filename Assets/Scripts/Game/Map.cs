@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Map : MonoBehaviour
 {
@@ -42,6 +43,9 @@ public class Map : MonoBehaviour
     private int maxIterations;
     private int iterations;
     private Coroutine applyingCellularAutomataCoroutine;
+
+    public UnityAction OnMapFinishedCreating;
+    public UnityAction OnMapFinishedCellularAutomata;
 
     public void GenerateMap(int width, int height)
     {
@@ -135,6 +139,8 @@ public class Map : MonoBehaviour
 
         maxIterations = 0;
         iterations = 0;
+
+        OnMapFinishedCreating?.Invoke();
     }
 
     public void SetTerrainApplyCellularAutomata(TerrainRule newRule, int x, int y)
@@ -191,6 +197,7 @@ public class Map : MonoBehaviour
             }
 
             applyingCellularAutomataCoroutine = null;
+            OnMapFinishedCellularAutomata?.Invoke();
         }
     }
 

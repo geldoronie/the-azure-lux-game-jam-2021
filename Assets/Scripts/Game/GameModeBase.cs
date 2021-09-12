@@ -1,94 +1,94 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameModeBase : MonoBehaviour
 {
-    [SerializeField]
-    public Timer Timer;
-
-    [SerializeField]
-    public Player Player;
-
-    [SerializeField]
-    public Map Map;
+    [Header("Game Mode Base")]
+    [SerializeField] protected Timer _timer;
+    [SerializeField] protected Player _player;
+    [SerializeField] protected Map _map;
 
     [Header("Gameplay")]
-    [SerializeField]
-    public int StartingCardsCount = 5;
-
-    [SerializeField]
-    public float PlayTurnTime = 20;
-
-    [SerializeField]
-    public float TurnsCount = 0;
-
-    [SerializeField]
-    public TurnType CurrentTurnType = TurnType.Player;
-
-    [SerializeField]
-    public TurnPhase CurrentTurnPhase = TurnPhase.Refill;
-    
-
-    [SerializeField]
-    public bool IsRunning = false;
+    [SerializeField] protected int _startingCardsCount = 5;
+    [SerializeField] protected float _playTurnTime = 20;
+    [SerializeField] protected float _turnsCount = 0;
+    [SerializeField] protected TurnType _currentTurnType = TurnType.Player;
+    [SerializeField] protected TurnPhase _currentTurnPhase = TurnPhase.Refill;
+    [SerializeField] protected bool _isRunning = false;
 
     [Header("Map")]
-    [SerializeField]
-    public int MapWidth = 10;
+    [SerializeField] protected int _mapWidth = 10;
+    [SerializeField] protected int _mapHeight = 10;
+    [SerializeField] protected ResourcesAmounts resourcePerTurn;
 
-    [SerializeField]
-    public int MapHeight = 10;
-    public virtual void StartGame(){
-        this.Player.DrawCard(this.StartingCardsCount);
-        this.Map.GenerateMap(this.MapWidth,this.MapHeight);
-        this.CurrentTurnType = TurnType.CPU;
-        this.CurrentTurnPhase = TurnPhase.Main;
-        this.Timer.StartTime = 2;
-        this.Timer.ResetTimer();
-        this.Timer.StartTimer();
-        this.IsRunning = true;
+    private static GameModeBase instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("Theres is more than on instance of the Game Mode. This is not allowed!");
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
-    public void ChangeTurn(){
-        if(this.CurrentTurnType == TurnType.Player){
-            this.CurrentTurnType = TurnType.CPU;
-            this.ChangePhase(TurnPhase.Main);
-        } else {
-            this.CurrentTurnType = TurnType.Player;
+    public virtual void Update() { }
+
+    public virtual void StartGame()
+    {
+        this._player.DrawCard(this._startingCardsCount);
+        this._map.GenerateMap(this._mapWidth, this._mapHeight);
+        this._currentTurnType = TurnType.CPU;
+        this._currentTurnPhase = TurnPhase.Main;
+        this._timer.StartTime = 2;
+        this._timer.ResetTimer();
+        this._timer.StartTimer();
+        this._isRunning = true;
+    }
+
+    public void ChangeTurn()
+    {
+        if (this._currentTurnType == TurnType.Player)
+        {
+            this._currentTurnType = TurnType.CPU;
             this.ChangePhase(TurnPhase.Main);
         }
-        this.TurnsCount++;
+        else
+        {
+            this._currentTurnType = TurnType.Player;
+            this.ChangePhase(TurnPhase.Main);
+        }
+        this._turnsCount++;
     }
 
-    public void ChangePhase(TurnPhase phase){
-        this.CurrentTurnPhase = phase;
+    public void ChangePhase(TurnPhase phase)
+    {
+        this._currentTurnPhase = phase;
     }
 
-    public void GivePlayerBaseResources(){
-        this.Player.GetResource(new ResourcesAmounts(){
-            food = 5,
-            gold = 5,
-            military = 5,
-            people = 5,
-            stone = 5,
-            wood = 5
-        });
+    public void GivePlayerBaseResources()
+    {
+        this._player.GetResource(resourcePerTurn);
     }
 
-    public virtual void Update(){
-
-    }
+    public static GameModeBase Instance { get => instance; }
+    public TurnType CurrentTurnType { get => _currentTurnType; }
+    public TurnPhase CurrentTurnPhase { get => _currentTurnPhase; }
+    public bool IsRunning { get => _isRunning; }
+    public Player Player { get => _player; }
+    public int MapWidth { get => _mapWidth; }
+    public int MapHeight { get => _mapHeight; }
+    protected Timer Timer { get => _timer; }
 }
 
-[System.Serializable]
 public enum TurnType
 {
     Player,
     CPU
 }
 
-[System.Serializable]
 public enum TurnPhase
 {
     Refill,

@@ -17,12 +17,12 @@ public class BuildingCard : Card
     public bool CanBuild(Player player, Terrain terrain)
     {
         bool check =
-            terrainCost.desert && terrain.TerrainRule is DesertTerrainRule ||
-            terrainCost.forest && terrain.TerrainRule is ForestTerrainRule ||
-            terrainCost.grassland && terrain.TerrainRule is GrasslandTerrainRule ||
-            terrainCost.mountain && terrain.TerrainRule is MountainTerrainRule ||
-            terrainCost.river && terrain.TerrainRule is RiverTerrainRule ||
-            terrainCost.swamp && terrain.TerrainRule is SwampTerrainRule;
+            terrainCost.Desert && terrain.TerrainRule is DesertTerrainRule ||
+            terrainCost.Forest && terrain.TerrainRule is ForestTerrainRule ||
+            terrainCost.Grassland && terrain.TerrainRule is GrasslandTerrainRule ||
+            terrainCost.Mountain && terrain.TerrainRule is MountainTerrainRule ||
+            terrainCost.River && terrain.TerrainRule is RiverTerrainRule ||
+            terrainCost.Swamp && terrain.TerrainRule is SwampTerrainRule;
 
         return check && base.CostCheck(player);
     }
