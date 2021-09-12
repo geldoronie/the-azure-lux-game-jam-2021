@@ -244,7 +244,7 @@
       "name": "Farm",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Farm",
       "useCost": {
         "wood": 0,
         "stone": 0,
@@ -276,11 +276,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 0,
+        "wood": 15,
         "stone": 50,
         "gold": 0,
-        "food": 0,
-        "people": 0,
+        "food": 15,
+        "people": 30,
         "military": 0
       },
       "resourcesPerTurn": {
