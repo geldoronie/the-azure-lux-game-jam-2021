@@ -44,7 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardsDatabase: {fileID: 0}
-  _playerStartHandCardsCount: 5
-  _buildingCardsChance: 75
-  _effectsCardsChance: 25
-  PlayerHand: []
+  _buildingCardsChance: 50
+  _effectsCardsChance: 50

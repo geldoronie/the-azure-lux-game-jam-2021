@@ -12,7 +12,7 @@ public class GameModeWorldVsYou : GameModeBase
     {
         base.Update();
 
-        if (this._gameState != GameState.Playing )
+        if (this._gameState != GameState.Playing)
             return;
 
         if (this.CurrentTurnType == TurnType.Player)
@@ -29,10 +29,12 @@ public class GameModeWorldVsYou : GameModeBase
     {
         if (this.CurrentTurnPhase == TurnPhase.Main)
         {
+            _lastTurnRessourcesPerTurn = new ResourcesAmounts();
+
             this._gotPlayerBaseResources = false;
             this._hasPlayerDrawnCard = false;
             this._gotPlayerBuildingsResources = false;
-            
+
             if (this._timer.Remaining <= 0)
             {
                 this.ChangePhase(TurnPhase.Refill);
@@ -44,14 +46,16 @@ public class GameModeWorldVsYou : GameModeBase
         else if (this.CurrentTurnPhase == TurnPhase.Refill)
         {
             //got the player base resources
-            if(!this._gotPlayerBaseResources){
-                this.GivePlayerBaseResources();
+            if (!this._gotPlayerBaseResources)
+            {
+                _lastTurnRessourcesPerTurn += this.GivePlayerBaseResources();
                 this._gotPlayerBaseResources = true;
             }
-    
+
             //got the player buildings resources
-            if(!this._gotPlayerBuildingsResources){
-                this.GetPlayerBuildingsResources();
+            if (!this._gotPlayerBuildingsResources)
+            {
+                _lastTurnRessourcesPerTurn += this.GetPlayerBuildingsResources();
                 this._gotPlayerBuildingsResources = true;
             }
 
@@ -66,7 +70,8 @@ public class GameModeWorldVsYou : GameModeBase
         else if (this.CurrentTurnPhase == TurnPhase.Draw)
         {
             //Player drawn the turn card
-            if(!this._hasPlayerDrawnCard){
+            if (!this._hasPlayerDrawnCard)
+            {
                 this._player.DrawCard(1);
                 this._hasPlayerDrawnCard = true;
             }
@@ -108,7 +113,8 @@ public class GameModeWorldVsYou : GameModeBase
         }
         else if (this._currentTurnPhase == TurnPhase.Destroy)
         {
-            if(!this._invalidBuildsDestroyed){
+            if (!this._invalidBuildsDestroyed)
+            {
                 this._executeBuildingDestroy();
                 this._invalidBuildsDestroyed = true;
             }
@@ -122,11 +128,13 @@ public class GameModeWorldVsYou : GameModeBase
         }
         else if (this._currentTurnPhase == TurnPhase.Disaster)
         {
-            if (!this._terrainDisasterExecuted){
+            if (!this._terrainDisasterExecuted)
+            {
                 this._executeChangeTerrainDisaster();
                 this._terrainDisasterExecuted = true;
             }
-            if(this._changeTerrainDisasterDone){
+            if (this._changeTerrainDisasterDone)
+            {
                 this.ChangePhase(TurnPhase.Military);
                 this._timer.StartTime = 2;
                 this._timer.ResetTimer();
@@ -155,10 +163,11 @@ public class GameModeWorldVsYou : GameModeBase
         }
     }
 
-    private void _executeChangeTerrainDisaster(){
+    private void _executeChangeTerrainDisaster()
+    {
         int x = Mathf.RoundToInt(Random.Range(0, this._mapWidth));
         int y = Mathf.RoundToInt(Random.Range(0, this._mapHeight));
-        int selectedType =  Mathf.RoundToInt(Random.Range(0, 5));
+        int selectedType = Mathf.RoundToInt(Random.Range(0, 5));
         this._changeTerrainDisasterDone = false;
         this._map.OnMapFinishedCellularAutomata += this._onChangeTerrainDisasterReady;
 
@@ -189,15 +198,17 @@ public class GameModeWorldVsYou : GameModeBase
                 break;
         }
 
-        this._map.SetTerrainApplyCellularAutomata(terrain,x,y);
+        this._map.SetTerrainApplyCellularAutomata(terrain, x, y);
     }
 
-    public void _onChangeTerrainDisasterReady(){
+    public void _onChangeTerrainDisasterReady()
+    {
         this._changeTerrainDisasterDone = true;
         this._map.OnMapFinishedCellularAutomata -= this._onChangeTerrainDisasterReady;
     }
 
-    public void _executeBuildingDestroy(){
+    public void _executeBuildingDestroy()
+    {
         this.DestroyPlayerInvalidBuildings();
     }
 

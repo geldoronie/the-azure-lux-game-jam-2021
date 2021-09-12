@@ -9,6 +9,7 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected Timer _timer;
     [SerializeField] protected Player _player;
     [SerializeField] protected Map _map;
+    [SerializeField] protected LoadingMapGUI _loadingMap;
 
     [Header("Gameplay")]
     [SerializeField] protected int _startingCardsCount = 5;
@@ -27,7 +28,8 @@ public class GameModeBase : MonoBehaviour
     [Header("Map")]
     [SerializeField] protected int _mapWidth = 10;
     [SerializeField] protected int _mapHeight = 10;
-    [SerializeField] protected ResourcesAmounts resourcePerTurn;
+    [SerializeField] protected ResourcesAmounts _passiveResourcesPerTurn;
+    [SerializeField] protected ResourcesAmounts _lastTurnRessourcesPerTurn;
 
     private static GameModeBase instance;
     public UnityAction OnChangeTurn;
@@ -50,6 +52,7 @@ public class GameModeBase : MonoBehaviour
     {
         this._map.OnMapFinishedCreating += this._onStartGameMapReady;
         this._map.GenerateMap(this._mapWidth, this._mapHeight);
+        _loadingMap.gameObject.SetActive(true);
     }
 
     public void ChangeTurn()
@@ -83,39 +86,47 @@ public class GameModeBase : MonoBehaviour
         this._currentTurnPhase = phase;
     }
 
-    public void GivePlayerBaseResources()
+    public ResourcesAmounts GivePlayerBaseResources()
     {
-        this._player.GetResource(resourcePerTurn);
+        this._player.GetResource(_passiveResourcesPerTurn);
+        return _passiveResourcesPerTurn;
     }
 
-    public void GetPlayerBuildingsResources()
+    public ResourcesAmounts GetPlayerBuildingsResources()
     {
+        ResourcesAmounts buildingResources = new ResourcesAmounts();
         this._map.GetBuildings().ForEach(build =>
         {
-            this._player.GetResource(build.Card.ResourcesPerTurn);
+            buildingResources += build.Card.ResourcesPerTurn;
         });
+        this._player.GetResource(buildingResources);
+        return buildingResources;
     }
 
     public void DestroyPlayerInvalidBuildings()
     {
         this._map.GetBuildings().ForEach(build =>
         {
-            if(!build.CanSitOnTerrain()){
-                if(build.Terrain.TurnsAlive >= this._invalidTerrainBuildingAliveToleranceTurns){
+            if (!build.CanSitOnTerrain())
+            {
+                if (build.Terrain.TurnsAlive >= this._invalidTerrainBuildingAliveToleranceTurns)
+                {
                     build.Terrain.DestroyBuild();
                 }
             }
         });
     }
 
-    public void EndTurn(){
+    public void EndTurn()
+    {
         this.ChangeTurn();
         this._timer.StartTime = 4;
         this._timer.ResetTimer();
         this._timer.StartTimer();
     }
 
-    public void PlayerDrawNewHand(){
+    public void PlayerDrawNewHand()
+    {
         this._player.DrawNewHand(this._startingCardsCount);
     }
 
@@ -139,6 +150,7 @@ public class GameModeBase : MonoBehaviour
     public int MapHeight { get => _mapHeight; }
     public GameState GameState { get => _gameState; }
     public Map Map { get => _map; }
+    public ResourcesAmounts LastTurnRessourcesPerTurn { get => _lastTurnRessourcesPerTurn; }
 }
 
 public enum TurnType

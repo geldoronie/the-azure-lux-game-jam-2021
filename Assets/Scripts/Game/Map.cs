@@ -40,8 +40,8 @@ public class Map : MonoBehaviour
     private int _width = 15;
     private int _height = 15;
     private Terrain[,] _grid;
-    private int maxIterations;
-    private int iterations;
+    private int _maxIterations;
+    private int _iterations;
     private Coroutine applyingCellularAutomataCoroutine;
 
     public UnityAction OnMapFinishedCreating;
@@ -57,9 +57,9 @@ public class Map : MonoBehaviour
     private IEnumerator _createMap()
     {
         _grid = new Terrain[_width, _height];
-        maxIterations = _width * _height + _cellularAtomataIterations * _width * _height;
-        iterations = 0;
-        Debug.Log("Começou: " + iterations + "/" + maxIterations);
+        _maxIterations = _width * _height + _cellularAtomataIterations * _width * _height;
+        _iterations = 0;
+        Debug.Log("Começou: " + _iterations + "/" + _maxIterations);
 
         GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
         quad.transform.eulerAngles = new Vector3(90, 0, 0);
@@ -122,21 +122,21 @@ public class Map : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 StartCoroutine(SwapTerrain(GetRandomTerrainRule(), x, y));
-                iterations++;
+                _iterations++;
                 yield return new WaitForEndOfFrame();
             }
         }
 
         for (int i = 0; i < _cellularAtomataIterations; i++)
         {
-            StartCoroutine(ApplyCellularAutomata(() => iterations++));
+            StartCoroutine(ApplyCellularAutomata(() => _iterations++));
             yield return new WaitForSeconds((_width * _height) * Time.deltaTime * _cellularAtomataIterationsDelay);
         }
 
-        Debug.Log("Acabou: " + iterations + "/" + maxIterations);
+        Debug.Log("Acabou: " + _iterations + "/" + _maxIterations);
 
-        maxIterations = 0;
-        iterations = 0;
+        _maxIterations = 0;
+        _iterations = 0;
 
         OnMapFinishedCreating?.Invoke();
     }
@@ -364,8 +364,10 @@ public class Map : MonoBehaviour
         return listOfBuildings;
     }
 
-    public int Width { get => _width; set => _width = value; }
-    public int Height { get => _height; set => _height = value; }
+    public int Width { get => _width; }
+    public int Height { get => _height; }
+
+    public float GenerationsStatus { get => (float)_iterations / (float)_maxIterations; }
 }
 
 public struct TerrainCoordinates

@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6853765512669902866}
-  m_LocalRotation: {x: 0.22455172, y: -0.3390816, z: 0.08369735, w: 0.90972245}
+  m_LocalRotation: {x: 0.22455215, y: -0.33908188, z: 0.0836976, w: 0.9097222}
   m_LocalPosition: {x: 8.690272, y: 6.979799, z: -10.038006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27.731, y: -40.884, z: 0}
 --- !u!20 &6853765512669902870
 Camera:
   m_ObjectHideFlags: 0
@@ -110,9 +110,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf10876420d3336489622de8a8a2a4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: {x: 20, y: 35}
   _mouseSensitivity: 120
-  _movementSpeed: 20
+  _movementSpeed: 6
   _zoomSpeed: 5
   _yMinLimit: 20
   _yMaxLimit: 80
