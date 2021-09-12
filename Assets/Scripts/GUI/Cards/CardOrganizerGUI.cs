@@ -50,8 +50,12 @@ public class CardOrganizerGUI : MonoBehaviour
             _selectedCardHolder.Initialize(_hoveredCard.Card);
             _selectedCardHolder.gameObject.SetActive(true);
             _hoveredCard = null;
-
-            OnSelectCard?.Invoke(_selectedCard.Card);
+            if(
+                GameModeBase.Instance.CurrentTurnType == TurnType.Player &&
+                GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Play
+            ){
+                OnSelectCard?.Invoke(_selectedCard.Card);
+            }
         }
         if (Input.GetMouseButtonDown(1)) UnselectCard();
     }
