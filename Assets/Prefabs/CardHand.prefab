@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb4700e4ae9d0fb4b8a96c3034ce9908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _library: {fileID: 0}
+  _selectedCardHolder: {fileID: 0}
   _cardPrefab: {fileID: 5872271596352663801, guid: 331cbb3f726a88746b6cae0e1e8333e9, type: 3}
   _player: {fileID: 0}
   _cardWidth: 100
