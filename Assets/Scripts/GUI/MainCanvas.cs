@@ -19,9 +19,9 @@ public class MainCanvas : MonoBehaviour
         }
     }
 
-    public void ShowTooltip(string header, string content)
+    public void ShowTooltip(ToolTipInformation information)
     {
-        tooltip.SetTexts(header, content);
+        tooltip.SetTexts(information);
         tooltip.gameObject.SetActive(true);
     }
 

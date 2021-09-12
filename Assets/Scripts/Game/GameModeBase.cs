@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameModeBase : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected ResourcesAmounts resourcePerTurn;
 
     private static GameModeBase instance;
+    public UnityAction OnChangeTurn;
 
     private void Awake()
     {
@@ -63,6 +65,7 @@ public class GameModeBase : MonoBehaviour
             this.ChangePhase(TurnPhase.Main);
         }
         this._turnsCount++;
+        OnChangeTurn?.Invoke();
     }
 
     public void PauseTurn()
@@ -91,6 +94,18 @@ public class GameModeBase : MonoBehaviour
         {
             this._player.GetResource(build.ResourcesPerTurn);
         });
+    }
+
+
+    public void EndTurn(){
+        this.ChangeTurn();
+        this._timer.StartTime = 4;
+        this._timer.ResetTimer();
+        this._timer.StartTimer();
+    }
+
+    public void PlayerDrawNewHand(){
+        this._player.DrawNewHand(this._startingCardsCount);
     }
 
     private void _onStartGameMapReady()

@@ -330,7 +330,7 @@ public class Map : MonoBehaviour
         return null;
     }
 
-    private Terrain[] GetVonNeumannNeighbors(int x, int y)
+    public Terrain[] GetVonNeumannNeighbors(int x, int y)
     {
         Terrain[] neighbors = new Terrain[4];
         neighbors[0] = GetTerrainOnGrid(x, y + 1);

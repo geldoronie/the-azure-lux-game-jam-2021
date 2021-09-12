@@ -1,5 +1,9 @@
 public class DesertTerrainRule : TerrainRule
 {
+    public DesertTerrainRule() : base(3.4f)
+    {
+    }
+
     public override TerrainRule CheckRules(Terrain[] neighbors)
     {
         if (CountTerrainType<RiverTerrainRule>(neighbors) == 4)
