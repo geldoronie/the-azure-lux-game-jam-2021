@@ -38,6 +38,7 @@ public class Map : MonoBehaviour
     private Terrain[,] _grid;
     private int maxIterations;
     private int iterations;
+    private Coroutine applyingCellularAutomataCoroutine;
 
     private void Start()
     {
@@ -125,8 +126,6 @@ public class Map : MonoBehaviour
         maxIterations = 0;
         iterations = 0;
     }
-
-    private Coroutine applyingCellularAutomataCoroutine;
 
     public void SetTerrainApplyCellularAutomata(TerrainRule newRule, int x, int y)
     {
@@ -335,6 +334,9 @@ public class Map : MonoBehaviour
             return null;
         }
     }
+
+    public int Width { get => _width; set => _width = value; }
+    public int Height { get => _height; set => _height = value; }
 }
 
 public struct TerrainCoordinates

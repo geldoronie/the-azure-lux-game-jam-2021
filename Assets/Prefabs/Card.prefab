@@ -1228,14 +1228,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5872271596352663807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 711a1842929b5df49a228b5f282f2f50, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a701c2ef906fe04a8d39d61562e0bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardNameText: {fileID: 5872271595370959207}
-  cardDescriptionText: {fileID: 5872271595820408272}
-  woodCostText: {fileID: 5872271594375425944}
-  stoneCostText: {fileID: 5872271594456924388}
-  goldCostText: {fileID: 5872271595634360190}
-  foodCostText: {fileID: 5872271594827800207}
-  peopleCostText: {fileID: 5872271595995746569}
-  militaryCostText: {fileID: 5872271594694401821}
+  _cardNameText: {fileID: 5872271595370959207}
+  _cardDescriptionText: {fileID: 5872271595820408272}
+  _woodCostText: {fileID: 5872271594375425944}
+  _stoneCostText: {fileID: 5872271594456924388}
+  _goldCostText: {fileID: 5872271595634360190}
+  _foodCostText: {fileID: 5872271594827800207}
+  _peopleCostText: {fileID: 5872271595995746569}
+  _militaryCostText: {fileID: 5872271594694401821}

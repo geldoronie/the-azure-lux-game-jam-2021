@@ -174,9 +174,9 @@ public class CardsLibrary : MonoBehaviour
             case "Forest":
                 return CardTerrainCost.Forest;
             case "Grasslands":
-                return CardTerrainCost.Grasslands;
+                return CardTerrainCost.Grassland;
             case "Montain":
-                return CardTerrainCost.Montain;
+                return CardTerrainCost.Mountain;
             case "River":
                 return CardTerrainCost.River;
             case "Swamp":

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[ExecuteInEditMode]
 public class CardOrganizerGUI : MonoBehaviour
 {
     [SerializeField] private CardsLibrary _library;
@@ -16,6 +16,9 @@ public class CardOrganizerGUI : MonoBehaviour
     private int _selectedId = -1;
     private CardDisplayer _selectedCard;
     private int _hoverCardId = -1;
+
+    public UnityAction<Card> OnSelectCard;
+    public UnityAction OnDeselectCard;
 
     private void Awake()
     {
@@ -56,11 +59,13 @@ public class CardOrganizerGUI : MonoBehaviour
             newCardRectTransform.anchorMax = Vector2.zero;
             newCardRectTransform.pivot = Vector2.zero;
             newCardRectTransform.anchoredPosition = cardPos;
+
+            OnSelectCard?.Invoke(oldCard.Card);
         }
         if (Input.GetMouseButtonDown(1)) UnselectCard();
     }
 
-    private void UnselectCard()
+    public void UnselectCard()
     {
         if (_selectedCard != null)
         {
@@ -71,6 +76,8 @@ public class CardOrganizerGUI : MonoBehaviour
 
             _selectedCard = null;
             _selectedId = -1;
+
+            OnDeselectCard?.Invoke();
         }
     }
 
@@ -145,4 +152,6 @@ public class CardOrganizerGUI : MonoBehaviour
             this._addHandCard(card);
         });
     }
+
+    public CardDisplayer SelectedCard { get => _selectedCard; }
 }

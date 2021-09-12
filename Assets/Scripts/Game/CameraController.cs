@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Vector2 mapSize = new Vector2(20, 20);
+    [SerializeField] private Map _map;
     [SerializeField] private float _mouseSensitivity = 20f;
     [SerializeField] private float _movementSpeed = 10f;
     [SerializeField] private float _zoomSpeed = 5f;
@@ -29,8 +29,8 @@ public class CameraController : MonoBehaviour
         position.Normalize();
 
         _targetPosition = Vector3.MoveTowards(_targetPosition, _targetPosition + position, _movementSpeed * Time.deltaTime);
-        _targetPosition.x = Mathf.Clamp(_targetPosition.x, -mapSize.x / 2, mapSize.x / 2);
-        _targetPosition.z = Mathf.Clamp(_targetPosition.z, -mapSize.y / 2, mapSize.y / 2);
+        _targetPosition.x = Mathf.Clamp(_targetPosition.x, -_map.Width / 2, _map.Width / 2);
+        _targetPosition.z = Mathf.Clamp(_targetPosition.z, -_map.Height / 2, _map.Height / 2);
     }
 
     private void LateUpdate()

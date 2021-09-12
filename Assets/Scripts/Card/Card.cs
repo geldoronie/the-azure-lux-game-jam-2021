@@ -19,22 +19,14 @@ public class Card
     [SerializeField] protected int _peopleCost = 0;
     [SerializeField] protected int _militaryCost = 0;
 
-    public string Name { get => this._name; }
-    public string Description { get => this._description; }
-    public int WoodCost { get => this._woodCost; }
-    public int StoneCost { get => this._stoneCost; }
-    public int GoldCost { get => this._goldCost; }
-    public int FoodCost { get => this._foodCost; }
-    public int PeopleCost { get => this._peopleCost; }
-    public int MilitaryCost { get => this._militaryCost; }
-
     public Card(string name, string description, CardType type, List<ResourceAmount> costs)
     {
         this._name = name;
         this._description = description;
         this._type = type;
 
-        costs.ForEach( cost => {
+        costs.ForEach(cost =>
+        {
             switch (cost.resource)
             {
                 case Resource.Food:
@@ -61,6 +53,20 @@ public class Card
             }
         });
     }
+
+    public bool CostCheck(Player player)
+    {
+        return true;
+    }
+
+    public string Name { get => this._name; }
+    public string Description { get => this._description; }
+    public int WoodCost { get => this._woodCost; }
+    public int StoneCost { get => this._stoneCost; }
+    public int GoldCost { get => this._goldCost; }
+    public int FoodCost { get => this._foodCost; }
+    public int PeopleCost { get => this._peopleCost; }
+    public int MilitaryCost { get => this._militaryCost; }
 }
 
 public enum Resource
@@ -80,7 +86,8 @@ public class ResourceAmount
     public int amount;
 }
 
-public enum CardType {
+public enum CardType
+{
     Building,
     Effect
 }
