@@ -54,12 +54,20 @@ public class Terrain : MonoBehaviour
         }
     }
 
+    public void DestroyBuild()
+    {
+        Destroy(this._building.gameObject);
+        this._building = null;
+    }
+
     public ToolTipInformation GetTooltip()
     {
         string content = "Building(s): None";
+        content += "Cordinates: " + X + ", " + Y;
         if (_building != null)
         {
             content = _building.Card.Name + " (" + TurnsAlive + ")\n";
+            content += "Cordinates: " + X + ", " + Y + "\n";
             content += "Resources per turn:\n";
             content += " - Food: " + _building.Card.ResourcesPerTurn.Food + "\n";
             content += " - Wood: " + _building.Card.ResourcesPerTurn.Wood + "\n";
