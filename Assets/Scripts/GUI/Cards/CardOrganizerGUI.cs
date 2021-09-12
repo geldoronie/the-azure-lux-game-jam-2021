@@ -24,12 +24,16 @@ public class CardOrganizerGUI : MonoBehaviour
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvas = transform.parent.GetComponent<Canvas>();
-        _player.OnHandCardsUpdate += OnHandCardsUpdate;
+    }
+
+    private void Start()
+    {
+        GameModeBase.Instance.Player.OnHandCardsUpdate += OnHandCardsUpdate;
     }
 
     private void OnDestroy()
     {
-        _player.OnHandCardsUpdate -= OnHandCardsUpdate;
+        GameModeBase.Instance.Player.OnHandCardsUpdate -= OnHandCardsUpdate;
     }
 
     private void Update()
@@ -166,10 +170,10 @@ public class CardOrganizerGUI : MonoBehaviour
     public void OnHandCardsUpdate()
     {
         this._clearHandCards();
-        this._player.Hand.ForEach(card =>
+        foreach (Card card in this._player.Hand)
         {
             this._addHandCard(card);
-        });
+        }
     }
 
     public CardDisplayer SelectedCard { get => _selectedCard; }

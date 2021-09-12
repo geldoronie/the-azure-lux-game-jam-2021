@@ -11,14 +11,24 @@ public class Player : MonoBehaviour
     [SerializeField] private int _peopleAmount = 0;
     [SerializeField] private int _militaryAmount = 0;
     [SerializeField] private CardsLibrary _library;
-    [SerializeField] public List<Card> Hand;
+    [SerializeField] private List<Card> _hand;
 
     public UnityAction OnHandCardsUpdate;
 
-    public void DrawNewHand(int cardCount)
+    public void DrawCard(int cardCount)
     {
-        this.Hand = this._library.GetCards(cardCount);
+        this._hand.AddRange(this._library.GetCards(cardCount));
         OnHandCardsUpdate?.Invoke();
+    }
+
+    public void GetResource(ResourcesAmounts resource)
+    {
+        this._foodAmount += resource.Food;
+        this._goldAmount += resource.Gold;
+        this._militaryAmount += resource.Military;
+        this._peopleAmount += resource.People;
+        this._stoneAmount += resource.Stone;
+        this._woodAmount += resource.Wood;
     }
 
     public int WoodAmount { get => _woodAmount; }
@@ -27,4 +37,5 @@ public class Player : MonoBehaviour
     public int FoodAmount { get => _foodAmount; }
     public int PeopleAmount { get => _peopleAmount; }
     public int MilitaryAmount { get => _militaryAmount; }
+    public Card[] Hand { get => _hand.ToArray(); }
 }
