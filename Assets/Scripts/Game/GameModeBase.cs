@@ -18,13 +18,17 @@ public class GameModeBase : MonoBehaviour
     public int StartingCardsCount = 5;
 
     [SerializeField]
-    public float TurnTime = 20;
+    public float PlayTurnTime = 20;
 
     [SerializeField]
     public float TurnsCount = 0;
 
     [SerializeField]
     public TurnType CurrentTurnType = TurnType.Player;
+
+    [SerializeField]
+    public TurnPhase CurrentTurnPhase = TurnPhase.Refill;
+    
 
     [SerializeField]
     public bool IsRunning = false;
@@ -38,7 +42,10 @@ public class GameModeBase : MonoBehaviour
     public virtual void StartGame(){
         this.Player.DrawCard(this.StartingCardsCount);
         this.Map.GenerateMap(this.MapWidth,this.MapHeight);
-        this.Timer.StartTime = this.TurnTime;
+        this.CurrentTurnType = TurnType.CPU;
+        this.CurrentTurnPhase = TurnPhase.Main;
+        this.Timer.StartTime = 2;
+        this.Timer.ResetTimer();
         this.Timer.StartTimer();
         this.IsRunning = true;
     }
@@ -46,9 +53,16 @@ public class GameModeBase : MonoBehaviour
     public void ChangeTurn(){
         if(this.CurrentTurnType == TurnType.Player){
             this.CurrentTurnType = TurnType.CPU;
+            this.ChangePhase(TurnPhase.Main);
         } else {
             this.CurrentTurnType = TurnType.Player;
+            this.ChangePhase(TurnPhase.Main);
         }
+        this.TurnsCount++;
+    }
+
+    public void ChangePhase(TurnPhase phase){
+        this.CurrentTurnPhase = phase;
     }
 
     public void GivePlayerBaseResources(){
@@ -72,4 +86,16 @@ public enum TurnType
 {
     Player,
     CPU
+}
+
+[System.Serializable]
+public enum TurnPhase
+{
+    Refill,
+    Draw,
+    Play,
+    Disaster,
+    Military,
+    Destroy,
+    Main
 }

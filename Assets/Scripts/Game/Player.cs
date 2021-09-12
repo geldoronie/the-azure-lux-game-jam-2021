@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     public void DrawCard(int cardCount)
     {
-        this.Hand = this._library.GetCards(cardCount);
+        this.Hand.AddRange(this._library.GetCards(cardCount));
         OnHandCardsUpdate?.Invoke();
     }
 
