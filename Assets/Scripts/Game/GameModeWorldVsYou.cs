@@ -109,9 +109,8 @@ public class GameModeWorldVsYou : GameModeBase
             if (this._timer.Remaining <= 0)
             {
                 this.ChangePhase(TurnPhase.Disaster);
-                this._timer.StartTime = 5;
+                this._timer.StartTime = 0;
                 this._timer.ResetTimer();
-                this._timer.StartTimer();
             }
         }
         else if (this._currentTurnPhase == TurnPhase.Disaster)
@@ -120,14 +119,11 @@ public class GameModeWorldVsYou : GameModeBase
                 this._executeChangeTerrainDisaster();
                 this._terrainDisasterExecuted = true;
             }
-            if(_changeTerrainDisasterDone){
-                if (this._timer.Remaining <= 0)
-                {
-                    this.ChangePhase(TurnPhase.Military);
-                    this._timer.StartTime = 2;
-                    this._timer.ResetTimer();
-                    this._timer.StartTimer();
-                }
+            if(this._changeTerrainDisasterDone){
+                this.ChangePhase(TurnPhase.Military);
+                this._timer.StartTime = 2;
+                this._timer.ResetTimer();
+                this._timer.StartTimer();
             }
         }
         else if (this._currentTurnPhase == TurnPhase.Military)
