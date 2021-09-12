@@ -34,7 +34,7 @@
       "name": "Bank",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Bank",
       "useCost": {
         "wood": 100,
         "stone": 100,
@@ -64,7 +64,7 @@
       "name": "Barrack",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Barrack",
       "useCost": {
         "wood": 100,
         "stone": 100,
@@ -94,7 +94,7 @@
       "name": "Lumber Mill",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "LumberMill",
       "useCost": {
         "wood": 0,
         "stone": 50,
@@ -124,7 +124,7 @@
       "name": "Gold Mine",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "GoldMine",
       "useCost": {
         "wood": 15,
         "stone": 15,
@@ -154,7 +154,7 @@
       "name": "Village",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Village",
       "useCost": {
         "wood": 100,
         "stone": 100,
@@ -184,7 +184,7 @@
       "name": "Tower",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Tower",
       "useCost": {
         "wood": 50,
         "stone": 50,
@@ -214,7 +214,7 @@
       "name": "Castle",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Castle",
       "useCost": {
         "wood": 2000,
         "stone": 2000,
@@ -244,7 +244,7 @@
       "name": "Farm",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Farm",
       "useCost": {
         "wood": 0,
         "stone": 0,
@@ -274,13 +274,13 @@
       "name": "Quarry",
       "description": "",
       "imageId": "",
-      "prefabId": "",
+      "prefabId": "Quarry",
       "useCost": {
-        "wood": 0,
+        "wood": 15,
         "stone": 50,
         "gold": 0,
-        "food": 0,
-        "people": 0,
+        "food": 15,
+        "people": 30,
         "military": 0
       },
       "resourcesPerTurn": {

@@ -1,5 +1,12 @@
+using UnityEngine;
+
 public class GameModeWorldVsYou : GameModeBase
 {
+
+    [Header("CPU State")]
+    [SerializeField] private bool _terrainDisasterExecuted = false;
+    [SerializeField] private bool _changeTerrainDisasterDone = false;
+
     public override void Update()
     {
         base.Update();
@@ -87,6 +94,8 @@ public class GameModeWorldVsYou : GameModeBase
     {
         if (this._currentTurnPhase == TurnPhase.Main)
         {
+            this._terrainDisasterExecuted = false;
+
             if (this._timer.Remaining <= 0)
             {
                 this.ChangePhase(TurnPhase.Destroy);
@@ -100,15 +109,17 @@ public class GameModeWorldVsYou : GameModeBase
             if (this._timer.Remaining <= 0)
             {
                 this.ChangePhase(TurnPhase.Disaster);
-                this._timer.StartTime = 2;
+                this._timer.StartTime = 0;
                 this._timer.ResetTimer();
-                this._timer.StartTimer();
             }
         }
         else if (this._currentTurnPhase == TurnPhase.Disaster)
         {
-            if (this._timer.Remaining <= 0)
-            {
+            if (!this._terrainDisasterExecuted){
+                this._executeChangeTerrainDisaster();
+                this._terrainDisasterExecuted = true;
+            }
+            if(this._changeTerrainDisasterDone){
                 this.ChangePhase(TurnPhase.Military);
                 this._timer.StartTime = 2;
                 this._timer.ResetTimer();
@@ -135,6 +146,48 @@ public class GameModeWorldVsYou : GameModeBase
                 this._timer.StartTimer();
             }
         }
+    }
+
+    private void _executeChangeTerrainDisaster(){
+        int x = Mathf.RoundToInt(Random.Range(0, this._mapWidth));
+        int y = Mathf.RoundToInt(Random.Range(0, this._mapHeight));
+        int selectedType =  Mathf.RoundToInt(Random.Range(0, 5));
+        this._changeTerrainDisasterDone = false;
+        this._map.OnMapFinishedCellularAutomata += this._onChangeTerrainDisasterReady;
+
+        TerrainRule terrain;
+
+        switch (selectedType)
+        {
+            case 0:
+                terrain = new DesertTerrainRule();
+                break;
+            case 1:
+                terrain = new ForestTerrainRule();
+                break;
+            case 2:
+                terrain = new GrasslandTerrainRule();
+                break;
+            case 3:
+                terrain = new MountainTerrainRule();
+                break;
+            case 4:
+                terrain = new RiverTerrainRule();
+                break;
+            case 5:
+                terrain = new SwampTerrainRule();
+                break;
+            default:
+                terrain = new GrasslandTerrainRule();
+                break;
+        }
+
+        this._map.SetTerrainApplyCellularAutomata(terrain,x,y);
+    }
+
+    public void _onChangeTerrainDisasterReady(){
+        this._changeTerrainDisasterDone = true;
+        this._map.OnMapFinishedCellularAutomata -= this._onChangeTerrainDisasterReady;
     }
 
     public override void StartGame()

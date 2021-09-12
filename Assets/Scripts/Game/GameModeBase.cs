@@ -84,7 +84,7 @@ public class GameModeBase : MonoBehaviour
     private void _onStartGameMapReady()
     {
         this._player.DrawCard(this._startingCardsCount);
-        this._currentTurnType = TurnType.CPU;
+        this._currentTurnType = TurnType.Player;
         this._currentTurnPhase = TurnPhase.Main;
         this._timer.StartTime = 2;
         this._timer.ResetTimer();
