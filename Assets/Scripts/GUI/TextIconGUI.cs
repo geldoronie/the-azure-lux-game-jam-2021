@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ResourceIconGUI : MonoBehaviour
+public class TextIconGUI : MonoBehaviour
 {
 
-    [SerializeField] public int Value = 0;
+    [SerializeField] public string Value = "0";
 
     private TMP_Text _valueLabel;
 
@@ -14,7 +14,7 @@ public class ResourceIconGUI : MonoBehaviour
     void Awake()
     {
        this._valueLabel = gameObject.GetComponentInChildren<TMP_Text>();
-       this._valueLabel.text = this.Value.ToString();
+       this._valueLabel.text = this.Value;
     }
 
     // Update is called once per frame

@@ -15,10 +15,19 @@ public class Player : MonoBehaviour
 
     public UnityAction OnHandCardsUpdate;
 
-    public void DrawNewHand(int cardCount)
+    public void DrawCard(int cardCount)
     {
         this.Hand = this._library.GetCards(cardCount);
         OnHandCardsUpdate?.Invoke();
+    }
+
+    public void GetResource(ResourcesAmounts resource){
+        this._foodAmount += resource.food;
+        this._goldAmount += resource.gold;
+        this._militaryAmount += resource.military;
+        this._peopleAmount += resource.people;
+        this._stoneAmount += resource.stone;
+        this._woodAmount += resource.wood;
     }
 
     public int WoodAmount { get => _woodAmount; }
