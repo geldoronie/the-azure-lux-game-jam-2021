@@ -71,7 +71,7 @@ public class Terrain : MonoBehaviour
 
         Terrain[] neighbors = GameModeBase.Instance.Map.GetVonNeumannNeighbors(X, Y);
         TerrainRule newRule = TerrainRule.CheckRules(neighbors);
-        if (newRule.GetType().ToString() != this.GetType().ToString())
+        if (newRule != this.TerrainRule)
         {
             content += "\n\nThis terrain should change to: " + newRule.GetTooltip();
         }
