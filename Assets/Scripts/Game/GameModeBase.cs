@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameModeBase : MonoBehaviour
@@ -61,6 +63,16 @@ public class GameModeBase : MonoBehaviour
             this.ChangePhase(TurnPhase.Main);
         }
         this._turnsCount++;
+    }
+
+    public void PauseTurn()
+    {
+        this._timer.PauseTimer();
+    }
+
+    public void ResumeTurn()
+    {
+        this._timer.ResumeTimer();
     }
 
     public void ChangePhase(TurnPhase phase)

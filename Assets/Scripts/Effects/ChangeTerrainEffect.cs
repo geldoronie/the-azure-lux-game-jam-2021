@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Change Terrain Effect", menuName = "Game Jam/Effects/Change Terrain", order = 0)]
@@ -7,6 +8,7 @@ public class ChangeTerrainEffect : EffectBase
 
     public override void UseEffect(Player player, Terrain terrain)
     {
+        GameModeBase.Instance.PauseTurn();
         switch (_terrain)
         {
             case TerrainType.Desert:
@@ -30,7 +32,9 @@ public class ChangeTerrainEffect : EffectBase
             default:
                 GameModeBase.Instance.Map.SetTerrainApplyCellularAutomata(new GrasslandTerrainRule(), terrain.X, terrain.Y);
                 break;
+
         }
+        GameModeBase.Instance.Map.OnMapFinishedCellularAutomata += GameModeBase.Instance.ResumeTurn;
     }
 }
 

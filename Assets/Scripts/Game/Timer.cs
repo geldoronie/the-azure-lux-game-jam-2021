@@ -12,28 +12,25 @@ public class Timer : MonoBehaviour
     public bool Finished = true;
     private bool _isRunning = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(!this._isRunning)
+        if (!this._isRunning)
             return;
 
-        if(this.Remaining > 0){
+        if (this.Remaining > 0)
+        {
             this.Remaining -= Time.deltaTime;
-        } else {
+        }
+        else
+        {
             this.Finished = true;
             this.ResetTimer();
         }
     }
 
-    public void StartTimer(){
-        if(this._isRunning)
+    public void StartTimer()
+    {
+        if (this._isRunning)
             return;
 
         this.Remaining = this.StartTime;
@@ -41,12 +38,19 @@ public class Timer : MonoBehaviour
         this._isRunning = true;
     }
 
-    public void ResetTimer(){
+    public void ResetTimer()
+    {
         this.Remaining = this.StartTime;
         this._isRunning = false;
     }
 
-    public void PauseTimer(){
+    public void PauseTimer()
+    {
         this._isRunning = false;
+    }
+
+    public void ResumeTimer()
+    {
+        this._isRunning = true;
     }
 }
