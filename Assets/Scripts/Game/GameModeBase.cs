@@ -9,16 +9,18 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected Timer _timer;
     [SerializeField] protected Player _player;
     [SerializeField] protected Map _map;
+    [SerializeField] protected GameStats _gameStats;
     [SerializeField] protected LoadingMapGUI _loadingMap;
 
     [Header("Gameplay")]
     [SerializeField] protected int _startingCardsCount = 5;
     [SerializeField] protected float _playTurnTime = 20;
-    [SerializeField] protected float _turnsCount = 0;
+    [SerializeField] protected int _turnsCount = 0;
     [SerializeField] protected TurnType _currentTurnType = TurnType.Player;
     [SerializeField] protected TurnPhase _currentTurnPhase = TurnPhase.Refill;
     [SerializeField] protected GameState _gameState = GameState.Stopped;
     [SerializeField] protected int _invalidTerrainBuildingAliveToleranceTurns = 2;
+
 
     [Header("Player State")]
     [SerializeField] protected bool _gotPlayerBaseResources = false;
@@ -61,6 +63,7 @@ public class GameModeBase : MonoBehaviour
         {
             this._currentTurnType = TurnType.CPU;
             this.ChangePhase(TurnPhase.Main);
+            this.RegisterGameStats();
         }
         else
         {
@@ -129,6 +132,34 @@ public class GameModeBase : MonoBehaviour
     public void PlayerDrawNewHand()
     {
         this._player.DrawNewHand(this._startingCardsCount);
+    }
+
+    public void RegisterGameStats(){
+        this._gameStats.resourcesProgression.Add(
+            new GameStatsResourceProgression(){
+                turn = this._turnsCount == 0 ? this._turnsCount : this._turnsCount / 2,
+                food = this._player.Resources.Food,
+                gold = this._player.Resources.Gold,
+                military = this._player.Resources.Military,
+                people = this._player.Resources.People,
+                stone = this._player.Resources.Stone,
+                wood = this._player.Resources.Wood
+            }
+        );
+
+        double progress = (this._player.Resources.Food * 0.5) + 
+                        (this._player.Resources.Gold * 1) + 
+                        (this._player.Resources.Military * 2) + 
+                        (this._player.Resources.People * 0.2) + 
+                        (this._player.Resources.Stone * 0.6) + 
+                        (this._player.Resources.Wood * 0.6);
+
+        this._gameStats.gameProgression.Add(            
+            new GameStatsFullProgression(){
+                turn = this._turnsCount == 0 ? this._turnsCount : this._turnsCount / 2,
+                progress = progress
+            }
+        );
     }
 
     private void _onStartGameMapReady()
