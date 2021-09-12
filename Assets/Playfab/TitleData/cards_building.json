@@ -5,7 +5,7 @@
       "description": "A church to keep god close, of course! if you can pay for it...",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 20,
         "stone": 20,
         "gold": 0,
@@ -35,7 +35,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 100,
         "stone": 100,
         "gold": 0,
@@ -65,7 +65,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 100,
         "stone": 100,
         "gold": 0,
@@ -95,7 +95,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 0,
         "stone": 50,
         "gold": 0,
@@ -125,7 +125,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 15,
         "stone": 15,
         "gold": 0,
@@ -155,7 +155,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 100,
         "stone": 100,
         "gold": 25,
@@ -185,7 +185,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 50,
         "stone": 50,
         "gold": 25,
@@ -215,7 +215,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 2000,
         "stone": 2000,
         "gold": 3000,
@@ -245,7 +245,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 0,
         "stone": 0,
         "gold": 0,
@@ -275,7 +275,7 @@
       "description": "",
       "imageId": "",
       "prefabId": "",
-      "costs": {
+      "useCost": {
         "wood": 0,
         "stone": 50,
         "gold": 0,
