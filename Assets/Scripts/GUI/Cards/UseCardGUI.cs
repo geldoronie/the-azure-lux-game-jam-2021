@@ -43,7 +43,7 @@ public class UseCardGUI : MonoBehaviour
                     BuildingCard card = (BuildingCard)_cardOrganizerGUI.SelectedCard.Card;
                     if (card.CanBuild(GameModeBase.Instance.Player, terrain))
                     {
-                        _objectToCreate.GetComponent<MeshRenderer>().material = _enableMaterial;
+                        SetObjectToCreateMaterial(_enableMaterial);
                         if (Input.GetMouseButtonDown(0))
                         {
                             terrain.ConstructBuilding(card);
@@ -52,7 +52,7 @@ public class UseCardGUI : MonoBehaviour
                     }
                     else
                     {
-                        _objectToCreate.GetComponent<MeshRenderer>().material = _disableMaterial;
+                        SetObjectToCreateMaterial(_disableMaterial);
                     }
                 }
                 else
@@ -71,11 +71,27 @@ public class UseCardGUI : MonoBehaviour
     {
         if (card is BuildingCard)
         {
-            _objectToCreate = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            _objectToCreate.GetComponent<Collider>().enabled = false;
-            _objectToCreate.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 0.5f);
-            _objectToCreate.transform.localScale = Vector3.one * 0.65f;
+            BuildingCard buildingCard = (BuildingCard)card;
+            _objectToCreate = Instantiate<Building>(buildingCard.Prefab).gameObject;
             _objectToCreate.SetActive(false);
+            SetObjectToCreateMaterial(_disableMaterial);
+        }
+    }
+
+    private void SetObjectToCreateMaterial(Material material)
+    {
+        MeshRenderer[] meshRenderers = _objectToCreate.GetComponentsInChildren<MeshRenderer>();
+        Debug.Log(meshRenderers.Length);
+        foreach (MeshRenderer rend in meshRenderers)
+        {
+            rend.material = material;
+            for (int i = 0; i < rend.materials.Length; i++)
+            {
+                foreach (Material mat in rend.materials)
+                {
+                    rend.materials[i] = material;
+                }
+            }
         }
     }
 
