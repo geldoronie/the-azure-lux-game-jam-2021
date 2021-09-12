@@ -7,15 +7,15 @@ using UnityEngine.Events;
 public class CardsPlayfab : MonoBehaviour
 {
     [SerializeField] private AuthenticationPlayfab Authentication;
-    private List<BuildingCardModelPlayfab> _buildingCards;
-    private List<EffectCardModelPlayfab> _effectCards;
+    public List<BuildingCardModelPlayfab> BuildingCards;
+    public List<EffectCardModelPlayfab> EffectCards;
     public UnityAction<BuildingCardModelPlayfab[], EffectCardModelPlayfab[]> onGetCards;
 
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        this._buildingCards = new List<BuildingCardModelPlayfab>();
-        this._effectCards = new List<EffectCardModelPlayfab>();
+        this.BuildingCards = new List<BuildingCardModelPlayfab>();
+        this.EffectCards = new List<EffectCardModelPlayfab>();
         this.Authentication = GameObject.Find("AuthenticationPlayfab").GetComponent<AuthenticationPlayfab>();
         this._getCards();
     }
@@ -41,10 +41,10 @@ public class CardsPlayfab : MonoBehaviour
             Debug.Log("There's no 'cards_buildings' key at DataTitle in Playfab Configuration");
             return;
         }
-        this._buildingCards = JsonUtility.FromJson<BuildingCardTitleDataPlayfab>(result.Data["cards_buildings"]).cards;
-        this._effectCards = JsonUtility.FromJson<EffectCardTitleDataPlayfab>(result.Data["cards_effects"]).cards;
+        this.BuildingCards = JsonUtility.FromJson<BuildingCardTitleDataPlayfab>(result.Data["cards_buildings"]).cards;
+        this.EffectCards = JsonUtility.FromJson<EffectCardTitleDataPlayfab>(result.Data["cards_effects"]).cards;
 
-        onGetCards?.Invoke(this._buildingCards.ToArray(), this._effectCards.ToArray());
+        //onGetCards?.Invoke(this.BuildingCards.ToArray(), this.EffectCards.ToArray());
     }
 
     private void _onGetCardsFailure(PlayFabError error)

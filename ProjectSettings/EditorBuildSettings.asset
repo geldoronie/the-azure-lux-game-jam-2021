@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorldVsYou.unity
     guid: 12a142f9a87d8bdae8e2fedffd0c1d13
-  - enabled: 1
-    path: Assets/Scenes/Grid.unity
-    guid: 42227d6c4487f254490bce3c42d1b031
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

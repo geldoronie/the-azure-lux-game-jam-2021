@@ -41,10 +41,16 @@ public class Map : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(CreateMap());
+        
     }
 
-    public IEnumerator CreateMap()
+    public void GenerateMap(int width, int height){
+        this._width = width;
+        this._height = height;
+        StartCoroutine(this._createMap());
+    }
+
+    private IEnumerator _createMap()
     {
         _grid = new Terrain[_width, _height];
         maxIterations = _width * _height + (int)(_width / 3) * _width * _height;
