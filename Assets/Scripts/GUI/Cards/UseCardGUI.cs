@@ -8,6 +8,7 @@ public class UseCardGUI : MonoBehaviour
 
     private CardOrganizerGUI _cardOrganizerGUI;
     private GameObject _objectToCreate;
+    private bool waitNextFrame;
 
     private void Awake()
     {
@@ -30,6 +31,11 @@ public class UseCardGUI : MonoBehaviour
     {
         if (_objectToCreate != null)
         {
+            if (waitNextFrame)
+            {
+                waitNextFrame = false;
+                return;
+            }
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -79,6 +85,7 @@ public class UseCardGUI : MonoBehaviour
         _objectToCreate = Instantiate(card.Prefab);
         _objectToCreate.SetActive(false);
         SetObjectToCreateMaterial(_disableMaterial);
+        waitNextFrame = true;
     }
 
     private void SetObjectToCreateMaterial(Material material)

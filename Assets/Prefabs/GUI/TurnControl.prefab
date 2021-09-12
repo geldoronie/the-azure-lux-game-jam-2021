@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameModeBase, Assembly-CSharp
-        m_MethodName: DrawNewHand
+        m_MethodName: PlayerDrawNewHand
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

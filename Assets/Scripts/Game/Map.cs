@@ -7,10 +7,8 @@ public class Map : MonoBehaviour
 {
     [Header("Other")]
     [SerializeField] private Material _boardQuadMaterial;
-
-    [Header("Map Size")]
-    [SerializeField] private int _width = 15;
-    [SerializeField] private int _height = 15;
+    [SerializeField] private int _cellularAtomataIterations = 5;
+    [SerializeField] private float _cellularAtomataIterationsDelay = 0.8f;
     [SerializeField] private float _rotationSpeed = 60f;
 
     [Header("Incidences")]
@@ -39,9 +37,11 @@ public class Map : MonoBehaviour
     [SerializeField] private Terrain riverPrefab;
     [SerializeField] private Terrain swampPrefab;
 
+    private int _width = 15;
+    private int _height = 15;
     private Terrain[,] _grid;
-    private int maxIterations;
-    private int iterations;
+    private int _maxIterations;
+    private int _iterations;
     private Coroutine applyingCellularAutomataCoroutine;
 
     public UnityAction OnMapFinishedCreating;
@@ -57,9 +57,9 @@ public class Map : MonoBehaviour
     private IEnumerator _createMap()
     {
         _grid = new Terrain[_width, _height];
-        maxIterations = _width * _height + (int)(_width / 3) * _width * _height;
-        iterations = 0;
-        Debug.Log("Começou: " + iterations + "/" + maxIterations);
+        _maxIterations = _width * _height + _cellularAtomataIterations * _width * _height;
+        _iterations = 0;
+        Debug.Log("Começou: " + _iterations + "/" + _maxIterations);
 
         GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
         quad.transform.eulerAngles = new Vector3(90, 0, 0);
@@ -117,28 +117,26 @@ public class Map : MonoBehaviour
             }
         }
 
-        Coroutine c = null;
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
                 StartCoroutine(SwapTerrain(GetRandomTerrainRule(), x, y));
-                iterations++;
+                _iterations++;
                 yield return new WaitForEndOfFrame();
-            }
-
-            if (x > 2 && x % 3 == 0)
-            {
-                c = StartCoroutine(ApplyCellularAutomata(() => { iterations++; }));
             }
         }
 
-        yield return c;
+        for (int i = 0; i < _cellularAtomataIterations; i++)
+        {
+            StartCoroutine(ApplyCellularAutomata(() => _iterations++));
+            yield return new WaitForSeconds((_width * _height) * Time.deltaTime * _cellularAtomataIterationsDelay);
+        }
 
-        Debug.Log("Acabou: " + iterations + "/" + maxIterations);
+        Debug.Log("Acabou: " + _iterations + "/" + _maxIterations);
 
-        maxIterations = 0;
-        iterations = 0;
+        _maxIterations = 0;
+        _iterations = 0;
 
         OnMapFinishedCreating?.Invoke();
     }
@@ -159,7 +157,6 @@ public class Map : MonoBehaviour
     {
         if (GetTerrainOnGrid(x, y) != null)
         {
-            _grid[x, y] = _grid[x, y];
             Terrain[] neighbors = GetVonNeumannNeighbors(x, y);
             List<Terrain> toVerify = new List<Terrain>();
             yield return StartCoroutine(SwapTerrain(newRule, x, y));
@@ -254,7 +251,6 @@ public class Map : MonoBehaviour
             Destroy(_grid[x, y].gameObject);
             _grid[x, y] = terrainObject;
         }
-
     }
 
     private Terrain FindPrefab(TerrainRule newRule)
@@ -368,8 +364,10 @@ public class Map : MonoBehaviour
         return listOfBuildings;
     }
 
-    public int Width { get => _width; set => _width = value; }
-    public int Height { get => _height; set => _height = value; }
+    public int Width { get => _width; }
+    public int Height { get => _height; }
+
+    public float GenerationsStatus { get => (float)_iterations / (float)_maxIterations; }
 }
 
 public struct TerrainCoordinates
