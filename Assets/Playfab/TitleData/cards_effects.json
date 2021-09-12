@@ -1,8 +1,123 @@
 {
   "cards": [
     {
+      "name": "Change any terrain to Desert",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "Any2Desert"
+    },
+    {
+      "name": "Change any terrain to Forest",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "Any2Forest"
+    },
+    {
+      "name": "Change any terrain to Grassland",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "Any2Grassland"
+    },
+    {
+      "name": "Change any terrain to Mountain",
+      "description": "Run to the hills",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "Any2Mountain"
+    },
+    {
+      "name": "Change any terrain to River",
+      "description": "",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "Any2River"
+    },
+    {
       "name": "Change any terrain to Swamp",
-      "description": "Some times the ground turns too wet...",
+      "description": "",
       "imageId": "",
       "prefabId": "",
       "useCost": {

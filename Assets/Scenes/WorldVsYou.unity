@@ -1596,6 +1596,14 @@ PrefabInstance:
       propertyPath: _cardsDatabase
       value: 
       objectReference: {fileID: 826852449}
+    - target: {fileID: 1796152817172689382, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
+      propertyPath: _effectsCardsChance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796152817172689382, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
+      propertyPath: _buildingCardsChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1796152817172689383, guid: 91bd0d188714f5148a0b0ab96ae529ec, type: 3}
       propertyPath: m_RootOrder
       value: 0

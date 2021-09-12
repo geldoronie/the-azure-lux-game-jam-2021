@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         this._woodAmount += resource.Wood;
     }
 
-    public void RemoveCard(BuildingCard card)
+    public void RemoveCard(Card card)
     {
         _hand.Remove(card);
         OnHandCardsUpdate?.Invoke();

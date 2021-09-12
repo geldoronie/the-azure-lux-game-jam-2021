@@ -49,12 +49,12 @@ public class UseCardGUI : MonoBehaviour
                             if (card is BuildingCard)
                             {
                                 terrain.ConstructBuilding((BuildingCard)card);
-                                GameModeBase.Instance.Player.RemoveCard((BuildingCard)card);
                             }
                             else if (card is EffectCard)
                             {
                                 ((EffectCard)card).Effect.UseEffect(GameModeBase.Instance.Player, terrain);
                             }
+                            GameModeBase.Instance.Player.RemoveCard(card);
                         }
                     }
                     else
