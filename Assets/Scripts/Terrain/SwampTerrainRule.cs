@@ -1,6 +1,6 @@
 public class SwampTerrainRule : TerrainRule
 {
-    public SwampTerrainRule() : base(3.4f)
+    public SwampTerrainRule() : base(0)
     {
     }
 

@@ -1,6 +1,6 @@
 public class ForestTerrainRule : TerrainRule
 {
-    public ForestTerrainRule() : base(3.4f)
+    public ForestTerrainRule() : base(0)
     {
     }
 

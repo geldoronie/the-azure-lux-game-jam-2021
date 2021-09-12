@@ -16,7 +16,7 @@ public class Terrain : MonoBehaviour
         _building = building;
         if (building != null)
         {
-            building.UpdatePosition(terrainRule);
+            building.Initialize(building.Card, this);
         }
         _turnsAlive = 0;
         GameModeBase.Instance.OnChangeTurn += NextTurn;
