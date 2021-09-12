@@ -81,7 +81,6 @@ public class UseCardGUI : MonoBehaviour
     private void SetObjectToCreateMaterial(Material material)
     {
         MeshRenderer[] meshRenderers = _objectToCreate.GetComponentsInChildren<MeshRenderer>();
-        Debug.Log(meshRenderers.Length);
         foreach (MeshRenderer rend in meshRenderers)
         {
             Material[] sharedMaterials = new Material[rend.sharedMaterials.Length];
