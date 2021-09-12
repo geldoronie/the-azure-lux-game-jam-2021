@@ -57,13 +57,16 @@ public class CardsPlayfab : MonoBehaviour
 
         foreach (BuildingCard card in this.BuildingCards)
         {
+            Debug.Log("Trying to load: " + card.PrefabId + " for the card " + card.Name);
             if (!string.IsNullOrEmpty(card.PrefabId))
             {
                 GameObject buildingPrefab = Resources.Load(card.PrefabId) as GameObject;
-                card.Prefab = buildingPrefab.GetComponent<Building>();
+                Debug.Log("--Load successfully: " + buildingPrefab?.name);
+                card.Prefab = buildingPrefab?.GetComponent<Building>();
             }
             if (card.Prefab == null)
             {
+                Debug.Log("--String empty, loading primitive building prefab");
                 card.Prefab = primitiveBuildingCardPrefab;
             }
         }
