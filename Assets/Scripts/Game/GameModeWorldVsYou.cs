@@ -2,11 +2,27 @@ using UnityEngine;
 
 public class GameModeWorldVsYou : GameModeBase
 {
-
     [Header("CPU State")]
+    [SerializeField] private int _cardPerTurn = 3;
+    [SerializeField] private int _maxCardsOnHand = 10;
     [SerializeField] private bool _terrainDisasterExecuted = false;
     [SerializeField] private bool _changeTerrainDisasterDone = false;
     [SerializeField] private bool _invalidBuildsDestroyed = false;
+    [SerializeField] private bool _vickingsRaidCheck = false;
+    [SerializeField] private int firstVickingRaidMilitary = 500;
+    [SerializeField] private int firstVickingRaidTurn = 10;
+    [SerializeField] private float vickingsTurnsIncreasePerRaidRate = 1.25f;
+    [SerializeField] private float vickingsMilitaryIncreasePerRaidRate = 1.25f;
+
+    private int _vickingsAttackMilitaryRequired;
+    private int _vickingsAttackTurnsLeft;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _vickingsAttackMilitaryRequired = firstVickingRaidMilitary;
+        _vickingsAttackTurnsLeft = firstVickingRaidTurn;
+    }
 
     public override void Update()
     {
@@ -41,6 +57,10 @@ public class GameModeWorldVsYou : GameModeBase
                 this._timer.StartTime = 2;
                 this._timer.ResetTimer();
                 this._timer.StartTimer();
+                while (this._player.Hand.Length > _maxCardsOnHand)
+                {
+                    this._player.RemoveCard(this._player.Hand[Random.Range(0, this._player.Hand.Length)]);
+                }
             }
         }
         else if (this.CurrentTurnPhase == TurnPhase.Refill)
@@ -69,10 +89,9 @@ public class GameModeWorldVsYou : GameModeBase
         }
         else if (this.CurrentTurnPhase == TurnPhase.Draw)
         {
-            //Player drawn the turn card
             if (!this._hasPlayerDrawnCard)
             {
-                this._player.DrawCard(1);
+                this._player.DrawCard(_cardPerTurn);
                 this._hasPlayerDrawnCard = true;
             }
 
@@ -102,6 +121,7 @@ public class GameModeWorldVsYou : GameModeBase
         {
             this._terrainDisasterExecuted = false;
             this._invalidBuildsDestroyed = false;
+            this._vickingsRaidCheck = false;
 
             if (this._timer.Remaining <= 0)
             {
@@ -143,6 +163,12 @@ public class GameModeWorldVsYou : GameModeBase
         }
         else if (this._currentTurnPhase == TurnPhase.Military)
         {
+            if (!this._vickingsRaidCheck)
+            {
+                this.CheckVickingRaid();
+                this._vickingsRaidCheck = true;
+            }
+
             if (this._timer.Remaining <= 0)
             {
                 this._timer.StartTime = 10;
@@ -201,6 +227,21 @@ public class GameModeWorldVsYou : GameModeBase
         this._map.SetTerrainApplyCellularAutomata(terrain, x, y);
     }
 
+    private void CheckVickingRaid()
+    {
+        _vickingsAttackTurnsLeft--;
+        if (_vickingsAttackTurnsLeft == 0)
+        {
+            int militaryTaken = Mathf.Clamp(_vickingsAttackMilitaryRequired - _player.Resources.Military, 0, _vickingsAttackMilitaryRequired);
+            int peopleNeeded = _vickingsAttackMilitaryRequired - militaryTaken;
+
+            Player.Resources -= new ResourcesAmounts(0, 0, 0, 0, peopleNeeded * 2, militaryTaken);
+
+            _vickingsAttackTurnsLeft = Mathf.RoundToInt(firstVickingRaidTurn + Mathf.Pow(CurrentTurn / 2, vickingsTurnsIncreasePerRaidRate));
+            _vickingsAttackMilitaryRequired = Mathf.RoundToInt(firstVickingRaidMilitary + Mathf.Pow(CurrentTurn / 2, vickingsTurnsIncreasePerRaidRate));
+        }
+    }
+
     public void _onChangeTerrainDisasterReady()
     {
         this._changeTerrainDisasterDone = true;
@@ -216,4 +257,7 @@ public class GameModeWorldVsYou : GameModeBase
     {
         base.StartGame();
     }
+
+    public int VickingsAttackMilitaryRequired { get => _vickingsAttackMilitaryRequired; }
+    public int VickingsAttackTurnsLeft { get => _vickingsAttackTurnsLeft; }
 }

@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 4215756709181030366}
   - component: {fileID: 4215756709181030361}
   - component: {fileID: 4215756709181030360}
+  - component: {fileID: 942448512}
   m_Layer: 5
   m_Name: ShuffleButton
   m_TagString: Untagged
@@ -235,7 +236,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4215756709181030362}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -267,7 +268,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4215756709181030361}
   m_OnClick:
     m_PersistentCalls:
@@ -284,6 +285,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &942448512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215756709181030362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: New Hand
+  content: 
 --- !u!1 &4215756709705030080
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +538,7 @@ GameObject:
   - component: {fileID: 4215756710022937804}
   - component: {fileID: 4215756710022937807}
   - component: {fileID: 4215756710022937806}
+  - component: {fileID: 9093042574719364781}
   m_Layer: 5
   m_Name: EndTurnButton
   m_TagString: Untagged
@@ -644,6 +661,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &9093042574719364781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215756710022937800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: Next Turn
+  content: 
 --- !u!1 &4215756710756511652
 GameObject:
   m_ObjectHideFlags: 0
