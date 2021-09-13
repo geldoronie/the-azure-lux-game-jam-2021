@@ -18,7 +18,7 @@ public class MainMenuGUI : MonoBehaviour
     }
 
     public void StartGameModeWorldVsYou(){
-        SceneManager.LoadScene("WorldVsYouGeldo", LoadSceneMode.Single);
+        SceneManager.LoadScene("WorldVsYou", LoadSceneMode.Single);
     }
 
     public void ExitGame(){
