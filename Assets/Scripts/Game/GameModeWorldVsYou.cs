@@ -107,14 +107,10 @@ public class GameModeWorldVsYou : GameModeBase
         {
             if (this._timer.Remaining <= 0)
             {
-                if(this._player.Resources.People <= 0){
-                    this.ChangeGameState(GameState.GameOver);
-                } else {
-                    this.ChangeTurn();
-                    this._timer.StartTime = 4;
-                    this._timer.ResetTimer();
-                    this._timer.StartTimer();
-                }
+                this.ChangeTurn();
+                this._timer.StartTime = 4;
+                this._timer.ResetTimer();
+                this._timer.StartTimer();
             }
         }
     }
@@ -234,7 +230,7 @@ public class GameModeWorldVsYou : GameModeBase
     private void CheckVickingRaid()
     {
         _vickingsAttackTurnsLeft--;
-        if (_vickingsAttackTurnsLeft == 0)
+        if (_vickingsAttackTurnsLeft <= 0)
         {
             int militaryTaken = Mathf.Clamp(_vickingsAttackMilitaryRequired, 0, _player.Resources.Military);
             int peopleNeeded = _vickingsAttackMilitaryRequired - militaryTaken;
@@ -260,6 +256,16 @@ public class GameModeWorldVsYou : GameModeBase
     public override void StartGame()
     {
         base.StartGame();
+    }
+
+    public override void ChangeTurn(){
+        if(this._player.Resources.People <= 0){
+            this.ChangeGameState(GameState.GameOver);
+            this._timer.ResetTimer();
+            this._timer.PauseTimer();
+        } else {
+            base.ChangeTurn();
+        }
     }
 
     public int VickingsAttackMilitaryRequired { get => _vickingsAttackMilitaryRequired; }
