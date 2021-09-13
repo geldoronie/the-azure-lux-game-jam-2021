@@ -116,8 +116,8 @@
       "effectId": "Any2River"
     },
     {
-      "name": "Change any terrain to Swamp",
-      "description": "",
+      "name": "Sorrow and Despair",
+      "description": "Change any terrain to Swamp",
       "imageId": "",
       "prefabId": "",
       "useCost": {
