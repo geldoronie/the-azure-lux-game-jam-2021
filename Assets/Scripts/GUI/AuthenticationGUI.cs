@@ -35,6 +35,10 @@ public class AuthenticationGUI : MonoBehaviour
     [SerializeField]
     private Button LoginButton;
 
+
+    [SerializeField]
+    private TMP_Text LoginErrorText;
+
     [Header("Register")]
     [SerializeField]
     private TMP_InputField UsernameRegisterField;
@@ -47,6 +51,9 @@ public class AuthenticationGUI : MonoBehaviour
 
     [SerializeField]
     private TMP_InputField DisplayNameRegisterField;
+
+    [SerializeField]
+    private TMP_Text RegisterErrorText;
 
     [SerializeField]
     private Button RegisterButton;
@@ -68,6 +75,8 @@ public class AuthenticationGUI : MonoBehaviour
         this.LoginScreenButton.onClick.AddListener(this.OnLoginScreenButtonClick);
         this.LoadingPanel.gameObject.SetActive(false);
         this.OnBackToStartupScreenButtonClick();
+        this.Authentication.OnAuthenticationFailure += this.OnLoginError;
+        this.Authentication.OnRegisterAuthenticationFailure += this.OnRegisterError;
     }
 
     void Update(){
@@ -87,12 +96,14 @@ public class AuthenticationGUI : MonoBehaviour
     public void OnLoginButtonClick(){
         Authentication.Login(this.UsernameField.text, this.PasswordField.text);
         this.ShowLoadingScreen();
+        this.LoginErrorText.text = "";
         this._waitForAuthenticationResponse = true;
     }
 
     public void OnRegisterButtonClick(){
         Authentication.Register(this.DisplayNameRegisterField.text, this.UsernameRegisterField.text, this.EmailRegisterField.text, this.PasswordRegisterField.text);
         this.ShowLoadingScreen();
+        this.RegisterErrorText.text = "";
         this._waitForAuthenticationResponse = true;
     }
 
@@ -129,5 +140,13 @@ public class AuthenticationGUI : MonoBehaviour
         this.UsernameRegisterField.text = "";
         this.EmailRegisterField.text = "";
         this.PasswordRegisterField.text = "";
+    }
+
+    private void OnLoginError(string error){
+        this.LoginErrorText.text = error;
+    }
+
+    private void OnRegisterError(string error){
+        this.RegisterErrorText.text = error;
     }
 }

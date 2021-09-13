@@ -49,7 +49,9 @@ public class AuthenticationPlayfab : MonoBehaviour
     private PlayFabAuthenticationContext _authenticationContext;
 
     public UnityAction OnAuthenticationSuccess;
-    public UnityAction OnAuthenticationFailure;
+    public UnityAction<string> OnAuthenticationFailure;
+
+    public UnityAction<string> OnRegisterAuthenticationFailure;
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +108,11 @@ public class AuthenticationPlayfab : MonoBehaviour
         this._logged = false;
         this._username = "";
         this._loading = false;
-        this.OnAuthenticationFailure?.Invoke();
+        // foreach (var er in error.)
+        // {
+        //     stringError += er.Value;
+        // }
+        this.OnAuthenticationFailure?.Invoke(error.ToString());
         Debug.Log("Failed to loggin!");
     }
 
@@ -121,6 +127,12 @@ public class AuthenticationPlayfab : MonoBehaviour
         this._registered = false;
         this._username = "";
         this._loading = false;
+        // string stringError = "";
+        // foreach (var er in error.ErrorDetails)
+        // {
+        //     stringError += er.Value;
+        // }
+        this.OnRegisterAuthenticationFailure?.Invoke(error.ToString());
         Debug.Log("Failed to register!");
         Debug.Log(error);
     }
