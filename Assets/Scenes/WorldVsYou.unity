@@ -867,8 +867,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
+      propertyPath: _effectsCardsChance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
       propertyPath: _resources.military
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922124142040224615, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
+      propertyPath: _buildingCardsChance
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 367e0cdf7211a2613840c8212d8e01d1, type: 3}
@@ -2971,6 +2979,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1860979165}
     m_Modifications:
+    - target: {fileID: 4215756709181030360, guid: 37938162527a6e519b42da8cfee5ad10, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4215756709181030360, guid: 37938162527a6e519b42da8cfee5ad10, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
