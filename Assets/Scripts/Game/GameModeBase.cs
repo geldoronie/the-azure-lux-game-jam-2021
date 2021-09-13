@@ -10,6 +10,7 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected Map _map;
     [SerializeField] protected GameStats _gameStats;
     [SerializeField] protected PlayerStatsPlayfab _playerStatsPlayfab;
+    [SerializeField] protected GameModePlayfab _gameModePlayfab;
     [SerializeField] protected LoadingMapGUI _loadingMap;
     [SerializeField] protected string _name;
 
@@ -42,6 +43,7 @@ public class GameModeBase : MonoBehaviour
     protected virtual void Awake()
     {
         this._playerStatsPlayfab = GameObject.Find("PlayerStatistics").GetComponent<PlayerStatsPlayfab>();
+        this._gameModePlayfab = GameObject.Find("GameModePlayfab").GetComponent<GameModePlayfab>();
         if (instance != null)
         {
             Debug.LogError("Theres is more than on instance of the Game Mode. This is not allowed!");

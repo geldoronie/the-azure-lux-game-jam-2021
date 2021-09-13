@@ -1,0 +1,36 @@
+{
+    "gameModes": [
+      {
+        "name": "WorldVsYou",
+        "startingCardsCount": 5,
+        "playTurnTime": 60,
+        "invalidTerrainBuildingAliveToleranceTurns": 2,
+        "mapWidth": 10,
+        "mapHeight": 10,
+        "passiveResourcesPerTurn": {
+          "wood": 20,
+          "stone": 17,
+          "gold": 8,
+          "food": 0,
+          "people": 0,
+          "military": 0
+        },
+        "cardPerTurn": 3,
+        "maxCardsOnHand": 10,
+        "firstVickingRaidMilitary": 35,
+        "firstVickingRaidTurn": 10,
+        "vickingsTurnsIncreasePerRaidRate": 1.35,
+        "vickingsMilitaryIncreasePerRaidRate": 1.35,
+        "playerStartResourses": {
+          "wood": 20,
+          "stone": 17,
+          "gold": 8,
+          "food": 0,
+          "people": 0,
+          "military": 0
+        },
+        "buildingCardsChance": 70,
+        "effectsCardsChance": 30
+      }
+    ]
+  }

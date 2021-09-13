@@ -255,6 +255,21 @@ public class GameModeWorldVsYou : GameModeBase
 
     public override void StartGame()
     {
+        _startingCardsCount = this._gameModePlayfab.GameModes[0].startingCardsCount;
+        _playTurnTime = this._gameModePlayfab.GameModes[0].playTurnTime;
+        _invalidTerrainBuildingAliveToleranceTurns = this._gameModePlayfab.GameModes[0].invalidTerrainBuildingAliveToleranceTurns;
+        _mapWidth = this._gameModePlayfab.GameModes[0].mapWidth;
+        _mapHeight = this._gameModePlayfab.GameModes[0].mapHeight;
+        _passiveResourcesPerTurn = this._gameModePlayfab.GameModes[0].passiveResourcesPerTurn;
+        _cardPerTurn = this._gameModePlayfab.GameModes[0].cardPerTurn;
+        _maxCardsOnHand = this._gameModePlayfab.GameModes[0].maxCardsOnHand;
+        firstVickingRaidMilitary = this._gameModePlayfab.GameModes[0].firstVickingRaidMilitary;
+        firstVickingRaidTurn = this._gameModePlayfab.GameModes[0].firstVickingRaidTurn;
+        vickingsTurnsIncreasePerRaidRate = this._gameModePlayfab.GameModes[0].vickingsTurnsIncreasePerRaidRate;
+        vickingsMilitaryIncreasePerRaidRate = this._gameModePlayfab.GameModes[0].vickingsMilitaryIncreasePerRaidRate;
+        this._player.Resources = this._gameModePlayfab.GameModes[0].playerStartResourses;
+        this._player.BuildingCardsChance = this._gameModePlayfab.GameModes[0].buildingCardsChance;
+        this._player.EffectsCardsChance = this._gameModePlayfab.GameModes[0].effectsCardsChance;
         base.StartGame();
     }
 

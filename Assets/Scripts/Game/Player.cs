@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     public void DrawCard(int cardCount)
     {
-        this._hand.AddRange(this._library.GetCards(cardCount, _buildingCardsChance, _effectsCardsChance));
+        this._hand.AddRange(this._library.GetCards(cardCount, BuildingCardsChance, EffectsCardsChance));
         OnHandCardsUpdate?.Invoke();
     }
 
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
     public void DrawNewHand(int cardCount)
     {
-        this._hand = this._library.GetCards(cardCount, _buildingCardsChance, _effectsCardsChance);
+        this._hand = this._library.GetCards(cardCount, BuildingCardsChance, EffectsCardsChance);
         OnHandCardsUpdate?.Invoke();
     }
 
@@ -45,4 +45,6 @@ public class Player : MonoBehaviour
 
     public ResourcesAmounts Resources { get => _resources; set => _resources = value; }
     public Card[] Hand { get => _hand.ToArray(); }
+    public int EffectsCardsChance { get => _effectsCardsChance; set => _effectsCardsChance = value; }
+    public int BuildingCardsChance { get => _buildingCardsChance; set => _buildingCardsChance = value; }
 }
