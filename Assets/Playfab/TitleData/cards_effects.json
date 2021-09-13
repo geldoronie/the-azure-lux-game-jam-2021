@@ -1,5 +1,5 @@
 {
-  "cards": [
+  "common": [
     {
       "name": "Abdul Alhazred's Curse",
       "description": "Change any terrain to Desert",
@@ -137,30 +137,9 @@
         "mountain": true
       },
       "effectId": "Any2Swamp"
-    },
-    {
-      "name": "Texas Hold'em",
-      "description": "Draw 5 cards of any type",
-      "imageId": "",
-      "prefabId": "",
-      "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
-        "people": 0,
-        "military": 0
-      },
-      "terrainCost": {
-        "grassland": true,
-        "desert": true,
-        "forest": true,
-        "river": true,
-        "swamp": true,
-        "mountain": true
-      },
-      "effectId": "DrawAny"
-    },
+    }
+  ],
+  "uncommon": [
     {
       "name": "Da Vinci's Pleasure",
       "description": "Draw 2 Building cards",
@@ -206,7 +185,9 @@
         "mountain": true
       },
       "effectId": "DrawEffect"
-    },
+    }
+  ],
+  "rare": [
     {
       "name": "Leaf it to Me",
       "description": "Gain 100 Wood instantly",
@@ -344,6 +325,54 @@
         "mountain": true
       },
       "effectId": "ToSmithereens"
+    }
+  ],
+  "legendary": [
+    {
+      "name": "Texas Hold'em",
+      "description": "Draw 5 cards of any type",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "DrawAny"
+    },
+    {
+      "name": "Who is your Daddy?",
+      "description": "Give 100 from each resource",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "WhoIsYourDaddy"
     }
   ]
 }
