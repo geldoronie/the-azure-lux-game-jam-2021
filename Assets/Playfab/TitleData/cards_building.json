@@ -6,17 +6,17 @@
       "imageId": "",
       "prefabId": "Village",
       "useCost": {
-        "wood": 50,
-        "stone": 50,
-        "gold": 0,
+        "wood": 20,
+        "stone": 17,
+        "gold": 8,
         "food": 0,
-        "people": 20,
+        "people": 0,
         "military": 0
       },
       "resourcesPerTurn": {
         "wood": 5,
         "stone": 5,
-        "gold": 5,
+        "gold": 8,
         "food": -10,
         "people": 10,
         "military": 0
@@ -156,11 +156,11 @@
       "imageId": "",
       "prefabId": "Tower",
       "useCost": {
-        "wood": 10,
-        "stone": 50,
-        "gold": 25,
-        "food": 8,
-        "people": 10,
+        "wood": 8,
+        "stone": 18,
+        "gold": 12,
+        "food": 0,
+        "people": 0,
         "military": 0
       },
       "resourcesPerTurn": {
@@ -168,8 +168,8 @@
         "stone": 0,
         "gold": 0,
         "food": 0,
-        "people": -25,
-        "military": 25
+        "people": -7,
+        "military": 7
       },
       "terrainCost": {
         "grassland": false,
@@ -251,10 +251,10 @@
       "prefabId": "Barrack",
       "useCost": {
         "wood": 15,
-        "stone": 75,
-        "gold": 34,
-        "food": 12,
-        "people": 15,
+        "stone": 30,
+        "gold": 20,
+        "food": 0,
+        "people": 0,
         "military": 0
       },
       "resourcesPerTurn": {
@@ -262,8 +262,8 @@
         "stone": 0,
         "gold": 0,
         "food": 0,
-        "people": -50,
-        "military": 50
+        "people": -15,
+        "military": 15
       },
       "terrainCost": {
         "grassland": true,
@@ -283,19 +283,19 @@
       "prefabId": "Castle",
       "useCost": {
         "wood": 30,
-        "stone": 150,
-        "gold": 70,
-        "food": 30,
-        "people": 30,
+        "stone": 60,
+        "gold": 40,
+        "food": 0,
+        "people": 20,
         "military": 0
       },
       "resourcesPerTurn": {
         "wood": 0,
         "stone": 0,
-        "gold": 0,
-        "food": 0,
-        "people": -100,
-        "military": 100
+        "gold": -10,
+        "food": -10,
+        "people": -20,
+        "military": 30
       },
       "terrainCost": {
         "grassland": true,
