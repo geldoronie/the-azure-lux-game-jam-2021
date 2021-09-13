@@ -9,7 +9,16 @@ public class DrawCardEffect : EffectBase
 
     public override void UseEffect(Player player, Terrain terrain)
     {
-        player.DrawCard(_cardToGive, _cardTypeToGive);
+        switch (_cardTypeToGive)
+        {
+            case CardTypeToGive.Building:
+                player.DrawCard(_cardToGive, 1, 1); break;
+            case CardTypeToGive.Effect:
+                player.DrawCard(_cardToGive, 0, 1); break;
+            default:
+                player.DrawCard(_cardToGive); break;
+        }
+
     }
 
     public CardTypeToGive CardTypeToGive { get => _cardTypeToGive; }

@@ -3,45 +3,95 @@ using UnityEngine;
 
 public class CardsLibrary : MonoBehaviour
 {
+    [Range(1, 100)]
+    [SerializeField] private int _commonCardRate = 50;
+    [Range(1, 100)]
+    [SerializeField] private int _uncommonCardRate = 35;
+    [Range(1, 100)]
+    [SerializeField] private int _rareCardRate = 14;
+    [Range(1, 100)]
+    [SerializeField] private int _legendaryCardRate = 1;
     [SerializeField] private CardsPlayfab _cardsDatabase;
-    [Range(1, 100)]
-    [SerializeField] private int _buildingCardsChance = 75;
-    [Range(1, 100)]
-    [SerializeField] private int _effectsCardsChance = 25;
 
-    public List<Card> GetCards(int count, CardTypeToGive cardTypeToGive = CardTypeToGive.Any)
+    public List<Card> GetCards(int count, int buildingRate, int effectRate)
     {
-        switch (cardTypeToGive)
+        List<Card> cards = new List<Card>();
+        for (int i = 0; i < count; i++)
         {
-            case CardTypeToGive.Building:
-                return this._getCards(this._cardsDatabase.BuildingCards, new List<EffectCard>(), count);
-            case CardTypeToGive.Effect:
-                return this._getCards(new List<BuildingCard>(), this._cardsDatabase.EffectCards, count);
-            default:
-                return this._getCards(this._cardsDatabase.BuildingCards, this._cardsDatabase.EffectCards, count);
+            cards.Add(GetCard(buildingRate, effectRate));
         }
+        return cards;
     }
 
-    private List<Card> _getCards(List<BuildingCard> buildingCards, List<EffectCard> effectCards, int cardCount)
+    private Card GetCard(int buildingRate, int effectRate)
     {
-        List<Card> newHand = new List<Card>();
-
-        for (int i = 0; i < cardCount; i++)
+        GetRandomStuffType<bool>[] isCardBuildingRate =
         {
-            float sortBuildings = Random.Range(0, this._buildingCardsChance);
-            float sortEffects = Random.Range(0, this._effectsCardsChance);
-            if (sortBuildings > sortEffects)
+            new GetRandomStuffType<bool>(true, buildingRate),
+            new GetRandomStuffType<bool>(false, effectRate)
+        };
+
+        bool isCardBuilding = GetRandomStuff<bool>.GetRandomThing(isCardBuildingRate);
+
+        List<Card> cardList = new List<Card>();
+        if (isCardBuilding)
+        {
+            switch (GetRandomRarity())
             {
-                BuildingCard card = buildingCards[Random.Range(0, buildingCards.Count)];
-                newHand.Add(card);
-            }
-            else
-            {
-                EffectCard card = effectCards[Random.Range(0, effectCards.Count)];
-                newHand.Add(card);
+                case CardRarity.Common:
+                    cardList.AddRange(this._cardsDatabase.BuildingCards.Common);
+                    break;
+                case CardRarity.Uncommon:
+                    cardList.AddRange(this._cardsDatabase.BuildingCards.Uncommon);
+                    break;
+                case CardRarity.Rare:
+                    cardList.AddRange(this._cardsDatabase.BuildingCards.Rare);
+                    break;
+                case CardRarity.Legendary:
+                    cardList.AddRange(this._cardsDatabase.BuildingCards.Legendary);
+                    break;
             }
         }
-
-        return newHand;
+        else
+        {
+            switch (GetRandomRarity())
+            {
+                case CardRarity.Common:
+                    cardList.AddRange(this._cardsDatabase.EffectCards.Common);
+                    break;
+                case CardRarity.Uncommon:
+                    cardList.AddRange(this._cardsDatabase.EffectCards.Uncommon);
+                    break;
+                case CardRarity.Rare:
+                    cardList.AddRange(this._cardsDatabase.EffectCards.Rare);
+                    break;
+                case CardRarity.Legendary:
+                    cardList.AddRange(this._cardsDatabase.EffectCards.Legendary);
+                    break;
+            }
+        }
+        return cardList[Random.Range(0, cardList.Count)];
     }
+
+
+    private CardRarity GetRandomRarity()
+    {
+        GetRandomStuffType<CardRarity>[] rarities =
+        {
+            new GetRandomStuffType<CardRarity>(CardRarity.Common, _commonCardRate),
+            new GetRandomStuffType<CardRarity>(CardRarity.Uncommon, _uncommonCardRate),
+            new GetRandomStuffType<CardRarity>(CardRarity.Rare, _rareCardRate),
+            new GetRandomStuffType<CardRarity>(CardRarity.Legendary, _legendaryCardRate)
+        };
+
+        return GetRandomStuff<CardRarity>.GetRandomThing(rarities);
+    }
+}
+
+enum CardRarity
+{
+    Common,
+    Uncommon,
+    Rare,
+    Legendary
 }

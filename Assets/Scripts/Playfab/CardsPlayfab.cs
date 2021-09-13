@@ -10,22 +10,15 @@ public class CardsPlayfab : MonoBehaviour
     [SerializeField] private GameObject primitiveBuildingCardPrefab;
     [SerializeField] private EffectBase primitiveEffect;
 
-    public List<BuildingCard> BuildingCards;
-    public List<EffectCard> EffectCards;
+    public BuildingCardList BuildingCards;
+    public EffectCardList EffectCards;
     public UnityAction<BuildingCard[], EffectCard[]> onGetCards;
 
-    void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        this.BuildingCards = new List<BuildingCard>();
-        this.EffectCards = new List<EffectCard>();
         this.Authentication = GameObject.Find("AuthenticationPlayfab").GetComponent<AuthenticationPlayfab>();
-        this._getCards();
-    }
-
-    private void _getCards()
-    {
-        var request = new GetTitleDataRequest
+        GetTitleDataRequest request = new GetTitleDataRequest
         {
             Keys = new List<string> {
                 "cards_effects",
@@ -37,22 +30,6 @@ public class CardsPlayfab : MonoBehaviour
         PlayFabClientAPI.GetTitleData(request, this._onGetCardsSuccess, this._onGetCardsFailure);
     }
 
-    struct BuildingCardList
-    {
-        public List<BuildingCard> common;
-        public List<BuildingCard> uncommon;
-        public List<BuildingCard> rare;
-        public List<BuildingCard> legendary;
-    }
-
-    struct EffectCardList
-    {
-        public List<EffectCard> common;
-        public List<EffectCard> uncommon;
-        public List<EffectCard> rare;
-        public List<EffectCard> legendary;
-    }
-
     private void _onGetCardsSuccess(GetTitleDataResult result)
     {
         if (!result.Data.ContainsKey("cards_buildings") || !result.Data.ContainsKey("cards_effects"))
@@ -61,43 +38,41 @@ public class CardsPlayfab : MonoBehaviour
             return;
         }
 
-        BuildingCardList buildingCardsList = JsonUtility.FromJson<BuildingCardList>(result.Data["cards_buildings"]);
-        this.BuildingCards = new List<BuildingCard>();
-        this.BuildingCards.AddRange(buildingCardsList.common);
-        this.BuildingCards.AddRange(buildingCardsList.uncommon);
-        this.BuildingCards.AddRange(buildingCardsList.rare);
-        this.BuildingCards.AddRange(buildingCardsList.legendary);
+        this.BuildingCards = JsonUtility.FromJson<BuildingCardList>(result.Data["cards_buildings"]);
+        foreach (BuildingCard card in this.BuildingCards.Common) { LoadBuildingCard(card); }
+        foreach (BuildingCard card in this.BuildingCards.Uncommon) { LoadBuildingCard(card); }
+        foreach (BuildingCard card in this.BuildingCards.Rare) { LoadBuildingCard(card); }
+        foreach (BuildingCard card in this.BuildingCards.Legendary) { LoadBuildingCard(card); }
 
-        foreach (BuildingCard card in this.BuildingCards)
+        this.EffectCards = JsonUtility.FromJson<EffectCardList>(result.Data["cards_effects"]);
+        foreach (EffectCard card in this.EffectCards.Common) { LoadEffectCard(card); }
+        foreach (EffectCard card in this.EffectCards.Uncommon) { LoadEffectCard(card); }
+        foreach (EffectCard card in this.EffectCards.Rare) { LoadEffectCard(card); }
+        foreach (EffectCard card in this.EffectCards.Legendary) { LoadEffectCard(card); }
+    }
+
+    private void LoadBuildingCard(BuildingCard card)
+    {
+        if (!string.IsNullOrEmpty(card.PrefabId))
         {
-            if (!string.IsNullOrEmpty(card.PrefabId))
-            {
-                card.Prefab = Resources.Load("Buildings/" + card.PrefabId) as GameObject;
-            }
-            if (card.Prefab == null)
-            {
-                card.Prefab = primitiveBuildingCardPrefab;
-            }
+            card.Prefab = Resources.Load("Buildings/" + card.PrefabId) as GameObject;
         }
-
-        EffectCardList effectCardsList = JsonUtility.FromJson<EffectCardList>(result.Data["cards_effects"]);
-        this.EffectCards = new List<EffectCard>();
-        this.EffectCards.AddRange(effectCardsList.common);
-        this.EffectCards.AddRange(effectCardsList.uncommon);
-        this.EffectCards.AddRange(effectCardsList.rare);
-        this.EffectCards.AddRange(effectCardsList.legendary);
-
-        foreach (EffectCard card in this.EffectCards)
+        if (card.Prefab == null)
         {
             card.Prefab = primitiveBuildingCardPrefab;
-            if (!string.IsNullOrEmpty(card.EffectId))
-            {
-                card.Effect = Resources.Load("Effects/" + card.EffectId) as EffectBase;
-            }
-            if (card.Effect == null)
-            {
-                card.Effect = primitiveEffect;
-            }
+        }
+    }
+
+    private void LoadEffectCard(EffectCard card)
+    {
+        card.Prefab = primitiveBuildingCardPrefab;
+        if (!string.IsNullOrEmpty(card.EffectId))
+        {
+            card.Effect = Resources.Load("Effects/" + card.EffectId) as EffectBase;
+        }
+        if (card.Effect == null)
+        {
+            card.Effect = primitiveEffect;
         }
     }
 
@@ -105,4 +80,48 @@ public class CardsPlayfab : MonoBehaviour
     {
         Debug.LogError(error);
     }
+}
+
+[System.Serializable]
+public class BuildingCardList
+{
+    [SerializeField] private List<BuildingCard> common;
+    [SerializeField] private List<BuildingCard> uncommon;
+    [SerializeField] private List<BuildingCard> rare;
+    [SerializeField] private List<BuildingCard> legendary;
+
+    public BuildingCardList(List<BuildingCard> common, List<BuildingCard> uncommon, List<BuildingCard> rare, List<BuildingCard> legendary)
+    {
+        this.common = common;
+        this.uncommon = uncommon;
+        this.rare = rare;
+        this.legendary = legendary;
+    }
+
+    public List<BuildingCard> Common { get => common; }
+    public List<BuildingCard> Uncommon { get => uncommon; }
+    public List<BuildingCard> Rare { get => rare; }
+    public List<BuildingCard> Legendary { get => legendary; }
+}
+
+[System.Serializable]
+public class EffectCardList
+{
+    [SerializeField] private List<EffectCard> common;
+    [SerializeField] private List<EffectCard> uncommon;
+    [SerializeField] private List<EffectCard> rare;
+    [SerializeField] private List<EffectCard> legendary;
+
+    public EffectCardList(List<EffectCard> common, List<EffectCard> uncommon, List<EffectCard> rare, List<EffectCard> legendary)
+    {
+        this.common = common;
+        this.uncommon = uncommon;
+        this.rare = rare;
+        this.legendary = legendary;
+    }
+
+    public List<EffectCard> Common { get => common; }
+    public List<EffectCard> Uncommon { get => uncommon; }
+    public List<EffectCard> Rare { get => rare; }
+    public List<EffectCard> Legendary { get => legendary; }
 }

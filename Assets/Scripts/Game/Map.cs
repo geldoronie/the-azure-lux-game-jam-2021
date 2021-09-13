@@ -289,41 +289,17 @@ public class Map : MonoBehaviour
 
     private TerrainRule GetRandomTerrainRule()
     {
-        int totalIncidence = desertIncidence + forestIncidence + grasslandIncidence + mountainIncidence + riverIncidence + swampIncidence;
+        GetRandomStuffType<TerrainRule>[] tileRates =
+        {
+            new GetRandomStuffType<TerrainRule>(new DesertTerrainRule(), desertIncidence),
+            new GetRandomStuffType<TerrainRule>(new ForestTerrainRule(), forestIncidence),
+            new GetRandomStuffType<TerrainRule>(new GrasslandTerrainRule(), grasslandIncidence),
+            new GetRandomStuffType<TerrainRule>(new MountainTerrainRule(), mountainIncidence),
+            new GetRandomStuffType<TerrainRule>(new RiverTerrainRule(), riverIncidence),
+            new GetRandomStuffType<TerrainRule>(new SwampTerrainRule(), swampIncidence),
+        };
 
-        int randomIncidence = Random.Range(0, totalIncidence);
-        int currentIncidence = desertIncidence;
-        if (randomIncidence < currentIncidence)
-        {
-            return new DesertTerrainRule();
-        }
-        currentIncidence += forestIncidence;
-        if (randomIncidence < currentIncidence)
-        {
-            return new ForestTerrainRule();
-        }
-        currentIncidence += grasslandIncidence;
-        if (randomIncidence < currentIncidence)
-        {
-            return new GrasslandTerrainRule();
-        }
-        currentIncidence += mountainIncidence;
-        if (randomIncidence < currentIncidence)
-        {
-            return new MountainTerrainRule();
-        }
-        currentIncidence += riverIncidence;
-        if (randomIncidence < currentIncidence)
-        {
-            return new RiverTerrainRule();
-        }
-
-        currentIncidence += swampIncidence;
-        if (randomIncidence < currentIncidence)
-        {
-            return new SwampTerrainRule();
-        }
-        return null;
+        return GetRandomStuff<TerrainRule>.GetRandomThing(tileRates);
     }
 
     public Terrain[] GetVonNeumannNeighbors(int x, int y)
