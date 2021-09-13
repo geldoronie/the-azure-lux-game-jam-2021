@@ -34,12 +34,12 @@ public class Card
         if (!check) return false;
 
         return
-            player.WoodAmount >= UseCost.Wood &&
-            player.StoneAmount >= UseCost.Stone &&
-            player.GoldAmount >= UseCost.Gold &&
-            player.FoodAmount >= UseCost.Food &&
-            player.PeopleAmount >= UseCost.People &&
-            player.MilitaryAmount >= UseCost.Military;
+            player.Resources.Wood >= UseCost.Wood &&
+            player.Resources.Stone >= UseCost.Stone &&
+            player.Resources.Gold >= UseCost.Gold &&
+            player.Resources.Food >= UseCost.Food &&
+            player.Resources.People >= UseCost.People &&
+            player.Resources.Military >= UseCost.Military;
     }
 
     public string Name { get => name; }
@@ -70,6 +70,36 @@ public class ResourcesAmounts
         this.people = people;
         this.military = military;
     }
+
+    public ResourcesAmounts()
+    {
+        wood = 0;
+        stone = 0;
+        gold = 0;
+        food = 0;
+        people = 0;
+        military = 0;
+    }
+
+    public static ResourcesAmounts operator +(ResourcesAmounts a, ResourcesAmounts b)
+            => new ResourcesAmounts(
+                a.Wood + b.Wood,
+                a.Stone + b.Stone,
+                a.Gold + b.Gold,
+                a.Food + b.Food,
+                a.People + b.People,
+                a.Military + b.Military
+            );
+
+    public static ResourcesAmounts operator -(ResourcesAmounts a, ResourcesAmounts b)
+            => new ResourcesAmounts(
+                a.Wood - b.Wood,
+                a.Stone - b.Stone,
+                a.Gold - b.Gold,
+                a.Food - b.Food,
+                a.People - b.People,
+                a.Military - b.Military
+            );
 
     public int Wood { get => wood; }
     public int Stone { get => stone; }

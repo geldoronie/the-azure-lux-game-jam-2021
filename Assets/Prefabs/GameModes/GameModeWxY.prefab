@@ -48,21 +48,36 @@ MonoBehaviour:
   _timer: {fileID: 8922124141298106557}
   _player: {fileID: 8922124142040224615}
   _map: {fileID: 0}
+  _loadingMap: {fileID: 0}
   _startingCardsCount: 5
-  _playTurnTime: 20
+  _playTurnTime: 60
   _turnsCount: 0
   _currentTurnType: 0
   _currentTurnPhase: 0
-  _isRunning: 0
+  _gameState: 2
+  _invalidTerrainBuildingAliveToleranceTurns: 2
+  _gotPlayerBaseResources: 0
+  _hasPlayerDrawnCard: 0
+  _gotPlayerBuildingsResources: 0
   _mapWidth: 10
   _mapHeight: 10
-  resourcePerTurn:
-    wood: 5
-    stone: 5
-    gold: 5
-    food: 5
-    people: 5
-    military: 5
+  _passiveResourcesPerTurn:
+    wood: 0
+    stone: 0
+    gold: 0
+    food: 0
+    people: 0
+    military: 0
+  _lastTurnRessourcesPerTurn:
+    wood: 0
+    stone: 0
+    gold: 0
+    food: 0
+    people: 0
+    military: 0
+  _terrainDisasterExecuted: 0
+  _changeTerrainDisasterDone: 0
+  _invalidBuildsDestroyed: 0
 --- !u!1 &8922124141298106547
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,11 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b067956b584194597ad00f500daae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _woodAmount: 0
-  _stoneAmount: 0
-  _goldAmount: 0
-  _foodAmount: 0
-  _peopleAmount: 0
-  _militaryAmount: 0
+  _resources:
+    wood: 500
+    stone: 500
+    gold: 500
+    food: 500
+    people: 500
+    military: 500
   _library: {fileID: 0}
   _hand: []

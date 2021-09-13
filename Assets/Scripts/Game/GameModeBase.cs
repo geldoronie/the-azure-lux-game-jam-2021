@@ -9,15 +9,18 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected Timer _timer;
     [SerializeField] protected Player _player;
     [SerializeField] protected Map _map;
+    [SerializeField] protected GameStats _gameStats;
+    [SerializeField] protected LoadingMapGUI _loadingMap;
 
     [Header("Gameplay")]
     [SerializeField] protected int _startingCardsCount = 5;
     [SerializeField] protected float _playTurnTime = 20;
-    [SerializeField] protected float _turnsCount = 0;
+    [SerializeField] protected int _turnsCount = 0;
     [SerializeField] protected TurnType _currentTurnType = TurnType.Player;
     [SerializeField] protected TurnPhase _currentTurnPhase = TurnPhase.Refill;
     [SerializeField] protected GameState _gameState = GameState.Stopped;
     [SerializeField] protected int _invalidTerrainBuildingAliveToleranceTurns = 2;
+
 
     [Header("Player State")]
     [SerializeField] protected bool _gotPlayerBaseResources = false;
@@ -27,7 +30,8 @@ public class GameModeBase : MonoBehaviour
     [Header("Map")]
     [SerializeField] protected int _mapWidth = 10;
     [SerializeField] protected int _mapHeight = 10;
-    [SerializeField] protected ResourcesAmounts resourcePerTurn;
+    [SerializeField] protected ResourcesAmounts _passiveResourcesPerTurn;
+    [SerializeField] protected ResourcesAmounts _lastTurnRessourcesPerTurn;
 
     private static GameModeBase instance;
     public UnityAction OnChangeTurn;
@@ -50,6 +54,7 @@ public class GameModeBase : MonoBehaviour
     {
         this._map.OnMapFinishedCreating += this._onStartGameMapReady;
         this._map.GenerateMap(this._mapWidth, this._mapHeight);
+        _loadingMap.gameObject.SetActive(true);
     }
 
     public void ChangeTurn()
@@ -58,6 +63,7 @@ public class GameModeBase : MonoBehaviour
         {
             this._currentTurnType = TurnType.CPU;
             this.ChangePhase(TurnPhase.Main);
+            this.RegisterGameStats();
         }
         else
         {
@@ -83,40 +89,77 @@ public class GameModeBase : MonoBehaviour
         this._currentTurnPhase = phase;
     }
 
-    public void GivePlayerBaseResources()
+    public ResourcesAmounts GivePlayerBaseResources()
     {
-        this._player.GetResource(resourcePerTurn);
+        this._player.GetResource(_passiveResourcesPerTurn);
+        return _passiveResourcesPerTurn;
     }
 
-    public void GetPlayerBuildingsResources()
+    public ResourcesAmounts GetPlayerBuildingsResources()
     {
+        ResourcesAmounts buildingResources = new ResourcesAmounts();
         this._map.GetBuildings().ForEach(build =>
         {
-            this._player.GetResource(build.Card.ResourcesPerTurn);
+            buildingResources += build.Card.ResourcesPerTurn;
+            MainCanvas.Instance.ShowResourcesGain(build.Terrain.transform, build.Card.ResourcesPerTurn);
         });
+        this._player.GetResource(buildingResources);
+        return buildingResources;
     }
 
     public void DestroyPlayerInvalidBuildings()
     {
         this._map.GetBuildings().ForEach(build =>
         {
-            if(!build.CanSitOnTerrain()){
-                if(build.Terrain.TurnsAlive >= this._invalidTerrainBuildingAliveToleranceTurns){
+            if (!build.CanSitOnTerrain())
+            {
+                if (build.Terrain.TurnsAlive >= this._invalidTerrainBuildingAliveToleranceTurns)
+                {
                     build.Terrain.DestroyBuild();
                 }
             }
         });
     }
 
-    public void EndTurn(){
+    public void EndTurn()
+    {
         this.ChangeTurn();
         this._timer.StartTime = 4;
         this._timer.ResetTimer();
         this._timer.StartTimer();
     }
 
-    public void PlayerDrawNewHand(){
+    public void PlayerDrawNewHand()
+    {
         this._player.DrawNewHand(this._startingCardsCount);
+    }
+
+    public void RegisterGameStats(){
+        this._gameStats.resourcesProgression.Add(
+            new GameStatsResourceProgression(){
+                turn = this._turnsCount == 0 ? this._turnsCount : this._turnsCount / 2,
+                food = this._player.Resources.Food,
+                gold = this._player.Resources.Gold,
+                military = this._player.Resources.Military,
+                people = this._player.Resources.People,
+                stone = this._player.Resources.Stone,
+                wood = this._player.Resources.Wood
+            }
+        );
+
+        double progress = (this._player.Resources.Food * 0.5) + 
+                        (this._player.Resources.Gold * 1) + 
+                        (this._player.Resources.Military * 2) + 
+                        (this._player.Resources.People * 0.2) + 
+                        (this._player.Resources.Stone * 0.6) + 
+                        (this._player.Resources.Wood * 0.6);
+
+        this._gameStats.gameProgression.Add(            
+            new GameStatsFullProgression(){
+                turn = this._turnsCount == 0 ? this._turnsCount : this._turnsCount / 2,
+                progress = progress
+            }
+        );
     }
 
     private void _onStartGameMapReady()
@@ -139,6 +182,7 @@ public class GameModeBase : MonoBehaviour
     public int MapHeight { get => _mapHeight; }
     public GameState GameState { get => _gameState; }
     public Map Map { get => _map; }
+    public ResourcesAmounts LastTurnRessourcesPerTurn { get => _lastTurnRessourcesPerTurn; }
 }
 
 public enum TurnType

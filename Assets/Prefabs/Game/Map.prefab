@@ -74,15 +74,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd4a68010e9fcd44b291ceb2f7b4915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _width: 50
-  _height: 50
+  _boardQuadMaterial: {fileID: 2100000, guid: fe5fd43f805eac64789707c596ec7b84, type: 2}
+  _cellularAtomataIterations: 5
+  _cellularAtomataIterationsDelay: 1.2
   _rotationSpeed: 360
   desertIncidence: 100
   forestIncidence: 100
-  grasslandIncidence: 1
+  grasslandIncidence: 100
   mountainIncidence: 100
   riverIncidence: 100
-  swampIncidence: 1
+  swampIncidence: 100
   castleTransform: {fileID: 4823987672190764652}
   cornerTowerPrefab: {fileID: 9155771314074790148, guid: b035be45de2d7ac4f92ed586f4d918a4, type: 3}
   middleWallPrefab: {fileID: 8397626231604706140, guid: 7b3c310bcd87a7e439f5264f6d89950a, type: 3}

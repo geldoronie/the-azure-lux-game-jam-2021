@@ -45,12 +45,7 @@ public class Terrain : MonoBehaviour
             Building constructedBuilding = Instantiate<Building>(buildingPrefab, transform.position, Quaternion.identity);
             constructedBuilding.Initialize(buildingCard, this);
             _building = constructedBuilding;
-            GameModeBase.Instance.Player.WoodAmount -= buildingCard.UseCost.Wood;
-            GameModeBase.Instance.Player.StoneAmount -= buildingCard.UseCost.Stone;
-            GameModeBase.Instance.Player.GoldAmount -= buildingCard.UseCost.Gold;
-            GameModeBase.Instance.Player.FoodAmount -= buildingCard.UseCost.Food;
-            GameModeBase.Instance.Player.PeopleAmount -= buildingCard.UseCost.People;
-            GameModeBase.Instance.Player.MilitaryAmount -= buildingCard.UseCost.Military;
+            GameModeBase.Instance.Player.Resources -= buildingCard.UseCost;
         }
     }
 
@@ -63,7 +58,7 @@ public class Terrain : MonoBehaviour
     public ToolTipInformation GetTooltip()
     {
         string content = "Building(s): None";
-        content += "Cordinates: " + X + ", " + Y;
+        content += "\nCordinates: " + X + ", " + Y;
         if (_building != null)
         {
             content = _building.Card.Name + " (" + TurnsAlive + ")\n";
