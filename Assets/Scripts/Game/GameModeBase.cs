@@ -162,12 +162,12 @@ public class GameModeBase : MonoBehaviour
             }
         );
 
-        double progress = (this._player.Resources.Food * 0.5) +
-                        (this._player.Resources.Gold * 1) +
+        double progress = (this._player.Resources.Food * 1) +
+                        (this._player.Resources.Gold * 1.5f) +
                         (this._player.Resources.Military * 2) +
-                        (this._player.Resources.People * 0.2) +
-                        (this._player.Resources.Stone * 0.6) +
-                        (this._player.Resources.Wood * 0.6);
+                        (this._player.Resources.People * 3) +
+                        (this._player.Resources.Stone * 1) +
+                        (this._player.Resources.Wood * 1);
 
         this._gameStats.gameProgression.Add(
             new GameStatsFullProgression()
@@ -198,6 +198,7 @@ public class GameModeBase : MonoBehaviour
     public int MapWidth { get => _mapWidth; }
     public int MapHeight { get => _mapHeight; }
     public GameState GameState { get => _gameState; }
+    public GameStats GameStats { get => _gameStats; }
     public Map Map { get => _map; }
     public ResourcesAmounts LastTurnRessourcesPerTurn { get => _lastTurnRessourcesPerTurn; }
 }
