@@ -10,6 +10,8 @@ public class PlayerProfilePlayfab : MonoBehaviour
 
     [SerializeField] public PlayerProfile Profile;
 
+    [SerializeField] public bool IsLoaded = false;
+
     public UnityAction OnProfileLoadedSuccess;
     public UnityAction OnProfileLoadedFailure;
 
@@ -40,12 +42,14 @@ public class PlayerProfilePlayfab : MonoBehaviour
         this.Profile.displayName = result.PlayerProfile.DisplayName;
         this.Profile.avatarUrl = result.PlayerProfile.AvatarUrl;
         this.OnProfileLoadedSuccess?.Invoke();
+        this.IsLoaded = true;
         Debug.Log("Player Profile Loaded!");
     }
 
     private void _onGetPlayerProfileFailure(PlayFabError error)
     {
         this.OnProfileLoadedFailure?.Invoke();
+        this.IsLoaded = true;
         Debug.LogError(error);
     }
 }

@@ -17,6 +17,12 @@ public class MainMenuTopBarGUI : MonoBehaviour
         this._playerProfilePlayfab.OnProfileLoadedSuccess += this.OnPlayerProfile;
     }
 
+    void Start()
+    {
+        if(this._playerProfilePlayfab.IsLoaded)
+            this._playerDisplayName.text = this._playerProfilePlayfab.Profile.displayName;
+    }
+
     void OnPlayerProfile(){
         this._playerProfilePlayfab.OnProfileLoadedSuccess -= this.OnPlayerProfile;
         this._playerDisplayName.text = this._playerProfilePlayfab.Profile.displayName;

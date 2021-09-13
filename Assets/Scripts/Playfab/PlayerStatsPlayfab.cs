@@ -15,7 +15,7 @@ public class PlayerStatsPlayfab : MonoBehaviour
 
     [SerializeField] private List<GameStats> Matches;
 
-    [SerializeField] private GameStats LastMatchStats;
+    [SerializeField] public GameStats LastMatchStats;
 
     void Awake()
     {
@@ -28,9 +28,11 @@ public class PlayerStatsPlayfab : MonoBehaviour
         this.LastMatchStats = gameStats;
     }
 
-    public void SaveLastMapStatistics(GameStats gameStats){
-        this.LastMatchStats = gameStats;
-        this.Matches.Add(gameStats);
+    public void SaveLastMapStatistics(){
+        if(this.LastMatchStats != null)
+            return;
+
+        this.Matches.Add(this.LastMatchStats);
         var matches = new Matches(){
             games = this.Matches
         };
