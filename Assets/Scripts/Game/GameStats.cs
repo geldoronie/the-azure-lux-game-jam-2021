@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class GameStatsFullProgression
 {
     public int turn;
-    public double progress;
+    public float progress;
 }
 
 [System.Serializable]
