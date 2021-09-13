@@ -79,7 +79,7 @@ public class AuthenticationGUI : MonoBehaviour
             this._waitForAuthenticationResponse = false;
             if(Authentication.Registered || Authentication.Logged){
                 this.ClearInputs();
-                SceneManager.LoadScene("WorldVsYou", LoadSceneMode.Single);
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
             }
         }
     }

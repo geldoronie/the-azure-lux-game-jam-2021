@@ -23,6 +23,8 @@ public class GameStatsResourceProgression
 [System.Serializable]
 public class GameStats
 {
+    public string mode;
     public List<GameStatsResourceProgression> resourcesProgression;
     public List<GameStatsFullProgression> gameProgression;
+
 }

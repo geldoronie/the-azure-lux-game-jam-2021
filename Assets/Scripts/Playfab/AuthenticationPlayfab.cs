@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEngine.Events;
 
 public class AuthenticationPlayfab : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class AuthenticationPlayfab : MonoBehaviour
     public string PlayFabId { get { return this._playFabId; } }
     [SerializeField]
     public PlayFabAuthenticationContext AuthenticationContext { get { return this._authenticationContext; } }
+
     [SerializeField]
     public bool Logged { get { return this._logged; } }
     [SerializeField]
@@ -45,6 +47,9 @@ public class AuthenticationPlayfab : MonoBehaviour
     private bool _loading = false;
 
     private PlayFabAuthenticationContext _authenticationContext;
+
+    public UnityAction OnAuthenticationSuccess;
+    public UnityAction OnAuthenticationFailure;
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +98,7 @@ public class AuthenticationPlayfab : MonoBehaviour
         this._authenticationContext = result.AuthenticationContext;
         this._logged = true;
         this._loading = false;
+        this.OnAuthenticationSuccess?.Invoke();
         Debug.Log("Logged with successful!");
     }
 
@@ -100,6 +106,7 @@ public class AuthenticationPlayfab : MonoBehaviour
         this._logged = false;
         this._username = "";
         this._loading = false;
+        this.OnAuthenticationFailure?.Invoke();
         Debug.Log("Failed to loggin!");
     }
 

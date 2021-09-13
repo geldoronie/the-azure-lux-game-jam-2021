@@ -1,8 +1,8 @@
 {
-  "cards": [
+  "common": [
     {
-      "name": "Change any terrain to Desert",
-      "description": "",
+      "name": "Abdul Alhazred's Curse",
+      "description": "Change any terrain to Desert",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -24,8 +24,8 @@
       "effectId": "Any2Desert"
     },
     {
-      "name": "Change any terrain to Forest",
-      "description": "",
+      "name": "The Dark Wood Enchantment",
+      "description": "Change any terrain to Forest",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -47,8 +47,8 @@
       "effectId": "Any2Forest"
     },
     {
-      "name": "Change any terrain to Grassland",
-      "description": "",
+      "name": "Running in the 90s",
+      "description": "Change any terrain to Grassland",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -70,8 +70,8 @@
       "effectId": "Any2Grassland"
     },
     {
-      "name": "Change any terrain to Mountain",
-      "description": "Run to the hills",
+      "name": "Run to the hills",
+      "description": "Change any terrain to Mountain",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -93,8 +93,8 @@
       "effectId": "Any2Mountain"
     },
     {
-      "name": "Change any terrain to River",
-      "description": "",
+      "name": "Troll's Dream",
+      "description": "Change any terrain to River",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -116,8 +116,8 @@
       "effectId": "Any2River"
     },
     {
-      "name": "Change any terrain to Swamp",
-      "description": "",
+      "name": "Sorrow and Despair",
+      "description": "Change any terrain to Swamp",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -137,6 +137,242 @@
         "mountain": true
       },
       "effectId": "Any2Swamp"
+    }
+  ],
+  "uncommon": [
+    {
+      "name": "Da Vinci's Pleasure",
+      "description": "Draw 2 Building cards",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "DrawBuilding"
+    },
+    {
+      "name": "There is no Spoon",
+      "description": "Draw 3 Effect cards",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "DrawEffect"
+    }
+  ],
+  "rare": [
+    {
+      "name": "Leaf it to Me",
+      "description": "Gain 100 Wood instantly",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "LeafItToMe"
+    },
+    {
+      "name": "Rock on!",
+      "description": "Gain 100 Stone instantly",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "RockOn"
+    },
+    {
+      "name": "Keyser Soze",
+      "description": "Gain 100 Gold instantly",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "KeyserSoze"
+    },
+    {
+      "name": "Cheese Steak Jimmy's",
+      "description": "Gain 100 Food instantly",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "CheeseSteakJimmys"
+    },
+    {
+      "name": "Point Break",
+      "description": "Gain 100 People instantly",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "PointBreak"
+    },
+    {
+      "name": "To Smithereens",
+      "description": "Gain 100 Military instantly",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "ToSmithereens"
+    }
+  ],
+  "legendary": [
+    {
+      "name": "Texas Hold'em",
+      "description": "Draw 5 cards of any type",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "DrawAny"
+    },
+    {
+      "name": "Who is your Daddy?",
+      "description": "Give 100 from each resource",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "WhoIsYourDaddy"
     }
   ]
 }

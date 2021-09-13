@@ -1,7 +1,6 @@
-using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Change Terrain Effect", menuName = "Game Jam/Effects/Change Terrain", order = 0)]
+[CreateAssetMenu(fileName = "Change Terrain Effect", menuName = "Game Jam/Effects/Change Terrain")]
 public class ChangeTerrainEffect : EffectBase
 {
     [SerializeField] private TerrainType _terrain;

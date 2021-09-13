@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameModeBase : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class GameModeBase : MonoBehaviour
     [SerializeField] protected Player _player;
     [SerializeField] protected Map _map;
     [SerializeField] protected GameStats _gameStats;
+    [SerializeField] protected PlayerStatsPlayfab _playerStatsPlayfab;
     [SerializeField] protected LoadingMapGUI _loadingMap;
+    [SerializeField] protected string _name;
 
     [Header("Gameplay")]
     [SerializeField] protected int _startingCardsCount = 5;
@@ -38,6 +41,7 @@ public class GameModeBase : MonoBehaviour
 
     private void Awake()
     {
+        this._playerStatsPlayfab = GameObject.Find("PlayerStatistics").GetComponent<PlayerStatsPlayfab>();
         if (instance != null)
         {
             Debug.LogError("Theres is more than on instance of the Game Mode. This is not allowed!");
@@ -52,6 +56,9 @@ public class GameModeBase : MonoBehaviour
 
     public virtual void StartGame()
     {
+        this._playerStatsPlayfab.LoadPlayerStats();
+        this._gameStats.mode = this._name;
+
         this._map.OnMapFinishedCreating += this._onStartGameMapReady;
         this._map.GenerateMap(this._mapWidth, this._mapHeight);
         _loadingMap.gameObject.SetActive(true);
@@ -132,6 +139,13 @@ public class GameModeBase : MonoBehaviour
     public void PlayerDrawNewHand()
     {
         this._player.DrawNewHand(this._startingCardsCount);
+    }
+
+    public void EndGame(){
+        this._timer.PauseTimer();
+        this._gameState = GameState.Stopped;
+        this._playerStatsPlayfab.SaveMatchStatistic(this._gameStats);
+        SceneManager.LoadScene("EndGameSumary", LoadSceneMode.Single);
     }
 
     public void RegisterGameStats(){

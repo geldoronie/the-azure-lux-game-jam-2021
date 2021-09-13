@@ -39,12 +39,18 @@ public class CardsPlayfab : MonoBehaviour
 
     struct BuildingCardList
     {
-        public List<BuildingCard> cards;
+        public List<BuildingCard> common;
+        public List<BuildingCard> uncommon;
+        public List<BuildingCard> rare;
+        public List<BuildingCard> legendary;
     }
 
     struct EffectCardList
     {
-        public List<EffectCard> cards;
+        public List<EffectCard> common;
+        public List<EffectCard> uncommon;
+        public List<EffectCard> rare;
+        public List<EffectCard> legendary;
     }
 
     private void _onGetCardsSuccess(GetTitleDataResult result)
@@ -55,7 +61,12 @@ public class CardsPlayfab : MonoBehaviour
             return;
         }
 
-        this.BuildingCards = JsonUtility.FromJson<BuildingCardList>(result.Data["cards_buildings"]).cards;
+        BuildingCardList buildingCardsList = JsonUtility.FromJson<BuildingCardList>(result.Data["cards_buildings"]);
+        this.BuildingCards = new List<BuildingCard>();
+        this.BuildingCards.AddRange(buildingCardsList.common);
+        this.BuildingCards.AddRange(buildingCardsList.uncommon);
+        this.BuildingCards.AddRange(buildingCardsList.rare);
+        this.BuildingCards.AddRange(buildingCardsList.legendary);
 
         foreach (BuildingCard card in this.BuildingCards)
         {
@@ -69,7 +80,13 @@ public class CardsPlayfab : MonoBehaviour
             }
         }
 
-        this.EffectCards = JsonUtility.FromJson<EffectCardList>(result.Data["cards_effects"]).cards;
+        EffectCardList effectCardsList = JsonUtility.FromJson<EffectCardList>(result.Data["cards_effects"]);
+        this.EffectCards = new List<EffectCard>();
+        this.EffectCards.AddRange(effectCardsList.common);
+        this.EffectCards.AddRange(effectCardsList.uncommon);
+        this.EffectCards.AddRange(effectCardsList.rare);
+        this.EffectCards.AddRange(effectCardsList.legendary);
+
         foreach (EffectCard card in this.EffectCards)
         {
             card.Prefab = primitiveBuildingCardPrefab;
