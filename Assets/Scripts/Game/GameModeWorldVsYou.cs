@@ -232,7 +232,7 @@ public class GameModeWorldVsYou : GameModeBase
         _vickingsAttackTurnsLeft--;
         if (_vickingsAttackTurnsLeft == 0)
         {
-            int militaryTaken = Mathf.Clamp(_vickingsAttackMilitaryRequired - _player.Resources.Military, 0, _vickingsAttackMilitaryRequired);
+            int militaryTaken = Mathf.Clamp(_vickingsAttackMilitaryRequired, 0, _player.Resources.Military);
             int peopleNeeded = _vickingsAttackMilitaryRequired - militaryTaken;
 
             Player.Resources -= new ResourcesAmounts(0, 0, 0, 0, peopleNeeded * 2, militaryTaken);

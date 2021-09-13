@@ -18,7 +18,7 @@ public class CameraTooltipTrigger : MonoBehaviour
             Terrain terrain = hit.collider.GetComponent<Terrain>();
             if (terrain != null)
             {
-                if (_currentTerrain != terrain)
+                if (_currentTerrain != null && _currentTerrain != terrain)
                 {
                     HideTooltip();
                 }
