@@ -24,6 +24,8 @@ public class GameStatsResourceProgression
 public class GameStats
 {
     public string mode;
+
+    public float highestProgression = 0;
     public List<GameStatsResourceProgression> resourcesProgression;
     public List<GameStatsFullProgression> gameProgression;
 
