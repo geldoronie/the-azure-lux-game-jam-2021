@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class TopBarTimerGUI : MonoBehaviour
+public class TopBarTurnCountGUI : MonoBehaviour
 {
-    [SerializeField] Timer Timer;
     [SerializeField] TextIconGUI Display;
 
     // Start is called before the first frame update
@@ -17,8 +15,6 @@ public class TopBarTimerGUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int minutes =  Mathf.FloorToInt(Timer.Remaining / 60);
-        int seconds = Mathf.FloorToInt(Timer.Remaining % 60);
-        Display.Value = string.Format("{0:00}:{1:00}",minutes,seconds);
+        Display.Value = ((GameModeBase.Instance.CurrentTurn == 0 ? GameModeBase.Instance.CurrentTurn : GameModeBase.Instance.CurrentTurn / 2 ) + 1).ToString();
     }
 }
