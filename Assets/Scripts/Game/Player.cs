@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +10,7 @@ public class Player : MonoBehaviour
 
     public UnityAction OnHandCardsUpdate;
 
-    public void DrawCard(int cardCount)
+    public void DrawCard(int cardCount, CardTypeToGive cardTypeToGive = CardTypeToGive.Any)
     {
         this._hand.AddRange(this._library.GetCards(cardCount));
         OnHandCardsUpdate?.Invoke();

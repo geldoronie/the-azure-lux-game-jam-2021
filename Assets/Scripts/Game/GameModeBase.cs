@@ -108,6 +108,7 @@ public class GameModeBase : MonoBehaviour
         this._map.GetBuildings().ForEach(build =>
         {
             buildingResources += build.Card.ResourcesPerTurn;
+            MainCanvas.Instance.ShowResourcesGain(build.Terrain.transform, build.Card.ResourcesPerTurn);
         });
         this._player.GetResource(buildingResources);
         return buildingResources;

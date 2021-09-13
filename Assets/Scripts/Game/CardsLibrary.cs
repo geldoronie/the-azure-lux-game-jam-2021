@@ -9,12 +9,20 @@ public class CardsLibrary : MonoBehaviour
     [Range(1, 100)]
     [SerializeField] private int _effectsCardsChance = 25;
 
-    public List<Card> GetCards(int count)
+    public List<Card> GetCards(int count, CardTypeToGive cardTypeToGive = CardTypeToGive.Any)
     {
-        return this._getCards(this._cardsDatabase.BuildingCards.ToArray(), this._cardsDatabase.EffectCards.ToArray(), count);
+        switch (cardTypeToGive)
+        {
+            case CardTypeToGive.Building:
+                return this._getCards(this._cardsDatabase.BuildingCards, new List<EffectCard>(), count);
+            case CardTypeToGive.Effect:
+                return this._getCards(new List<BuildingCard>(), this._cardsDatabase.EffectCards, count);
+            default:
+                return this._getCards(this._cardsDatabase.BuildingCards, this._cardsDatabase.EffectCards, count);
+        }
     }
 
-    private List<Card> _getCards(BuildingCard[] buildingCards, EffectCard[] effectCards, int cardCount)
+    private List<Card> _getCards(List<BuildingCard> buildingCards, List<EffectCard> effectCards, int cardCount)
     {
         List<Card> newHand = new List<Card>();
 
@@ -24,12 +32,12 @@ public class CardsLibrary : MonoBehaviour
             float sortEffects = Random.Range(0, this._effectsCardsChance);
             if (sortBuildings > sortEffects)
             {
-                BuildingCard card = buildingCards[Random.Range(0, buildingCards.Length)];
+                BuildingCard card = buildingCards[Random.Range(0, buildingCards.Count)];
                 newHand.Add(card);
             }
             else
             {
-                EffectCard card = effectCards[Random.Range(0, effectCards.Length)];
+                EffectCard card = effectCards[Random.Range(0, effectCards.Count)];
                 newHand.Add(card);
             }
         }
