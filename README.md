@@ -79,3 +79,12 @@ Some buildings require specific terrains to be placed on, so if you have the nec
 ### Effects
 
 To use a effect select the desired card an click in any tile in the map. That will
+
+### Source Code
+
+- https://github.com/geldoronie/the-azure-lux-game-jam-2021
+
+### Free Resources Used
+
+- https://game-icons.net/
+- https://www.serpentsoundstudios.com/royalty-free-music/celtic-fantasy

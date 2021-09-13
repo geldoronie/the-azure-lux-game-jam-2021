@@ -639,8 +639,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3404221044188675360, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
       propertyPath: m_text
-      value: It's the end of your kingdom, you have no people left. But try again
-        to survive and create prosperous kingdom.
+      value: "It's the end of your kingdom, you have no people left. But try again
+        to survive and create a\t prosperous kingdom."
       objectReference: {fileID: 0}
     - target: {fileID: 3404221044188675360, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
       propertyPath: m_fontSize
