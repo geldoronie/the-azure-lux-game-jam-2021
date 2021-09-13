@@ -14,16 +14,16 @@ public static class GetRandomStuff<T>
         int randomIncidence = Random.Range(0, totalIncidence);
 
         int currentIncidence = stuff[0].Rate;
-        foreach (GetRandomStuffType<T> blob in stuff)
+        for (int i = 0; i < stuff.Length - 1; i++)
         {
             if (randomIncidence < currentIncidence)
             {
-                return blob.Stuff;
+                return stuff[i].Stuff;
             }
-            currentIncidence += blob.Rate;
+            currentIncidence += stuff[i + 1].Rate;
         }
 
-        return default;
+        return stuff[stuff.Length - 1].Stuff;
     }
 }
 
