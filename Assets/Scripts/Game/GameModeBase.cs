@@ -144,7 +144,7 @@ public class GameModeBase : MonoBehaviour
     public void EndGame(){
         this._timer.PauseTimer();
         this._gameState = GameState.Stopped;
-        this._playerStatsPlayfab.SaveMatchStatistic(this._gameStats);
+        this._playerStatsPlayfab.SetLastMapStatistics(this._gameStats);
         SceneManager.LoadScene("EndGameSumary", LoadSceneMode.Single);
     }
 
@@ -191,6 +191,7 @@ public class GameModeBase : MonoBehaviour
     public static GameModeBase Instance { get => instance; }
     public TurnType CurrentTurnType { get => _currentTurnType; }
     public TurnPhase CurrentTurnPhase { get => _currentTurnPhase; }
+    public int CurrentTurn { get => _turnsCount; }
     public Player Player { get => _player; }
     public int MapWidth { get => _mapWidth; }
     public int MapHeight { get => _mapHeight; }

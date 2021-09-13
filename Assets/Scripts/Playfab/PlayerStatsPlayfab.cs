@@ -24,7 +24,11 @@ public class PlayerStatsPlayfab : MonoBehaviour
         this.Authentication.OnAuthenticationSuccess += LoadPlayerStats;
     }
 
-    public void SaveMatchStatistic(GameStats gameStats){
+    public void SetLastMapStatistics(GameStats gameStats){
+        this.LastMatchStats = gameStats;
+    }
+
+    public void SaveLastMapStatistics(GameStats gameStats){
         this.LastMatchStats = gameStats;
         this.Matches.Add(gameStats);
         var matches = new Matches(){
