@@ -6,19 +6,19 @@
       "imageId": "",
       "prefabId": "Village",
       "useCost": {
-        "wood": 100,
-        "stone": 100,
-        "gold": 25,
+        "wood": 20,
+        "stone": 17,
+        "gold": 8,
         "food": 0,
         "people": 0,
         "military": 0
       },
       "resourcesPerTurn": {
-        "wood": 0,
-        "stone": 0,
-        "gold": 0,
+        "wood": 5,
+        "stone": 5,
+        "gold": 8,
         "food": -10,
-        "people": 50,
+        "people": 10,
         "military": 0
       },
       "terrainCost": {
@@ -37,18 +37,18 @@
       "prefabId": "LumberMill",
       "useCost": {
         "wood": 0,
-        "stone": 50,
+        "stone": 20,
         "gold": 0,
         "food": 0,
-        "people": 30,
+        "people": 3,
         "military": 0
       },
       "resourcesPerTurn": {
-        "wood": 50,
+        "wood": 8,
         "stone": 0,
         "gold": 0,
         "food": 0,
-        "people": 0,
+        "people": 3,
         "military": 0
       },
       "terrainCost": {
@@ -66,19 +66,19 @@
       "imageId": "",
       "prefabId": "Quarry",
       "useCost": {
-        "wood": 15,
+        "wood": 20,
         "stone": 0,
         "gold": 0,
-        "food": 15,
-        "people": 30,
+        "food": 0,
+        "people": 3,
         "military": 0
       },
       "resourcesPerTurn": {
-        "wood": 15,
-        "stone": 0,
+        "wood": 0,
+        "stone": 8,
         "gold": 0,
-        "food": 15,
-        "people": 30,
+        "food": 0,
+        "people": 0,
         "military": 0
       },
       "terrainCost": {
@@ -96,19 +96,19 @@
       "imageId": "",
       "prefabId": "GoldMine",
       "useCost": {
-        "wood": 15,
-        "stone": 15,
+        "wood": 10,
+        "stone": 10,
         "gold": 0,
-        "food": 15,
-        "people": 50,
+        "food": 0,
+        "people": 3,
         "military": 0
       },
       "resourcesPerTurn": {
         "wood": 0,
         "stone": 0,
-        "gold": 20,
+        "gold": 8,
         "food": 0,
-        "people": -5,
+        "people": -2,
         "military": 0
       },
       "terrainCost": {
@@ -126,19 +126,19 @@
       "imageId": "",
       "prefabId": "Farm",
       "useCost": {
-        "wood": 0,
-        "stone": 0,
-        "gold": 0,
-        "food": 50,
-        "people": 0,
+        "wood": 8,
+        "stone": 8,
+        "gold": 8,
+        "food": 0,
+        "people": 3,
         "military": 0
       },
       "resourcesPerTurn": {
         "wood": 0,
         "stone": 0,
         "gold": 0,
-        "food": 10,
-        "people": 30,
+        "food": 12,
+        "people": 1,
         "military": 0
       },
       "terrainCost": {
@@ -156,10 +156,10 @@
       "imageId": "",
       "prefabId": "Tower",
       "useCost": {
-        "wood": 50,
-        "stone": 50,
-        "gold": 25,
-        "food": 50,
+        "wood": 8,
+        "stone": 18,
+        "gold": 12,
+        "food": 0,
         "people": 0,
         "military": 0
       },
@@ -168,8 +168,8 @@
         "stone": 0,
         "gold": 0,
         "food": 0,
-        "people": -25,
-        "military": 25
+        "people": -7,
+        "military": 7
       },
       "terrainCost": {
         "grassland": false,
@@ -188,11 +188,11 @@
       "imageId": "",
       "prefabId": "Church",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
-        "people": 0,
+        "wood": 8,
+        "stone": 10,
+        "gold": 16,
+        "food": 10,
+        "people": 8,
         "military": 0
       },
       "resourcesPerTurn": {
@@ -200,7 +200,7 @@
         "stone": 0,
         "gold": -5,
         "food": 0,
-        "people": 10,
+        "people": 7,
         "military": 0
       },
       "terrainCost": {
@@ -220,19 +220,19 @@
       "imageId": "",
       "prefabId": "Bank",
       "useCost": {
-        "wood": 100,
-        "stone": 100,
-        "gold": 0,
-        "food": 100,
-        "people": 0,
+        "wood": 10,
+        "stone": 20,
+        "gold": 10,
+        "food": 0,
+        "people": 6,
         "military": 0
       },
       "resourcesPerTurn": {
         "wood": 0,
         "stone": 0,
-        "gold": 50,
+        "gold": 16,
         "food": 0,
-        "people": 10,
+        "people": 0,
         "military": 0
       },
       "terrainCost": {
@@ -250,11 +250,11 @@
       "imageId": "",
       "prefabId": "Barrack",
       "useCost": {
-        "wood": 100,
-        "stone": 100,
-        "gold": 0,
-        "food": 100,
-        "people": 50,
+        "wood": 15,
+        "stone": 30,
+        "gold": 20,
+        "food": 0,
+        "people": 0,
         "military": 0
       },
       "resourcesPerTurn": {
@@ -262,8 +262,8 @@
         "stone": 0,
         "gold": 0,
         "food": 0,
-        "people": -50,
-        "military": 50
+        "people": -15,
+        "military": 15
       },
       "terrainCost": {
         "grassland": true,
@@ -282,20 +282,20 @@
       "imageId": "",
       "prefabId": "Castle",
       "useCost": {
-        "wood": 2000,
-        "stone": 2000,
-        "gold": 3000,
-        "food": 1500,
-        "people": 100,
-        "military": 10
+        "wood": 30,
+        "stone": 60,
+        "gold": 40,
+        "food": 0,
+        "people": 20,
+        "military": 0
       },
       "resourcesPerTurn": {
         "wood": 0,
         "stone": 0,
-        "gold": 0,
-        "food": -25,
-        "people": -75,
-        "military": 100
+        "gold": -10,
+        "food": -10,
+        "people": -20,
+        "military": 30
       },
       "terrainCost": {
         "grassland": true,

@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class CameraTooltipTrigger : MonoBehaviour
 {
-    [SerializeField] private float delayTooltipTime = 1;
+    [SerializeField] private float _delayTooltipTime = 1;
 
-    private Terrain currentTerrain;
-    private float currentTime;
+    private Terrain _currentTerrain;
+    private float _currentTime;
+    private bool _isShowingTooltip = false;
 
     private void Update()
     {
@@ -17,17 +18,18 @@ public class CameraTooltipTrigger : MonoBehaviour
             Terrain terrain = hit.collider.GetComponent<Terrain>();
             if (terrain != null)
             {
-                if (currentTerrain != null && terrain != currentTerrain)
+                if (_currentTerrain != null && _currentTerrain != terrain)
                 {
                     HideTooltip();
                 }
                 else
                 {
-                    currentTerrain = terrain;
-                    currentTime += Time.deltaTime;
-                    if (currentTime > delayTooltipTime)
+                    _currentTime += Time.deltaTime;
+                    if (_currentTime > _delayTooltipTime)
                     {
-                        MainCanvas.Instance.ShowTooltip(currentTerrain.GetTooltip());
+                        _currentTerrain = terrain;
+                        MainCanvas.Instance.ShowTooltip(_currentTerrain.GetTooltip());
+                        _isShowingTooltip = true;
                     }
                 }
             }
@@ -45,8 +47,12 @@ public class CameraTooltipTrigger : MonoBehaviour
 
     private void HideTooltip()
     {
-        currentTime = 0;
-        currentTerrain = null;
-        MainCanvas.Instance.HideTooltip();
+        if (_isShowingTooltip)
+        {
+            _isShowingTooltip = false;
+            _currentTime = 0;
+            _currentTerrain = null;
+            MainCanvas.Instance.HideTooltip();
+        }
     }
 }

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67c2651bb3c8394a85fe50dad393ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayTooltipTime: 1
+  _delayTooltipTime: 1
 --- !u!114 &6853765512669902869
 MonoBehaviour:
   m_ObjectHideFlags: 0

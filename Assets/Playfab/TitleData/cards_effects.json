@@ -6,10 +6,10 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
+        "wood": 0,
+        "stone": 0,
+        "gold": 40,
+        "food": 0,
         "people": 0,
         "military": 0
       },
@@ -30,10 +30,10 @@
       "prefabId": "",
       "useCost": {
         "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
-        "people": 0,
+        "stone": 0,
+        "gold": 20,
+        "food": 0,
+        "people": 40,
         "military": 0
       },
       "terrainCost": {
@@ -52,11 +52,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
-        "people": 0,
+        "wood": 10,
+        "stone": 10,
+        "gold": 40,
+        "food": 0,
+        "people": 20,
         "military": 0
       },
       "terrainCost": {
@@ -75,11 +75,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
-        "people": 0,
+        "wood": 0,
+        "stone": 40,
+        "gold": 20,
+        "food": 0,
+        "people": 20,
         "military": 0
       },
       "terrainCost": {
@@ -98,11 +98,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
+        "wood": 0,
+        "stone": 0,
+        "gold": 40,
         "food": 20,
-        "people": 0,
+        "people": 20,
         "military": 0
       },
       "terrainCost": {
@@ -117,14 +117,14 @@
     },
     {
       "name": "Sorrow and Despair",
-      "description": "Change any terrain to Swamp",
+      "description": "Change any terrain to Swamp, but gain 10 of all resources",
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
+        "wood": -10,
+        "stone": -10,
+        "gold": -10,
+        "food": -10,
         "people": 0,
         "military": 0
       },
@@ -150,7 +150,7 @@
         "stone": 20,
         "gold": 0,
         "food": 20,
-        "people": 0,
+        "people": 1,
         "military": 0
       },
       "terrainCost": {
@@ -169,11 +169,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
-        "people": 0,
+        "wood": 0,
+        "stone": 0,
+        "gold": 10,
+        "food": 0,
+        "people": 8,
         "military": 0
       },
       "terrainCost": {
@@ -194,10 +194,10 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
+        "wood": 0,
+        "stone": 0,
+        "gold": 100,
+        "food": 0,
         "people": 0,
         "military": 0
       },
@@ -217,10 +217,10 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
+        "wood": 0,
+        "stone": 0,
+        "gold": 100,
+        "food": 0,
         "people": 0,
         "military": 0
       },
@@ -240,11 +240,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
+        "wood": 33,
+        "stone": 33,
         "gold": 0,
-        "food": 20,
-        "people": 0,
+        "food": 33,
+        "people": 1,
         "military": 0
       },
       "terrainCost": {
@@ -263,10 +263,10 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
+        "wood": 0,
+        "stone": 0,
+        "gold": 100,
+        "food": 0,
         "people": 0,
         "military": 0
       },
@@ -286,10 +286,10 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
+        "wood": 0,
+        "stone": 0,
         "gold": 0,
-        "food": 20,
+        "food": 100,
         "people": 0,
         "military": 0
       },
@@ -309,11 +309,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
+        "wood": 0,
+        "stone": 0,
         "gold": 0,
-        "food": 20,
-        "people": 0,
+        "food": 0,
+        "people": 100,
         "military": 0
       },
       "terrainCost": {
@@ -334,11 +334,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
-        "gold": 0,
-        "food": 20,
-        "people": 0,
+        "wood": 0,
+        "stone": 0,
+        "gold": 30,
+        "food": 0,
+        "people": 10,
         "military": 0
       },
       "terrainCost": {
@@ -357,11 +357,11 @@
       "imageId": "",
       "prefabId": "",
       "useCost": {
-        "wood": 20,
-        "stone": 20,
+        "wood": 0,
+        "stone": 0,
         "gold": 0,
-        "food": 20,
-        "people": 0,
+        "food": 0,
+        "people": 1,
         "military": 0
       },
       "terrainCost": {

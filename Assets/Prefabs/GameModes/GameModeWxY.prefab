@@ -48,7 +48,13 @@ MonoBehaviour:
   _timer: {fileID: 8922124141298106557}
   _player: {fileID: 8922124142040224615}
   _map: {fileID: 0}
+  _gameStats:
+    mode: 
+    resourcesProgression: []
+    gameProgression: []
+  _playerStatsPlayfab: {fileID: 0}
   _loadingMap: {fileID: 0}
+  _name: 
   _startingCardsCount: 5
   _playTurnTime: 60
   _turnsCount: 0
@@ -75,6 +81,8 @@ MonoBehaviour:
     food: 0
     people: 0
     military: 0
+  _cardPerTurn: 3
+  _maxCardsOnHand: 10
   _terrainDisasterExecuted: 0
   _changeTerrainDisasterDone: 0
   _invalidBuildsDestroyed: 0
@@ -176,3 +184,5 @@ MonoBehaviour:
     military: 500
   _library: {fileID: 0}
   _hand: []
+  _buildingCardsChance: 65
+  _effectsCardsChance: 35

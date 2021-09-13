@@ -13,8 +13,8 @@ public class TextIconGUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       this._valueLabel = gameObject.GetComponentInChildren<TMP_Text>();
-       this._valueLabel.text = this.Value;
+        this._valueLabel = gameObject.GetComponentInChildren<TMP_Text>();
+        this._valueLabel.text = this.Value;
     }
 
     // Update is called once per frame

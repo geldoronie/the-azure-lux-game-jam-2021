@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -39,7 +37,7 @@ public class GameModeBase : MonoBehaviour
     private static GameModeBase instance;
     public UnityAction OnChangeTurn;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         this._playerStatsPlayfab = GameObject.Find("PlayerStatistics").GetComponent<PlayerStatsPlayfab>();
         if (instance != null)
@@ -141,16 +139,19 @@ public class GameModeBase : MonoBehaviour
         this._player.DrawNewHand(this._startingCardsCount);
     }
 
-    public void EndGame(){
+    public void EndGame()
+    {
         this._timer.PauseTimer();
         this._gameState = GameState.Stopped;
         this._playerStatsPlayfab.SetLastMapStatistics(this._gameStats);
         SceneManager.LoadScene("EndGameSumary", LoadSceneMode.Single);
     }
 
-    public void RegisterGameStats(){
+    public void RegisterGameStats()
+    {
         this._gameStats.resourcesProgression.Add(
-            new GameStatsResourceProgression(){
+            new GameStatsResourceProgression()
+            {
                 turn = this._turnsCount == 0 ? this._turnsCount : this._turnsCount / 2,
                 food = this._player.Resources.Food,
                 gold = this._player.Resources.Gold,
@@ -168,8 +169,9 @@ public class GameModeBase : MonoBehaviour
                         (this._player.Resources.Stone * 1) + 
                         (this._player.Resources.Wood * 1);
 
-        this._gameStats.gameProgression.Add(            
-            new GameStatsFullProgression(){
+        this._gameStats.gameProgression.Add(
+            new GameStatsFullProgression()
+            {
                 turn = this._turnsCount == 0 ? this._turnsCount : this._turnsCount / 2,
                 progress = progress
             }
