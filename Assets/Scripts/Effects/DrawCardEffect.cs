@@ -2,12 +2,12 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "Draw Card Effect", menuName = "Game Jam/Effects/Draw Card", order = 0)]
-public class DrawCardEffect : ScriptableObject
+public class DrawCardEffect : EffectBase
 {
     [SerializeField] private int _cardToGive;
     [SerializeField] private CardTypeToGive _cardTypeToGive;
 
-    public virtual void UseEffect(Player player, Terrain terrain)
+    public override void UseEffect(Player player, Terrain terrain)
     {
         player.DrawCard(_cardToGive, _cardTypeToGive);
     }

@@ -116,8 +116,8 @@
       "effectId": "Any2River"
     },
     {
-      "name": "Change any terrain to Swamp",
-      "description": "",
+      "name": "Sorrow and Despair",
+      "description": "Change any terrain to Swamp",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -162,8 +162,8 @@
       "effectId": "DrawAny"
     },
     {
-      "name": "Texas Hold'em",
-      "description": "Draw 5 cards of any type",
+      "name": "Da Vinci's Pleasure",
+      "description": "Draw 2 Building cards",
       "imageId": "",
       "prefabId": "",
       "useCost": {
@@ -182,7 +182,30 @@
         "swamp": true,
         "mountain": true
       },
-      "effectId": "DrawAny"
+      "effectId": "DrawBuilding"
+    },
+    {
+      "name": "There is no Spoon",
+      "description": "Draw 3 Effect cards",
+      "imageId": "",
+      "prefabId": "",
+      "useCost": {
+        "wood": 20,
+        "stone": 20,
+        "gold": 0,
+        "food": 20,
+        "people": 0,
+        "military": 0
+      },
+      "terrainCost": {
+        "grassland": true,
+        "desert": true,
+        "forest": true,
+        "river": true,
+        "swamp": true,
+        "mountain": true
+      },
+      "effectId": "DrawEffect"
     },
     {
       "name": "Leaf it to Me",
@@ -274,7 +297,7 @@
         "swamp": true,
         "mountain": true
       },
-      "effectId": "cheeseSteakJimmys"
+      "effectId": "CheeseSteakJimmys"
     },
     {
       "name": "Point Break",
@@ -297,7 +320,7 @@
         "swamp": true,
         "mountain": true
       },
-      "effectId": "Point Break"
+      "effectId": "PointBreak"
     },
     {
       "name": "To Smithereens",
