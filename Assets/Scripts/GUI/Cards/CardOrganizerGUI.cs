@@ -123,7 +123,7 @@ public class CardOrganizerGUI : MonoBehaviour
     private void UpdateGUI()
     {
         int childCount = GetActiveChildren();
-        _rectTransform.sizeDelta = new Vector2(childCount + _cardWidth * _sizePerCard, _rectTransform.sizeDelta.y);
+        _rectTransform.sizeDelta = new Vector2(childCount * _sizePerCard, _rectTransform.sizeDelta.y);
         float gap = (_rectTransform.sizeDelta.x - _cardWidth * childCount) / childCount;
         float angle = ((2 * Mathf.PI * _rectTransform.sizeDelta.x) / 360) / childCount;
         int oddOrEven = 1 - childCount % 2;

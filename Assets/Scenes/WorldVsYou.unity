@@ -1744,7 +1744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6185525604673897000, guid: 4f6704ec64a21a043816c147535d0925, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 654.48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6185525604673897000, guid: 4f6704ec64a21a043816c147535d0925, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1806,6 +1806,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 446105165}
+    - target: {fileID: 6185525604673897002, guid: 4f6704ec64a21a043816c147535d0925, type: 3}
+      propertyPath: _sizePerCard
+      value: 171.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6185525604673897002, guid: 4f6704ec64a21a043816c147535d0925, type: 3}
       propertyPath: _selectedCardHolder
       value: 
