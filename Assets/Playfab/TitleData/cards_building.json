@@ -277,7 +277,7 @@
       "prefabId": "Quarry",
       "useCost": {
         "wood": 15,
-        "stone": 50,
+        "stone": 0,
         "gold": 0,
         "food": 15,
         "people": 30,

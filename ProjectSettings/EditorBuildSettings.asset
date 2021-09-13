@@ -16,5 +16,11 @@ EditorBuildSettings:
     guid: 12a142f9a87d8bdae8e2fedffd0c1d13
   - enabled: 1
     path: Assets/Scenes/WorldVsYouGeldo.unity
-    guid: 7e6ca908415f8910ba7095d8d60ea8f1
+    guid: 4cebaeef7eb5d453c9caa9e156dc01b4
+  - enabled: 1
+    path: Assets/Scenes/EndGameSumary.unity
+    guid: 6a23d8476d90849a6a5c6dadc2000b14
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: c6cd092439d4c6467a8c99b8a6ef1cd5
   m_configObjects: {}
