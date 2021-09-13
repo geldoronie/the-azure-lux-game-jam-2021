@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 742137804}
   - component: {fileID: 742137803}
   - component: {fileID: 742137802}
+  - component: {fileID: 6269544656560378124}
   m_Layer: 5
   m_Name: EndGame
   m_TagString: Untagged
@@ -134,6 +135,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6269544656560378124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742137800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: Leave Game
+  content: 
 --- !u!1 &1668439271
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +296,7 @@ GameObject:
   - component: {fileID: 7832553457344591447}
   - component: {fileID: 8007037610685579782}
   - component: {fileID: 5971011122835960952}
-  - component: {fileID: 7259082518371239156}
+  - component: {fileID: 7121258198986352219}
   m_Layer: 5
   m_Name: People
   m_TagString: Untagged
@@ -306,8 +322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 498.83148, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 106.407, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7832553457344591447
 CanvasRenderer:
@@ -373,7 +389,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &7259082518371239156
+--- !u!114 &7121258198986352219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,11 +398,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 219426323967762830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
+  tooltipDelay: 1.3
+  header: People
+  content: 'ATENTION: if you loose all your people is GAME OVER!'
 --- !u!1 &736582117113388229
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +792,7 @@ GameObject:
   - component: {fileID: 2053763392971717645}
   - component: {fileID: 192207328994683488}
   - component: {fileID: 44068958872302518}
+  - component: {fileID: 477481510986992598}
   m_Layer: 5
   m_Name: Display (1)
   m_TagString: Untagged
@@ -853,6 +871,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+--- !u!114 &477481510986992598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108313470384431321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: Turns left for the next vicking raid
+  content: On every World Military phase the game will check how many turns left
+    for the next viking raid, if it is this turn, you will lose all the necessary
+    Military to contain the vikings. If theres is no Military enough, you will lose
+    2 People for each Military that you didn't have.
 --- !u!1 &2527043263151508673
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +901,7 @@ GameObject:
   - component: {fileID: 2233237650526751829}
   - component: {fileID: 5318229664840101357}
   - component: {fileID: 1748476927279198137}
-  - component: {fileID: 6677216713683476740}
+  - component: {fileID: 2278384052633571521}
   m_Layer: 5
   m_Name: Gold
   m_TagString: Untagged
@@ -891,8 +927,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 276.0175, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 106.407, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2233237650526751829
 CanvasRenderer:
@@ -958,7 +994,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &6677216713683476740
+--- !u!114 &2278384052633571521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -967,11 +1003,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2527043263151508673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
+  tooltipDelay: 1.3
+  header: Gold
+  content: 
 --- !u!1 &2875711515406059279
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +1021,7 @@ GameObject:
   - component: {fileID: 5717852139364335074}
   - component: {fileID: 2358554702701782072}
   - component: {fileID: 1932889154545640137}
+  - component: {fileID: 1867189910318107737}
   m_Layer: 5
   m_Name: TurnCount
   m_TagString: Untagged
@@ -1062,6 +1100,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Display: {fileID: 34002565755094560}
+--- !u!114 &1867189910318107737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875711515406059279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: Current player turn
+  content: 
 --- !u!1 &3095015517330923426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1297,6 @@ GameObject:
   - component: {fileID: 3095015518561085306}
   - component: {fileID: 3095015518561085309}
   - component: {fileID: 7557081737637047581}
-  - component: {fileID: 8644404416712396957}
   m_Layer: 5
   m_Name: Resources
   m_TagString: Untagged
@@ -1275,7 +1327,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 14, y: 0}
-  m_SizeDelta: {x: 0, y: -15.768}
+  m_SizeDelta: {x: 663.44196, y: -15.768}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3095015518561085306
 CanvasRenderer:
@@ -1330,20 +1382,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8644404416712396957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3095015518561085305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &3095015518754232457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,6 +1528,7 @@ GameObject:
   - component: {fileID: 3095015518852063636}
   - component: {fileID: 3095015518852063637}
   - component: {fileID: 3095015518852063634}
+  - component: {fileID: 2780532066243041542}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -1569,6 +1608,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timer: {fileID: 0}
   Display: {fileID: 3095015517330923428}
+--- !u!114 &2780532066243041542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3095015518852063632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: Phase timer
+  content: 
 --- !u!1 &3383916685847813918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,7 +1634,6 @@ GameObject:
   - component: {fileID: 487271597532935527}
   - component: {fileID: 3336130894200760999}
   - component: {fileID: 8521207641853102033}
-  - component: {fileID: 4176515362278636755}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -1604,8 +1657,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.59, y: 0}
-  m_SizeDelta: {x: 0, y: 11.18}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 53.59, y: 11.18}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &3336130894200760999
 CanvasRenderer:
@@ -1704,20 +1757,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4176515362278636755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3383916685847813918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &3401504501701271694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,7 +1768,6 @@ GameObject:
   - component: {fileID: 4560037522152281710}
   - component: {fileID: 6195679803671981141}
   - component: {fileID: 8381835964479114788}
-  - component: {fileID: 1361758907455240719}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -1753,8 +1791,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.59, y: 0}
-  m_SizeDelta: {x: 0, y: 11.18}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 53.59, y: 11.18}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &6195679803671981141
 CanvasRenderer:
@@ -1853,20 +1891,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1361758907455240719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3401504501701271694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &4030477101889613680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,7 +1992,6 @@ GameObject:
   - component: {fileID: 2863031591929274978}
   - component: {fileID: 2921787299956408745}
   - component: {fileID: 5775488106938853057}
-  - component: {fileID: 1180821940891369440}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -1992,8 +2015,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.59, y: 0}
-  m_SizeDelta: {x: 0, y: 11.18}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 53.59, y: 11.18}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &2921787299956408745
 CanvasRenderer:
@@ -2092,20 +2115,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1180821940891369440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4978316238694726530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &5191206384992880153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,7 +2127,7 @@ GameObject:
   - component: {fileID: 820280479729482491}
   - component: {fileID: 3613922660816325097}
   - component: {fileID: 2382283701130073375}
-  - component: {fileID: 864512725054845801}
+  - component: {fileID: 2881141051194047441}
   m_Layer: 5
   m_Name: Stone
   m_TagString: Untagged
@@ -2144,8 +2153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 387.4245, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 106.407, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &820280479729482491
 CanvasRenderer:
@@ -2211,7 +2220,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &864512725054845801
+--- !u!114 &2881141051194047441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2220,11 +2229,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5191206384992880153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
+  tooltipDelay: 1.3
+  header: Stone
+  content: 
 --- !u!1 &5312875071202537245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2237,7 +2247,7 @@ GameObject:
   - component: {fileID: 6828251311259940961}
   - component: {fileID: 7740821681686122917}
   - component: {fileID: 7618887026812641686}
-  - component: {fileID: 2384141182492028783}
+  - component: {fileID: 8106739424480253312}
   m_Layer: 5
   m_Name: Food
   m_TagString: Untagged
@@ -2263,8 +2273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 53.2035, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 106.407, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6828251311259940961
 CanvasRenderer:
@@ -2330,7 +2340,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2384141182492028783
+--- !u!114 &8106739424480253312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2339,11 +2349,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5312875071202537245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
+  tooltipDelay: 1.3
+  header: Food
+  content: 
 --- !u!1 &5404097439429659746
 GameObject:
   m_ObjectHideFlags: 0
@@ -2356,7 +2367,7 @@ GameObject:
   - component: {fileID: 7391572712338364948}
   - component: {fileID: 477959048627516633}
   - component: {fileID: 3013533571558027589}
-  - component: {fileID: 3869493532751859470}
+  - component: {fileID: 4307443754639138486}
   m_Layer: 5
   m_Name: Wood
   m_TagString: Untagged
@@ -2382,8 +2393,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 164.6105, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 106.407, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7391572712338364948
 CanvasRenderer:
@@ -2449,7 +2460,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &3869493532751859470
+--- !u!114 &4307443754639138486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2458,11 +2469,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5404097439429659746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
+  tooltipDelay: 1.3
+  header: Wood
+  content: 
 --- !u!1 &5944309922680866243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,6 +2487,7 @@ GameObject:
   - component: {fileID: 3500542019743998119}
   - component: {fileID: 1746317881127171677}
   - component: {fileID: 6492990189679858065}
+  - component: {fileID: 5922440509762793581}
   m_Layer: 5
   m_Name: Display
   m_TagString: Untagged
@@ -2553,6 +2566,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Value: 0
+--- !u!114 &5922440509762793581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5944309922680866243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDelay: 1.3
+  header: Military needed to survive next viking raid
+  content: On every World Military phase the game will check how many turns left
+    for the next viking raid, if it is this turn, you will lose all the necessary
+    Military to contain the vikings. If theres is no Military enough, you will lose
+    2 People for each Military that you didn't have.
 --- !u!1 &6563643959918033167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,7 +2863,6 @@ GameObject:
   - component: {fileID: 2216669766540590401}
   - component: {fileID: 4848558663442774228}
   - component: {fileID: 6983127169602023808}
-  - component: {fileID: 1338732925677619358}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -2856,8 +2886,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.59, y: 0}
-  m_SizeDelta: {x: 0, y: 11.18}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 53.59, y: 11.18}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4848558663442774228
 CanvasRenderer:
@@ -2956,20 +2986,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1338732925677619358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6986262128856580390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &7310400692481950830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2981,7 +2997,6 @@ GameObject:
   - component: {fileID: 7515285500313020291}
   - component: {fileID: 4346003990354490122}
   - component: {fileID: 5782092553920825905}
-  - component: {fileID: 4778762018792256479}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -3005,8 +3020,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.59, y: 0}
-  m_SizeDelta: {x: 0, y: 11.18}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 53.59, y: 11.18}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4346003990354490122
 CanvasRenderer:
@@ -3105,20 +3120,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4778762018792256479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7310400692481950830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &7547508313193752436
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,7 +3431,6 @@ GameObject:
   - component: {fileID: 7567342726666637789}
   - component: {fileID: 8208282095576878428}
   - component: {fileID: 6203348200485788788}
-  - component: {fileID: 8668359888997613494}
   m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
@@ -3454,8 +3454,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.59, y: 0}
-  m_SizeDelta: {x: 0, y: 11.18}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 53.59, y: 11.18}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &8208282095576878428
 CanvasRenderer:
@@ -3554,20 +3554,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8668359888997613494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7911136748688253648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
 --- !u!1 &8818476759460172913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,7 +3641,7 @@ GameObject:
   - component: {fileID: 8525004662009946705}
   - component: {fileID: 4936786580131164264}
   - component: {fileID: 673637342938002056}
-  - component: {fileID: 8573032937640019919}
+  - component: {fileID: 5898800476527761915}
   m_Layer: 5
   m_Name: Military
   m_TagString: Untagged
@@ -3681,8 +3667,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 610.23846, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 106.407, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8525004662009946705
 CanvasRenderer:
@@ -3748,7 +3734,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8573032937640019919
+--- !u!114 &5898800476527761915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3757,8 +3743,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9127490528269121429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b159fff95b40314faec2c3983caf2e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 0
+  tooltipDelay: 1.3
+  header: Military
+  content: The Military is used to contain viking raids!
