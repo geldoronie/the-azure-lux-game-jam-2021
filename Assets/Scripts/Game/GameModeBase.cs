@@ -64,7 +64,7 @@ public class GameModeBase : MonoBehaviour
         _loadingMap.gameObject.SetActive(true);
     }
 
-    public void ChangeTurn()
+    public virtual void ChangeTurn()
     {
         if (this._currentTurnType == TurnType.Player)
         {
