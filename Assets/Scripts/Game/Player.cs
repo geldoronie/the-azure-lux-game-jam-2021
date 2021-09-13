@@ -7,18 +7,28 @@ public class Player : MonoBehaviour
     [SerializeField] private ResourcesAmounts _resources;
     [SerializeField] private CardsLibrary _library;
     [SerializeField] private List<Card> _hand;
+    [Range(1, 100)]
+    [SerializeField] private int _buildingCardsChance = 75;
+    [Range(1, 100)]
+    [SerializeField] private int _effectsCardsChance = 25;
 
     public UnityAction OnHandCardsUpdate;
 
-    public void DrawCard(int cardCount, CardTypeToGive cardTypeToGive = CardTypeToGive.Any)
+    public void DrawCard(int cardCount)
     {
-        this._hand.AddRange(this._library.GetCards(cardCount));
+        this._hand.AddRange(this._library.GetCards(cardCount, _buildingCardsChance, _effectsCardsChance));
+        OnHandCardsUpdate?.Invoke();
+    }
+
+    public void DrawCard(int cardCount, int buildingCardsChance, int effectsCardsChance)
+    {
+        this._hand.AddRange(this._library.GetCards(cardCount, buildingCardsChance, effectsCardsChance));
         OnHandCardsUpdate?.Invoke();
     }
 
     public void DrawNewHand(int cardCount)
     {
-        this._hand = this._library.GetCards(cardCount);
+        this._hand = this._library.GetCards(cardCount, _buildingCardsChance, _effectsCardsChance);
         OnHandCardsUpdate?.Invoke();
     }
 
