@@ -12,7 +12,7 @@ public class DrawCardEffect : EffectBase
         switch (_cardTypeToGive)
         {
             case CardTypeToGive.Building:
-                player.DrawCard(_cardToGive, 1, 1); break;
+                player.DrawCard(_cardToGive, 1, 0); break;
             case CardTypeToGive.Effect:
                 player.DrawCard(_cardToGive, 0, 1); break;
             default:
