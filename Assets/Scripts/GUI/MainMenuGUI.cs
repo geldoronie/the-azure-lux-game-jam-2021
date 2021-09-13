@@ -21,6 +21,10 @@ public class MainMenuGUI : MonoBehaviour
         SceneManager.LoadScene("WorldVsYou", LoadSceneMode.Single);
     }
 
+    public void MyMatches(){
+        SceneManager.LoadScene("MyMatches", LoadSceneMode.Single);
+    }
+
     public void ExitGame(){
         Application.Quit();
     }

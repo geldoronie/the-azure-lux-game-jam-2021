@@ -6,7 +6,7 @@ using UnityEngine;
 public class TopBarGameStatsGUI : MonoBehaviour
 {
 
-    [SerializeField] private TMP_Text _progression;
+    [SerializeField] private TextIconGUI _progression;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,6 @@ public class TopBarGameStatsGUI : MonoBehaviour
             return;
 
         GameStatsFullProgression progressionStats = GameModeBase.Instance.GameStats.gameProgression[GameModeBase.Instance.GameStats.gameProgression.Count - 1];
-        this._progression.text = "Progression: " + Mathf.RoundToInt(float.Parse(progressionStats.progress.ToString()));
+        this._progression.Value = Mathf.RoundToInt(progressionStats.progress).ToString();
     }
 }

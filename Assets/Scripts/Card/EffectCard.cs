@@ -7,7 +7,7 @@ public class EffectCard : Card
     [SerializeField] private string effectId;
     [SerializeField] private EffectBase _effect;
 
-    public EffectCard(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost, TerrainCost terrainCost, string effectId) : base(name, description, imageId, prefabId, useCost, terrainCost)
+    public EffectCard(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost, TerrainCost terrainCost, string effectId) : base(name, description, imageId, prefabId, useCost, terrainCost, CardTypeToGive.Effect)
     {
         this.effectId = effectId;
     }

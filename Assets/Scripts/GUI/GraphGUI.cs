@@ -12,8 +12,6 @@ public class GraphGUI : MonoBehaviour
     void Awake()
     {
         this._container = transform.Find("Container").GetComponent<RectTransform>();
-        //List<float> values = new List<float>() { 3,10, 20,60,8,90,40,100};
-        //this.LoadGraph(values);
     }
 
     private GameObject _createPoint(Vector2 anchoredPosition){
@@ -43,7 +41,8 @@ public class GraphGUI : MonoBehaviour
         
     }
 
-    public void LoadGraph(List<float> points){
+    public void LoadGraph(List<int> points){
+        this._clear();
         float graphHeight = this._container.sizeDelta.y;
         float yMaximum = 100f;
         float xSize = 50f;
@@ -60,6 +59,13 @@ public class GraphGUI : MonoBehaviour
                 );
             }
             lastPointGameObject = pointGameObject;
+        }
+    }
+
+    private void _clear(){
+        for (int i=0; i < transform.childCount - 1; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
 
