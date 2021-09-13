@@ -196,6 +196,7 @@ public class GameModeBase : MonoBehaviour
     public int MapWidth { get => _mapWidth; }
     public int MapHeight { get => _mapHeight; }
     public GameState GameState { get => _gameState; }
+    public GameStats GameStats { get => _gameStats; }
     public Map Map { get => _map; }
     public ResourcesAmounts LastTurnRessourcesPerTurn { get => _lastTurnRessourcesPerTurn; }
 }
