@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[ExecuteInEditMode]
 public class CardOrganizerGUI : MonoBehaviour
 {
     [SerializeField] private CardDisplayer _selectedCardHolder;
@@ -50,10 +51,11 @@ public class CardOrganizerGUI : MonoBehaviour
             _selectedCardHolder.Initialize(_hoveredCard.Card);
             _selectedCardHolder.gameObject.SetActive(true);
             _hoveredCard = null;
-            if(
+            if (
                 GameModeBase.Instance.CurrentTurnType == TurnType.Player &&
                 GameModeBase.Instance.CurrentTurnPhase == TurnPhase.Play
-            ){
+            )
+            {
                 OnSelectCard?.Invoke(_selectedCard.Card);
             }
         }
@@ -121,7 +123,7 @@ public class CardOrganizerGUI : MonoBehaviour
     private void UpdateGUI()
     {
         int childCount = GetActiveChildren();
-        _rectTransform.sizeDelta = new Vector2(childCount * _sizePerCard, _rectTransform.sizeDelta.y);
+        _rectTransform.sizeDelta = new Vector2(childCount + _cardWidth * _sizePerCard, _rectTransform.sizeDelta.y);
         float gap = (_rectTransform.sizeDelta.x - _cardWidth * childCount) / childCount;
         float angle = ((2 * Mathf.PI * _rectTransform.sizeDelta.x) / 360) / childCount;
         int oddOrEven = 1 - childCount % 2;
