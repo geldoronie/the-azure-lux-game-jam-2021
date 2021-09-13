@@ -48,11 +48,6 @@ public class MyMatchesGUI : MonoBehaviour
         this._chart.LoadGraph(points);
     }
 
-    public void SaveStatistics(){
-        this._playerStatsPlayfab.SaveLastMapStatistics();
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-    }
-
     public void BackToMenu(){
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }

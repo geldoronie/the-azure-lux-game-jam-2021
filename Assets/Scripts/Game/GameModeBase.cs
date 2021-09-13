@@ -36,6 +36,8 @@ public class GameModeBase : MonoBehaviour
 
     private static GameModeBase instance;
     public UnityAction OnChangeTurn;
+    
+    public UnityAction OnChangeGameState;
 
     protected virtual void Awake()
     {
@@ -77,6 +79,11 @@ public class GameModeBase : MonoBehaviour
         }
         this._turnsCount++;
         OnChangeTurn?.Invoke();
+    }
+
+    public void ChangeGameState(GameState state){
+        this._gameState = state;
+        OnChangeGameState?.Invoke();
     }
 
     public void PauseTurn()
@@ -169,6 +176,9 @@ public class GameModeBase : MonoBehaviour
                         (this._player.Resources.Stone * 1) + 
                         (this._player.Resources.Wood * 1);
 
+        if(this._gameStats.highestProgression < progress)
+            this._gameStats.highestProgression = progress;
+
         this._gameStats.gameProgression.Add(
             new GameStatsFullProgression()
             {
@@ -226,5 +236,6 @@ public enum GameState
     Paused,
 
     Stopped,
-    Replay
+    Replay,
+    GameOver
 }
