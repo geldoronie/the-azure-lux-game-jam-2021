@@ -51,10 +51,6 @@ public class GameModeWorldVsYou : GameModeBase
             this._hasPlayerDrawnCard = false;
             this._gotPlayerBuildingsResources = false;
 
-            if(this._player.Resources.People <= 0){
-                this.ChangeGameState(GameState.GameOver);
-            }
-
             if (this._timer.Remaining <= 0)
             {
                 this.ChangePhase(TurnPhase.Refill);
@@ -111,11 +107,14 @@ public class GameModeWorldVsYou : GameModeBase
         {
             if (this._timer.Remaining <= 0)
             {
-                
-                this.ChangeTurn();
-                this._timer.StartTime = 4;
-                this._timer.ResetTimer();
-                this._timer.StartTimer();
+                if(this._player.Resources.People <= 0){
+                    this.ChangeGameState(GameState.GameOver);
+                } else {
+                    this.ChangeTurn();
+                    this._timer.StartTime = 4;
+                    this._timer.ResetTimer();
+                    this._timer.StartTimer();
+                }
             }
         }
     }

@@ -12,7 +12,7 @@ public class GameOverGUI : MonoBehaviour
     [SerializeField] private Image _gameOverPanel;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         GameModeBase.Instance.OnChangeGameState += this.ShowGameOver;
     }

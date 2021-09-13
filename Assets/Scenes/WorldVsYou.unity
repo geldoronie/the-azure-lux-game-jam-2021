@@ -406,6 +406,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1860979165}
     m_Modifications:
+    - target: {fileID: 3404221043476949605, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 446105164}
+    - target: {fileID: 3404221043476949605, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404221043624129522, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.7375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404221043624129522, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -98
+      objectReference: {fileID: 0}
     - target: {fileID: 3404221044109490278, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -493,6 +509,15 @@ PrefabInstance:
     - target: {fileID: 3404221044109490279, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
       propertyPath: m_Name
       value: GameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404221044188675360, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
+      propertyPath: m_text
+      value: It's the end of your kingdom, you hane no people left. But try again
+        to survive and create prosperous kingdom.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3404221044188675360, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
+      propertyPath: m_fontSize
+      value: 47.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a05810cc7adf67599a436d732f06fc0f, type: 3}
@@ -856,6 +881,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1860979165}
     m_Modifications:
+    - target: {fileID: 742137802, guid: c273cbcb408b22a48a4174f4df5f7840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 446105164}
+    - target: {fileID: 742137802, guid: c273cbcb408b22a48a4174f4df5f7840, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EndGame
+      objectReference: {fileID: 0}
     - target: {fileID: 487271597532935527, guid: c273cbcb408b22a48a4174f4df5f7840, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
