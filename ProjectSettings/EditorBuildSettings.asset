@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Authentication.unity
     guid: cbe4d9b3a052bea7294a5962d692d63f
   - enabled: 1
-    path: Assets/Scenes/Library.unity
-    guid: 7468694662630156e8efa3f30fc42430
-  - enabled: 1
     path: Assets/Scenes/WorldVsYou.unity
     guid: 12a142f9a87d8bdae8e2fedffd0c1d13
   - enabled: 1
@@ -20,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: c6cd092439d4c6467a8c99b8a6ef1cd5
+  - enabled: 1
+    path: Assets/Scenes/MyMatches.unity
+    guid: a5183bb5015deb965bd370f7e6ad989c
   m_configObjects: {}

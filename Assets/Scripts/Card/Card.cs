@@ -12,7 +12,9 @@ public class Card
     [SerializeField] private TerrainCost terrainCost;
     [SerializeField] private GameObject _prefab;
 
-    public Card(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost, TerrainCost terrainCost)
+    [SerializeField] private CardTypeToGive type;
+
+    public Card(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost, TerrainCost terrainCost, CardTypeToGive type)
     {
         this.name = name;
         this.description = description;
@@ -20,6 +22,7 @@ public class Card
         this.prefabId = prefabId;
         this.useCost = useCost;
         this.terrainCost = terrainCost;
+        this.type = type;
     }
 
     public virtual bool CanUse(Player player, Terrain terrain)
@@ -49,6 +52,8 @@ public class Card
     public ResourcesAmounts UseCost { get => useCost; }
     public TerrainCost TerrainCost { get => terrainCost; }
     public GameObject Prefab { get => _prefab; set => _prefab = value; }
+
+    public CardTypeToGive CardType { get => type; }    
 }
 
 [System.Serializable]

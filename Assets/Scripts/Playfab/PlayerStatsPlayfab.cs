@@ -13,7 +13,7 @@ public class PlayerStatsPlayfab : MonoBehaviour
 {
     [SerializeField] private AuthenticationPlayfab Authentication;
 
-    [SerializeField] private List<GameStats> Matches;
+    [SerializeField] public List<GameStats> Matches;
 
     [SerializeField] public GameStats LastMatchStats;
 

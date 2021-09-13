@@ -162,11 +162,11 @@ public class GameModeBase : MonoBehaviour
             }
         );
 
-        double progress = (this._player.Resources.Food * 1) +
-                        (this._player.Resources.Gold * 1.5f) +
-                        (this._player.Resources.Military * 2) +
-                        (this._player.Resources.People * 3) +
-                        (this._player.Resources.Stone * 1) +
+        float progress = (this._player.Resources.Food * 1) + 
+                        (this._player.Resources.Gold * 1.5f) + 
+                        (this._player.Resources.Military * 2) + 
+                        (this._player.Resources.People * 3) + 
+                        (this._player.Resources.Stone * 1) + 
                         (this._player.Resources.Wood * 1);
 
         this._gameStats.gameProgression.Add(

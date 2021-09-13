@@ -5,7 +5,7 @@ public class BuildingCard : Card
 {
     [SerializeField] private ResourcesAmounts resourcesPerTurn;
 
-    public BuildingCard(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost, TerrainCost terrainCost, ResourcesAmounts resourcesPerTurn) : base(name, description, imageId, prefabId, useCost, terrainCost)
+    public BuildingCard(string name, string description, string imageId, string prefabId, ResourcesAmounts useCost, TerrainCost terrainCost, ResourcesAmounts resourcesPerTurn) : base(name, description, imageId, prefabId, useCost, terrainCost, CardTypeToGive.Building)
     {
         this.resourcesPerTurn = resourcesPerTurn;
     }

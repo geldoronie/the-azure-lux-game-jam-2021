@@ -4,24 +4,45 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSumaryGUI : MonoBehaviour
+public class MyMatchesGUI : MonoBehaviour
 {
 
     [SerializeField] private PlayerStatsPlayfab _playerStatsPlayfab;
-    [SerializeField] private TMP_Text _gameModeName;
 
-    [SerializeField] private GraphGUI _chart;
+    [SerializeField] private GraphGUI _chart; 
+
+    [SerializeField]
+    private int _currentStatistic = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
         this._playerStatsPlayfab = GameObject.Find("PlayerStatistics").GetComponent<PlayerStatsPlayfab>();
-        this._gameModeName.text = this._playerStatsPlayfab.LastMatchStats.mode + " : Progression";
     }
 
     void Start(){
+
+    }
+
+    public void NextStatistic(){
+        if(this._currentStatistic + 1 > this._playerStatsPlayfab.Matches.Count)
+            return;
+
+        this._currentStatistic++;
+        this._loadStatistic(this._currentStatistic - 1);
+    }
+
+    public void PrevStatistic(){
+        if(this._currentStatistic - 1 < 0)
+            return;
+
+        this._currentStatistic--;
+        this._loadStatistic(this._currentStatistic - 1);
+    }
+
+    private void _loadStatistic(int index){
         List<int> points = new List<int>();
-        this._playerStatsPlayfab.LastMatchStats.gameProgression.ForEach( p => {
+        this._playerStatsPlayfab.Matches[index].gameProgression.ForEach( p => {
             points.Add(Mathf.RoundToInt(p.progress / 1000));
         });
         this._chart.LoadGraph(points);
